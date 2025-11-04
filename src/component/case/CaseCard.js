@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,46 +14,33 @@ export default function CaseCard() {
     dispatch(fetchCases());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (items?.length) console.log("🧠 Case Data:", items[0]);
+  }, [items]);
+
   if (loading) return <p>Loading...</p>;
 
   return (
     <div className={styles.grid}>
       {Array.isArray(items) && items.length > 0 ? (
-        items.map((item, idx) => {
-          const attributes = item?.attributes ?? item ?? {};
-          const title =
-            attributes.projectName ??
-            attributes.project_name ??
-            "Untitled";
-
-          const top = attributes.topImage;
+        items.map((item) => {
+          const title = item.projectName ?? "Untitled";
           let imgUrl = null;
-          const topData = top?.data ?? top;
 
-          if (Array.isArray(topData) && topData.length > 0) {
-            const first = topData[0];
-            imgUrl =
-              first?.attributes?.url ??
-              first?.url ??
-              first?.attributes?.formats?.small?.url ??
-              null;
-          } else if (topData && typeof topData === "object") {
-            imgUrl =
-              topData?.attributes?.url ??
-              topData?.url ??
-              topData?.attributes?.formats?.small?.url ??
-              null;
+          // Handle topImage array directly
+          if (Array.isArray(item.topImage) && item.topImage.length > 0) {
+            imgUrl = item.topImage[0]?.url;
           }
 
           const finalImg = imgUrl
             ? `http://localhost:1337${imgUrl}`
-            : "https://via.placeholder.com/600x400?text=No+Image";
+            : "https://placehold.co/600x400?text=No+Image";
 
           return (
             <div
-              key={item?.id ?? idx}
+              key={item.id}
               className={styles.card}
-              onClick={() => router.push(`/case/${item.id}`)}
+              onClick={() => router.push(`/case/${item.case_id}`)}
             >
               <img src={finalImg} alt={title} />
               <h3>{title}</h3>
@@ -61,7 +48,7 @@ export default function CaseCard() {
           );
         })
       ) : (
-        <p>No cases yet.</p>
+        <p>No cases found.</p>
       )}
     </div>
   );
