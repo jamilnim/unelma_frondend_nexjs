@@ -7,8 +7,9 @@ import HeroSpot from "../component/herospot/HeroSpot"
 export default function Home() {
   return (
     <div>
-      <HeroSpot/>
-      <CaseCard />
+      {/* <HeroSpot/> */}
+      {/* <CaseCard /> */}
+      
     </div>
   );
 }
