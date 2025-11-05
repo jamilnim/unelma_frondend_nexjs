@@ -1,0 +1,51 @@
+.detail {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: #333;
+  }
+  
+  .mainImage img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .category {
+    color: #0070f3;
+    margin-bottom: 1rem;
+  }
+  
+  .infoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+  }
+  
+  .gallerySection .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .gallery img {
+    width: calc(33.33% - 1rem);
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
