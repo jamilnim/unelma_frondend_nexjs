@@ -1,0 +1,41 @@
+.aboutPage {
+  max-width: 100%;
+  padding: 1rem;
+  margin: 0 auto;
+  color: var(--text);
+}
+
+.aboutPage h1 {
+  text-align: center;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.aboutSection {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
+}
+
+.aboutSection h2 {
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .abouPage {
+    padding: 2rem;
+  }
+}
+
+.about-section h2 p {
+  text-align: center;
+}

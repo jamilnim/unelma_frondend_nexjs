@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background: linear-gradient(to right, #eef2ff, #e0e7ff);
+}
+
+.card {
+  background-color: #fff;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 360px;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.7rem;
+  margin-bottom: 1.5rem;
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.switchText {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.switchText a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.switchText a:hover {
+  text-decoration: underline;
+}
