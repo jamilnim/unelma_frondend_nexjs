@@ -4,7 +4,7 @@ import { useParams, useRouter } from 'next/navigation';
 import CaseDetail from '../../../component/case/CaseDetail';
 
 export default function CaseDetailPage() {
-  const { id } = useParams(); // id = documentId, not numeric
+  const { id } = useParams(); // case_id
   const router = useRouter();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -12,19 +12,22 @@ export default function CaseDetailPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // ⚠️ query by documentId, NOT numeric id
         const res = await fetch(
           `http://localhost:1337/api/case-studies?filters[case_id][$eq]=${id}&populate=*`
         );
         const json = await res.json();
-        console.log('📦 Full Strapi Response:', json);
-        setItem(json.data?.[0]); // pick the first entry
+
+        // 🟢 Add this console log right here:
+        console.log("📦 Full Strapi Response:", JSON.stringify(json, null, 2));
+
+        setItem(json.data?.[0]);
       } catch (err) {
         console.error('❌ Error fetching case:', err);
       } finally {
         setLoading(false);
       }
     };
+
     fetchData();
   }, [id]);
 
@@ -48,7 +51,6 @@ export default function CaseDetailPage() {
         ← Back
       </button>
 
-      {/* ✅ Pass correct shape */}
       <CaseDetail item={item} />
     </div>
   );

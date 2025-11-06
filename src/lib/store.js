@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import caseReducer from './features/cases/caseSlice';
-import heroReducer from "./../lib/features/hero/heroSlice";
+import caseReducer from './features/cases/caseSlice'; // for case list
+import caseDetailReducer from './features/cases/caseDetailSlice'; // for single case detail
+import heroReducer from './features/hero/heroSlice';
 
 export const store = configureStore({
   reducer: {
-    caseStudies: caseReducer,
-    hero: heroReducer,
+    caseStudies: caseReducer,      // existing slice for cards
+    caseDetail: caseDetailReducer,  // new slice for case detail page
+    hero: heroReducer,              // existing hero slice
   },
 });
