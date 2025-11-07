@@ -1,13 +1,23 @@
-.grid {
+body {
+    height: 90vh; /* 90% of viewport height */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Main grid container for cards */
+  .grid {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 1.5rem;
     padding: 2rem;
     width: 100%;
-    flex-wrap: wrap;
+    margin-top: 10rem; /* cards start after 10rem from top */
   }
   
+  /* Card styles */
   .card {
     width: 20%;
     min-width: 250px;

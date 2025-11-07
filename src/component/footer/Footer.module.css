@@ -1,0 +1,20 @@
+.footer {
+    width: 100%; /* full width */
+    height: 8rem; /* taller footer */
+    background: linear-gradient(
+      to right,
+      rgba(30, 58, 138, 0.3),
+      rgba(37, 99, 235, 0.3)
+    ); /* same translucent blue as header */
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px); /* frosted glass look */
+    margin-top: 2rem;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 500;
+  }
+  

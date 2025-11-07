@@ -1,0 +1,38 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form input {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    color: #000;
+  }
+  
+  .form input::placeholder {
+    color: #000;
+    opacity: 0.6;
+  }
+  
+  .form button {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #2563eb;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .form button:hover {
+    background-color: #1e40af;
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.875rem;
+  }

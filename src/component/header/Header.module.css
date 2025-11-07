@@ -1,0 +1,76 @@
+.header {
+  position: absolute; /* Sit on top of hero section */
+  top: 1rem; /* Slight spacing from top */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Perfect centering */
+  width: 90%;
+  height: 5rem;
+  background: rgba(147, 171, 223, 0.3); /* translucent blue overlay */
+  color: black;
+  border-radius: 5px; /* soft curved edges */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px); /* glassy transparency */
+  z-index: 1000; /* make sure it's above hero */
+  
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: rgb(252, 252, 255);
+}
+
+.nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  transition: opacity 0.2s ease;
+}
+
+.nav a:hover {
+  opacity: 0.8;
+}
+
+.authButtons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loginBtn,
+.registerBtn,
+.logoutBtn {
+  background: transparent; /* no white background */
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.loginBtn:hover,
+.registerBtn:hover,
+.logoutBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.welcome {
+  margin-right: 0.5rem;
+  font-weight: 500;
+}
