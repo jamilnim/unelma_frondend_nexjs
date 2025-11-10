@@ -1,0 +1,42 @@
+.reviewList {
+    margin-top: 40px;
+    border-top: 1px solid #e1e1e1;
+    padding-top: 20px;
+  }
+  
+  .reviewCard {
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+  }
+  
+  .reviewCard:last-child {
+    border-bottom: none;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  
+  .stars {
+    color: #f5a623; /* golden stars */
+  }
+  
+  .comment {
+    margin: 4px 0;
+    color: #555;
+  }
+  
+  .date {
+    font-size: 0.8rem;
+    color: #999;
+  }
+  
+  .center {
+    text-align: center;
+    padding: 20px 0;
+  }
+  

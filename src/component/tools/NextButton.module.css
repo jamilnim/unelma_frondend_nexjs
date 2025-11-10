@@ -1,0 +1,31 @@
+.nextBtn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: linear-gradient(45deg, #007bff, #00b4ff);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    overflow: hidden;
+  }
+  
+  .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
+  .nextBtn:hover {
+    background: linear-gradient(45deg, #0056d6, #008cff);
+    transform: translateX(3px);
+  }
+  
+  .nextBtn:hover .arrow {
+    transform: translateX(6px);
+  }
+  

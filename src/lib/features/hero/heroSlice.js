@@ -7,16 +7,16 @@ export const fetchHero = createAsyncThunk(
   "hero/fetchHero",
   async (_, { rejectWithValue }) => {
     try {
-      // ✅ Manually encoded query string - works on all Strapi 4.x builds
+      // Fetch all hero attributes and media
       const res = await axios.get(
-        `${API_URL}/api/hero-spots?populate[0]=backgroundMedia&populate[1]=logo`
+        `${API_URL}/api/hero-spots?populate=*`
       );
 
       if (!res.data.data || res.data.data.length === 0) {
         return rejectWithValue("No hero data found");
       }
 
-      return res.data.data[0];
+      return res.data.data[0]; // get the first hero object
     } catch (err) {
       console.error("❌ fetchHero error:", err.response?.data || err.message);
       return rejectWithValue(err.response?.data?.message || err.message);

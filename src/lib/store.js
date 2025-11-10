@@ -4,6 +4,8 @@ import caseDetailReducer from './features/cases/caseDetailSlice'; // for single 
 import heroReducer from './features/hero/heroSlice';
 import authReducer from "./features/auth/authSlice";
 import serviceReducer from "./features/service/serviceSlice";
+import productReducer from "./features/product/productSlice";
+import reviewReducer from "./features/product/reviewSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +14,7 @@ export const store = configureStore({
     hero: heroReducer,              // existing hero slice
     auth: authReducer,
     services: serviceReducer,
+    product: productReducer,
+    reviews: reviewReducer,
   },
 });
