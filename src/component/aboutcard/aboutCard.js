@@ -6,40 +6,46 @@ const AboutCard = () => {
       <h1>About Unelma</h1>
 
       <section className={styles.aboutSection}>
-        <p>
-          Welcome to Unelma Platforms, where our mission is to "empower people."
-          Funny thing is nobody were talking about "empowering people" in IT
-          industry some 15 years ago and when we started a slogan of "empower
-          people" with our business many big corporate giants and other
-          consulting companies started copying our slogan and now almost
-          everybody is talking about how to help and empower clients. With over
-          15 years of experience in the tech landscape, Unelma Platforms has
-          grown into a household name heralding the digital revolution. We
-          proudly strut a rich legacy that intersects innovation, user
-          experience, and transformative power, borne out of our unwavering
-          commitment to empower the lives of people through technology. We
-          believe in the profound potential technology holds to create positive
-          change, and we channel this belief into creating platforms and
-          software that are user-friendly, efficient, and groundbreaking. Our
-          team comprises seasoned professionals who are passionate about
-          harnessing the power of technology to optimize processes, solve
-          complex problems, and ultimately, transform lives. Our product
-          portfolio - including UnelmaMail, UnelmaBrowser, and Unelma-Code
-          Translator - is a testament to our motivation to build technology that
-          makes a difference. Each of our cutting-edge products comes with full
-          support, maintenance, and security provisions to ensure a seamless
-          user experience. At Unelma Platforms, our journey is always about more
-          than just developing technology. It is about empowering people,
-          fostering growth, and pushing boundaries. We don't just create
-          platforms; we create opportunities where none existed before. So come
-          with us on this exciting journey and allow us to empower you. Welcome
-          to Unelma Platforms. Embrace the power of technology to transform your
-          world.
-        </p>
+        <video autoPlay loop muted playsInline className={styles.videoBg}>
+          <source src="/running-bg.mp4" type="video/mp4" />
+        </video>
+
+        <div className={styles.overlay}>
+          <p>
+            Welcome to Unelma Platforms, where our mission is to "empower
+            people." Funny thing is nobody were talking about "empowering
+            people" in IT industry some 15 years ago and when we started a
+            slogan of "empower people" with our business many big corporate
+            giants and other consulting companies started copying our slogan and
+            now almost everybody is talking about how to help and empower
+            clients. With over 15 years of experience in the tech landscape,
+            Unelma Platforms has grown into a household name heralding the
+            digital revolution. We proudly strut a rich legacy that intersects
+            innovation, user experience, and transformative power, borne out of
+            our unwavering commitment to empower the lives of people through
+            technology. We believe in the profound potential technology holds to
+            create positive change, and we channel this belief into creating
+            platforms and software that are user-friendly, efficient, and
+            groundbreaking. Our team comprises seasoned professionals who are
+            passionate about harnessing the power of technology to optimize
+            processes, solve complex problems, and ultimately, transform lives.
+            Our product portfolio - including UnelmaMail, UnelmaBrowser, and
+            Unelma-Code Translator - is a testament to our motivation to build
+            technology that makes a difference. Each of our cutting-edge
+            products comes with full support, maintenance, and security
+            provisions to ensure a seamless user experience. At Unelma
+            Platforms, our journey is always about more than just developing
+            technology. It is about empowering people, fostering growth, and
+            pushing boundaries. We don't just create platforms; we create
+            opportunities where none existed before. So come with us on this
+            exciting journey and allow us to empower you. Welcome to Unelma
+            Platforms. Embrace the power of technology to transform your world.
+          </p>
+        </div>
       </section>
 
-      <section className={styles.aboutSection}>
-        <h2>Mission</h2>
+      <section className={styles.aboutSection2}>
+        <h1>Mission</h1>
         <p>
           <b> Provide all kind of it service </b>
         </p>
@@ -54,8 +60,8 @@ const AboutCard = () => {
         </p>
       </section>
 
-      <section className={styles.aboutSection}>
-        <h2>We Have Global Network Of Clients</h2>
+      <section className={styles.aboutSection3}>
+        <h1>We Have Global Network Of Clients</h1>
         <p>
           Unelma Platforms boasts a wide-reaching global network of clients.
           Over our 15 years journey, we have meticulously built and nurtured
@@ -71,7 +77,7 @@ const AboutCard = () => {
         </p>
       </section>
 
-      <section className={styles.aboutSection}>
+      <section className={styles.aboutSection4}>
         <h2>Come work with us</h2>
       </section>
     </div>
