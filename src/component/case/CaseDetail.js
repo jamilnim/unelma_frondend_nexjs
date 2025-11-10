@@ -4,7 +4,7 @@ import styles from "./CaseDetail.module.css";
 export default function CaseDetail({ item }) {
   if (!item) return <p>Case details not available.</p>;
 
-  // 🧠 Destructure fields directly (no item.attributes in Strapi v5)
+  // ✅ Strapi v5 — fields are direct on item
   const {
     projectName,
     overview,
@@ -15,19 +15,17 @@ export default function CaseDetail({ item }) {
     completedDate,
     category,
     topImage,
-    gallery,
+    Gallery, // 🟢 capital G (matches your Strapi field)
   } = item;
 
   // 🖼️ Handle top image
   let topImageUrl = null;
   if (Array.isArray(topImage) && topImage.length > 0) {
     const img = topImage[0];
-    topImageUrl = img?.url
-      ? `http://localhost:1337${img.url}`
-      : `http://localhost:1337${img?.formats?.small?.url}`;
+    topImageUrl = `http://localhost:1337${img.url}`;
   }
 
-  // 🧾 Convert overview/result arrays into text safely
+  // 🧾 Convert overview/result safely
   const overviewText =
     overview?.map((block) =>
       block.children?.map((child) => child.text).join(" ")
@@ -38,13 +36,12 @@ export default function CaseDetail({ item }) {
       block.children?.map((child) => child.text).join(" ")
     ).join("\n") ?? "";
 
-  // 🖼️ Gallery images
-  const galleryImages = Array.isArray(gallery)
-    ? gallery
-    : gallery?.data || [];
+  // 🖼️ Gallery handling
+  const galleryImages = Array.isArray(Gallery) ? Gallery : [];
 
   return (
     <div className={styles.detail}>
+      {/* 🟢 Top Image */}
       {topImageUrl && (
         <img
           src={topImageUrl}
@@ -78,6 +75,7 @@ export default function CaseDetail({ item }) {
         <p>{resultText}</p>
       </div>
 
+      {/* 🟣 Gallery Section */}
       {galleryImages.length > 0 && (
         <div className={styles.gallerySection}>
           <h2>Gallery</h2>
@@ -85,8 +83,9 @@ export default function CaseDetail({ item }) {
             {galleryImages.map((img) => (
               <img
                 key={img.id}
-                src={`http://localhost:1337${img.url || img?.attributes?.url}`}
-                alt={`${projectName} image`}
+                src={`http://localhost:1337${img.url}`}
+                alt={img.name || `${projectName} image`}
+                className={styles.galleryImage}
               />
             ))}
           </div>

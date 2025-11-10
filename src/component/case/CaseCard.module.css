@@ -1,9 +1,11 @@
 .grid {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-direction: row;
     gap: 1.5rem;
     padding: 2rem;
+    width: 100%;
+    flex-wrap: wrap;
   }
   
   .card {
