@@ -4,13 +4,15 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { MapPin, Calendar, Briefcase, ArrowRight } from "lucide-react";
-
+import CareerHero from "../../component/career/CareerHero";
 // ---- data fetching ----
 async function fetchJobs() {
   const res = await fetch("/api/jobs", { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to fetch jobs");
   return res.json();
 }
+
+
 
 // ---- small helpers ----
 const fmt = (d) => d || "Open now";
@@ -41,38 +43,28 @@ export default function CareerPage() {
 
   return (
     <div className="min-h-screen">
-      {/* HERO */}
-      <section className="relative isolate overflow-hidden bg-gradient-to-b from-gray-50 to-white">
-        <div className="mx-auto max-w-7xl px-4 py-16">
-          <div className="max-w-3xl">
-            <p className="text-sm/6 uppercase tracking-widest text-gray-500">
-              Join Unelma Platforms
-            </p>
-            <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900">
-              Careers — current openings
-            </h1>
-            <p className="mt-3 text-base text-gray-600">
-              Explore internships, part-time, remote, and full-time roles.
-              Click any card to see details and how to apply.
-            </p>
-          </div>
+      {/* ✅ HERO slider */}
+      <CareerHero />
 
-          {/* Filters */}
-          <div className="mt-8 flex flex-wrap gap-2">
-            {FILTERS.map((f) => {
-              const active = f === filter;
-              return (
-                <button
-                  key={f}
-                  onClick={() => setFilter(f)}
-                  className={`rounded-full border px-3 py-1 text-sm transition
-                    ${active ? "bg-black text-white border-black" : "bg-white text-gray-700 hover:bg-gray-50 border-gray-200"}`}
-                >
-                  {f}
-                </button>
-              );
-            })}
-          </div>
+      {/* Filters */}
+      <section className="mx-auto max-w-7xl px-4 pb-4">
+        <div className="mt-2 flex flex-wrap gap-2">
+          {FILTERS.map((f) => {
+            const active = f === filter;
+            return (
+              <button
+                key={f}
+                onClick={() => setFilter(f)}
+                className={`rounded-full border px-3 py-1 text-sm transition ${
+                  active
+                    ? "bg-black text-white border-black"
+                    : "bg-white text-gray-700 hover:bg-gray-50 border-gray-200"
+                }`}
+              >
+                {f}
+              </button>
+            );
+          })}
         </div>
       </section>
 
@@ -110,8 +102,12 @@ export default function CareerPage() {
                   <Link key={job.id} href={`/career/${job.id}`}>
                     <div className="group flex h-full cursor-pointer flex-col justify-between rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md">
                       <div>
-                        <div className="mb-3 inline-flex rounded-full px-2.5 py-1 text-xs font-medium ring-1 ring-inset ring-gray-200
-                          {badgeColor(job.type)}">
+                        {/* ✅ fixed: interpolate badgeColor */}
+                        <div
+                          className={`mb-3 inline-flex rounded-full px-2.5 py-1 text-xs font-medium ring-1 ring-inset ring-gray-200 ${badgeColor(
+                            job.type
+                          )}`}
+                        >
                           {job.type}
                         </div>
 
