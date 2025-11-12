@@ -1,7 +1,6 @@
-"use client"
+"use client";
 import dynamic from "next/dynamic";
-import styles from "./aboutCard.module.css"
-
+import styles from "./aboutCard.module.css";
 
 const connections = [
   {
@@ -115,14 +114,15 @@ const AboutCard = () => {
             Unelma Platforms boasts a wide-reaching global network of clients.
             Over our 15 years journey, we have meticulously built and nurtured
             relationships with enterprises, startups, and individuals across
-            multiple continents. Our innovative and user-friendly products and the
-            commitment to reliable support and service, irrespective of geographic
-            location, has fostered trust among our clients globally. From local
-            businesses to multinational corporations, our clientele spans every
-            corner of the globe, making Unelma Platforms a universally recognized
-            and preferred name in the digital tech landscape. This expansive
-            global network is a testament to our determination to empower people
-            through technology, across borders and beyond boundaries.
+            multiple continents. Our innovative and user-friendly products and
+            the commitment to reliable support and service, irrespective of
+            geographic location, has fostered trust among our clients globally.
+            From local businesses to multinational corporations, our clientele
+            spans every corner of the globe, making Unelma Platforms a
+            universally recognized and preferred name in the digital tech
+            landscape. This expansive global network is a testament to our
+            determination to empower people through technology, across borders
+            and beyond boundaries.
           </b>
         </section>
       </div>
@@ -149,9 +149,7 @@ const AboutCard = () => {
         </ul>
       </section>
 
-      <section className={styles.aboutSection4}>
-        
-      </section>
+      <section className={styles.aboutSection4}></section>
 
       <MapSection />
     </div>
