@@ -1,50 +1,121 @@
 .header {
-  position: absolute; /* Sit on top of hero section */
-  top: 1rem; /* Slight spacing from top */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Perfect centering */
-  width: 90%;
-  height: 5rem;
-  background: rgba(147, 171, 223, 0.3); /* translucent blue overlay */
-  color: black;
-  border-radius: 5px; /* soft curved edges */
+  position: sticky; /* Makes header stick on top */
+  top: 0; /* Stick at the top */
+  left: 0;
+  width: 100%;
+  height: 80px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(10px); /* glassy transparency */
-  z-index: 1000; /* make sure it's above hero */
-  
+  z-index: 999; /* Always above content */
+  backdrop-filter: blur(12px); /* Stronger glass effect */
+  background-color: rgba(255, 255, 255, 0.65); /* Semi-transparent */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Optional: make background a bit darker on scroll */
+.header.scrolled {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
 }
 
 .container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  max-width: 1200px;
+  padding: 0 2rem;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: rgb(252, 252, 255);
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.logoImage {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.logoText {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111;
+}
+
+/* Hamburger */
+.menuToggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.bar,
+.barActive {
+  height: 3px;
+  width: 100%;
+  background-color: #111;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
 }
 
 .nav a {
-  margin: 0 1rem;
   text-decoration: none;
-  color: rgb(255, 255, 255);
-  transition: opacity 0.2s ease;
+  font-weight: 500;
+  color: #111;
+  transition: color 0.3s ease;
 }
 
 .nav a:hover {
-  opacity: 0.8;
+  color: #8b5cf6;
 }
 
-.authButtons {
+.dropdown {
+  position: relative;
+}
+
+.dropdownContent {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  min-width: 180px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.6rem 0;
+  z-index: 10;
+}
+
+.dropdownContent a {
+  padding: 0.5rem 1rem;
+  color: #111;
+}
+
+.dropdownContent a:hover {
+  background-color: #f3f4f6;
+}
+
+/* Auth */
+.auth {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -53,24 +124,63 @@
 .loginBtn,
 .registerBtn,
 .logoutBtn {
-  background: transparent; /* no white background */
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid #ddd;
+  background: #fff;
   font-weight: 500;
-  text-decoration: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .loginBtn:hover,
 .registerBtn:hover,
 .logoutBtn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: #f3f4f6;
 }
 
-.welcome {
-  margin-right: 0.5rem;
-  font-weight: 500;
+/* Responsive */
+@media (max-width: 768px) {
+  .menuToggle {
+    display: flex;
+  }
+
+  .nav {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .nav.navOpen {
+    max-height: 500px;
+  }
+}
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* When scrolled */
+.header.scrolled {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
 }

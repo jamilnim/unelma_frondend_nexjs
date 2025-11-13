@@ -1,0 +1,75 @@
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+}
+.seeMore {
+  text-decoration: none;
+  font-weight: 600;
+  color: inherit;
+  opacity: 0.85;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.06);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(16, 24, 40, 0.12);
+}
+.cardLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.mediaWrap {
+  width: 100%;
+  height: 160px;
+  position: relative;
+}
+.cover {
+  object-fit: cover;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.coverPlaceholder {
+  width: 100%;
+  height: 160px;
+  background: linear-gradient(90deg, #f3f4f6 0%, #eceff1 100%);
+}
+.content {
+  padding: 1rem 1rem 1.25rem 1rem;
+}
+.postTitle {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.05rem;
+}
+.excerpt {
+  margin: 0 0 0.75rem 0;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+.time {
+  display: block;
+  font-size: 0.8rem;
+  color: #8b8f97;
+}

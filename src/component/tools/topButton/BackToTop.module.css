@@ -1,0 +1,102 @@
+:root {
+  --hero-blue: #3b82f6;
+  --hero-purple: #8b5cf6;
+  --hero-pink: #ec4899;
+  --glass-bg: rgba(20, 20, 30, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --icon-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Base Style */
+.scrollToTop {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px) saturate(1.4);
+  border: 1px solid var(--glass-border);
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px) scale(0.98);
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease,
+    background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Show When Active */
+.scrollToTop.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* Non-round shape — slight corner radius */
+.scrollToTop {
+  border-radius: 14px;
+}
+
+/* Hover Effect */
+.scrollToTop:hover {
+  transform: translateY(-6px) scale(1.05);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.4),
+    rgba(139, 92, 246, 0.3),
+    rgba(236, 72, 153, 0.25)
+  );
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* SVG Icon */
+.scrollToTop svg {
+  width: 30px;
+  height: 30px;
+  color: var(--icon-color);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+/* Hover Icon Glow */
+.scrollToTop:hover svg {
+  transform: translateY(-2px);
+  color: #ffffff;
+  filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.8));
+}
+
+/* Slight inner glow ring effect */
+.scrollToTop::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.15),
+    rgba(236, 72, 153, 0.1)
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.scrollToTop:hover::after {
+  opacity: 1;
+}
+
+/* Accessibility */
+.scrollToTop:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.3);
+}
+
+/* Animation-friendly */
+@media (prefers-reduced-motion: reduce) {
+  .scrollToTop {
+    transition: none;
+  }
+}

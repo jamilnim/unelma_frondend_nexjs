@@ -1,56 +1,240 @@
-.hero {
+.heroSection {
   position: relative;
   width: 100%;
-  height: 90vh;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.overlay {
-  /* Combined gradient: transparent top and sides, black bottom */
-  background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.85) 100%
-    ),
-    linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0.2)
-    );
-  background-blend-mode: multiply;
-  width: 100%;
-  height: 100%;
+  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  color: white;
+  align-items: center;
   text-align: center;
-  padding: 1rem;
+  padding: 4rem 2rem 6rem;
+  background: linear-gradient(135deg, #ffffff, #f0f4f8);
+  overflow: hidden;
 }
 
-.logo {
-  max-width: 120px;
-  z-index: 10;
-  position: relative;
-  display: block;
-  opacity: 60%;
-  
+/* ---------- Floating Shapes ---------- */
+.floatingShapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.title {
+.shape1,
+.shape2,
+.shape3 {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.2;
+  filter: blur(80px);
+  animation: float 15s infinite ease-in-out alternate;
+}
+
+.shape1 {
+  width: 300px;
+  height: 300px;
+  background: #3b82f6;
+  top: 10%;
+  left: 5%;
+}
+
+.shape2 {
+  width: 400px;
+  height: 400px;
+  background: #8b5cf6;
+  bottom: 5%;
+  right: 10%;
+  animation-delay: 3s;
+}
+
+.shape3 {
+  width: 250px;
+  height: 250px;
+  background: #ec4899;
+  top: 40%;
+  left: 50%;
+  animation-delay: 6s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-30px) translateX(20px);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+}
+
+/* ---------- Tagline ---------- */
+.tagline {
+  z-index: 1;
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #555;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+  border-radius: 9999px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Main Title ---------- */
+.heroTitle {
+  z-index: 1;
   font-size: 3rem;
-  font-weight: bold;
-  margin: 0.5rem 0;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111;
+  margin-bottom: 1.5rem;
 }
 
-.slogan {
-  font-size: 1.2rem;
+.gradientText {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- Subtitle ---------- */
+.heroSubtitle {
+  z-index: 1;
   max-width: 600px;
+  font-size: 1.15rem;
+  color: #555;
+  margin-bottom: 2.5rem;
   line-height: 1.6;
+}
+
+/* ---------- Buttons ---------- */
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  z-index: 1;
+}
+
+.primaryBtn {
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(80, 0, 200, 0.15);
+  transition: all 0.3s ease;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.secondaryBtn {
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: 1px solid #ddd;
+  color: #111;
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.secondaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- Stats Counters ---------- */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  z-index: 1;
+}
+
+.statBox {
+  text-align: center;
+}
+
+.statBox h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.statBox p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 0.3rem;
+}
+
+/* ---------- Scroll Indicator ---------- */
+.scrollIndicator {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  z-index: 1;
+}
+
+.scrollIndicator span {
+  display: block;
+  width: 2px;
+  height: 20px;
+  background: #111;
+  border-radius: 1px;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.4rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 0.95rem;
+  }
 }
