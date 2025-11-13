@@ -1,28 +1,43 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
-export default function CareerHero() {
+const FALLBACK =
+  "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=60";
+
+export default function CareerHero({ onCta }) {
   const slides = useMemo(
     () => [
       {
         image:
-          "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80",
         title: "Build with Unelma",
         subtitle: "Internships, part-time, remote and full-time roles.",
+        ctas: [
+          { label: "See internships", value: "Internship" },
+          { label: "Remote roles", value: "Remote" },
+        ],
       },
       {
-        // You can swap to your exact Unsplash link/id if you want
         image:
-          "https://unsplash.com/photos/people-sitting-on-chair-in-front-of-laptop-computers-rMILC1PIwM0",
+          "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80",
         title: "Grow your career",
         subtitle: "Real projects, impact, and mentorship.",
+        ctas: [
+          { label: "Full time", value: "Full time" },
+          { label: "Part time", value: "Part time" },
+        ],
       },
       {
         image:
-          "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=1600&q=80",
         title: "Create the future",
         subtitle: "Design, engineering, and product opportunities.",
+        ctas: [
+          { label: "All openings", value: "All" },
+          { label: "Remote roles", value: "Remote" },
+        ],
       },
     ],
     []
@@ -30,19 +45,19 @@ export default function CareerHero() {
 
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const timer = useRef(null);
+  const timerRef = useRef(null);
 
   // autoplay
   useEffect(() => {
     if (paused) return;
-    timer.current = setInterval(
+    timerRef.current = setInterval(
       () => setIndex((i) => (i + 1) % slides.length),
       5000
     );
-    return () => clearInterval(timer.current);
+    return () => clearInterval(timerRef.current);
   }, [paused, slides.length]);
 
-  // arrow keys
+  // keyboard nav
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "ArrowRight") setIndex((i) => (i + 1) % slides.length);
@@ -53,17 +68,43 @@ export default function CareerHero() {
     return () => window.removeEventListener("keydown", onKey);
   }, [slides.length]);
 
+  // swipe for mobile
+  const touchStart = useRef({ x: 0, y: 0, active: false });
+  const handleTouchStart = (e) => {
+    const t = e.touches?.[0];
+    if (!t) return;
+    touchStart.current = { x: t.clientX, y: t.clientY, active: true };
+  };
+  const handleTouchEnd = (e) => {
+    if (!touchStart.current.active) return;
+    const t = e.changedTouches?.[0];
+    if (!t) return;
+    const dx = t.clientX - touchStart.current.x;
+    const dy = t.clientY - touchStart.current.y;
+    touchStart.current.active = false;
+
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+    if (dx < 0) setIndex((i) => (i + 1) % slides.length);
+    else setIndex((i) => (i - 1 + slides.length) % slides.length);
+  };
+
+  const onImgErr = (e) => {
+    if (e?.currentTarget?.src !== FALLBACK) e.currentTarget.src = FALLBACK;
+  };
+
   return (
     <section
       className="relative isolate overflow-hidden bg-black"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       aria-roledescription="carousel"
       aria-label="Careers hero"
     >
       {/* Viewport */}
       <div className="relative h-[60vh] min-h-[340px] w-full overflow-hidden">
-        {/* Track (auto width based on slide count) */}
+        {/* Track */}
         <div
           className="flex h-full transition-transform duration-700 ease-out will-change-transform"
           style={{ transform: `translateX(-${index * 100}%)` }}
@@ -76,36 +117,37 @@ export default function CareerHero() {
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${slides.length}`}
             >
-              {/* Background fill (cover + blur) so hero is always fully filled */}
+              {/* Background cover (blurred) */}
               <img
                 src={s.image}
                 alt=""
-                aria-hidden="true"
                 className="absolute inset-0 h-full w-full object-cover blur-xl scale-110 opacity-60"
-                loading="eager"
-                decoding="async"
+                onError={onImgErr}
               />
 
-              {/* Foreground image (contain) so the full photo is visible */}
+              {/* Foreground (contain) */}
               <img
                 src={s.image}
                 alt={s.title}
                 className="absolute inset-0 h-full w-full object-contain"
                 style={{ objectPosition: "center" }}
-                loading="eager"
-                decoding="async"
+                onError={onImgErr}
               />
 
-              {/* Gradient for legibility */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-              {/* Copy (only fully visible on active slide) */}
+              {/* Text with animation */}
               <div className="absolute inset-0 flex items-end">
                 <div className="mx-auto w-full max-w-7xl px-4 pb-10">
-                  <div
-                    className={`max-w-3xl text-white transition-opacity duration-300 ${
-                      i === index ? "opacity-100" : "opacity-0"
-                    }`}
+                  <motion.div
+                    key={i === index ? `active-${i}` : `inactive-${i}`}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{
+                      opacity: i === index ? 1 : 0,
+                      y: i === index ? 0 : 8,
+                    }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    className="max-w-3xl text-white"
                   >
                     <p className="text-xs uppercase tracking-widest text-white/80">
                       Careers at Unelma
@@ -114,7 +156,21 @@ export default function CareerHero() {
                       {s.title}
                     </h1>
                     <p className="mt-2 text-base text-white/90">{s.subtitle}</p>
-                  </div>
+
+                    {!!s.ctas?.length && (
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        {s.ctas.map((c) => (
+                          <button
+                            key={c.label}
+                            onClick={() => onCta?.(c.value)}
+                            className="rounded-full bg-white/95 px-3 py-1.5 text-sm font-medium text-gray-900 shadow hover:bg-white"
+                          >
+                            {c.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -130,11 +186,8 @@ export default function CareerHero() {
                   key={i}
                   onClick={() => setIndex(i)}
                   className={`h-2.5 w-2.5 rounded-full transition ${
-                    i === index
-                      ? "bg-white"
-                      : "bg-white/50 hover:bg-white/80"
+                    i === index ? "bg-white" : "bg-white/50 hover:bg-white/80"
                   }`}
-                  aria-label={`Go to slide ${i + 1}`}
                 />
               ))}
             </div>
@@ -148,7 +201,7 @@ export default function CareerHero() {
         )}
       </div>
 
-      {/* small pre-header under hero */}
+      {/* Section under hero */}
       <div className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-6">
           <h2 className="text-xl font-semibold text-gray-900">
