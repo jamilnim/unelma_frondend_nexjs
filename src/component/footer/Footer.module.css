@@ -1,7 +1,71 @@
 .footer {
-  text-align: center;
-  padding: 1.5rem;
-  background-color: #1e3a8a;
+  background: #1e1b4b;
   color: white;
-  margin-top: 2rem;
+  padding: 60px 30px;
+}
+
+.topSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.column h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.column a, .column p {
+  display: block;
+  margin-bottom: 8px;
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.column a:hover {
+  color: #fff;
+}
+
+.newsletter {
+  display: flex;
+  margin-top: 10px;
+}
+
+.newsletter input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px 0 0 6px;
+  border: none;
+  outline: none;
+}
+
+.newsletter button {
+  padding: 10px 15px;
+  background: #fb923c;
+  border: none;
+  color: white;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.bottomLogos {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.bottomLogos img {
+  height: 70px;
+}
+
+.copy {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.7;
 }

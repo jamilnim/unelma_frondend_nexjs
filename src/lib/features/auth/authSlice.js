@@ -3,7 +3,6 @@ import axios from "axios";
 
 const API_URL = "http://localhost:1337/api";
 
-// Login user (normal or admin)
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async ({ identifier, password }, { rejectWithValue }) => {
@@ -19,7 +18,6 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-// Register normal user
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async ({ username, email, password }, { rejectWithValue }) => {

@@ -15,9 +15,11 @@ export default function ServicesPage() {
           "http://localhost:1337/api/service-categories?populate=*"
         );
         const data = await res.json();
-        setCategories(data.data);
+        console.log("Fetched categories:", data);
+        setCategories(data.data || []); // data array
       } catch (err) {
-        console.error(err);
+        console.error("Error fetching categories:", err);
+        setCategories([]);
       } finally {
         setLoading(false);
       }
@@ -27,32 +29,26 @@ export default function ServicesPage() {
   }, []);
 
   if (loading) return <p className={styles.message}>Loading services...</p>;
+  if (!categories.length)
+    return <p className={styles.message}>No services found.</p>;
 
   return (
     <div className={styles.container}>
       {categories.map((category) => {
         const title = category.name || "Unnamed Service";
-        const slug = category.slug || "#";
-
-        // Get image URL (medium format if available)
+        const slug = category.slug ? `/services/${category.slug}` : "#";
         const imageUrl =
           category.imageIcon?.[0]?.formats?.medium?.url ||
           category.imageIcon?.[0]?.url ||
           "/placeholder.png";
 
         return (
-          <Link
-            key={category.id}
-            href={`/services/${slug}`}
-            className={styles.card}
-          >
-            <div className={styles.imageWrapper}>
-              <img
-                src={`http://localhost:1337${imageUrl}`}
-                alt={title}
-                className={styles.image}
-              />
-            </div>
+          <Link key={category.id} href={slug} className={styles.card}>
+            <img
+              src={`http://localhost:1337${imageUrl}`}
+              alt={title}
+              className={styles.image}
+            />
             <h3 className={styles.title}>{title}</h3>
           </Link>
         );
