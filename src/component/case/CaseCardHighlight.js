@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCases } from "../../lib/features/cases/caseSlice";
 import styles from "./CaseCardHighlight.module.css";
+import NextButton from "../../component/tools/NextButton";
 
 export default function CaseCardHighlight() {
   const router = useRouter();
@@ -30,17 +31,9 @@ export default function CaseCardHighlight() {
 
   return (
     <section className={styles.wrapper}>
-      <h1 className={styles.heading}>Case Study</h1>
+      <h1 className={styles.heading}>Recent Works</h1>
 
-      <div className={styles.carouselRow}>
-        <button
-          className={styles.navButton}
-          aria-label="Scroll left"
-          onClick={() => scroll("left")}
-        >
-          &#8249;
-        </button>
-
+      <div className={styles.carouselWrapper}>
         <div className={styles.scrollContainer} ref={scrollRef}>
           {Array.isArray(items) && items.length > 0 ? (
             items.map((item) => {
@@ -56,10 +49,10 @@ export default function CaseCardHighlight() {
                   className={styles.card}
                   onClick={() => router.push(`/case/${item.case_id}`)}
                 >
-                  <img src={imgUrl} alt={title} />
-                  <div className={styles.info}>
-                    <h3>{title}</h3>
-                    <p className={styles.category}>{item.category}</p>
+                  <img src={imgUrl} alt={title} className={styles.cardImage} />
+                  <div className={styles.cardContent}>
+                    <h3 className={styles.cardTitle}>{title}</h3>
+                    <p className={styles.cardDesc}>{item.category}</p>
                   </div>
                 </div>
               );
@@ -69,22 +62,13 @@ export default function CaseCardHighlight() {
           )}
         </div>
 
-        <button
-          className={styles.navButton}
-          aria-label="Scroll right"
-          onClick={() => scroll("right")}
-        >
-          &#8250;
-        </button>
-      </div>
-
-      <div className={styles.ctaRow}>
-        <button
-          className={styles.knowMoreBtn}
-          onClick={() => router.push("/casestudy")}
-        >
-          Know More
-        </button>
+        {/* Buttons below carousel */}
+        <div className={styles.buttonsRow}>
+          <NextButton onClick={() => scroll("left")} flip>
+            
+          </NextButton>
+          <NextButton onClick={() => scroll("right")}></NextButton>
+        </div>
       </div>
     </section>
   );

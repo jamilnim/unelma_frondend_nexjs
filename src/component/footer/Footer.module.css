@@ -1,20 +1,222 @@
+/* ============================= */
+/* FOOTER BASE STYLING */
+/* ============================= */
 .footer {
-    width: 100%; /* full width */
-    height: 8rem; /* taller footer */
-    background: linear-gradient(
-      to right,
-      rgba(30, 58, 138, 0.3),
-      rgba(37, 99, 235, 0.3)
-    ); /* same translucent blue as header */
-    color: white;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(10px); /* frosted glass look */
-    margin-top: 2rem;
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+    background: #ffffff; /* white footer */
+    color: #111;
+    padding: 80px 40px 40px;
+    font-family: "Inter", sans-serif;
     position: relative;
-    z-index: 500;
+    overflow: hidden;
+  
+    /* Top shadow */
+    box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  
+  /* ============================= */
+  /* USEFUL LINKS */
+  /* ============================= */
+  .blockTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #111;
+  }
+  
+  .links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .links li {
+    margin-bottom: 0.6rem;
+  }
+  
+  .links a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .links a:hover {
+    color: #007BFF;
+    text-decoration: underline;
+  }
+  
+  /* ============================= */
+  /* SUBSCRIBE SECTION */
+  /* ============================= */
+  .subscribeWrapperBlock {
+    flex: 1 1 280px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .subscribeWrapper {
+    background: linear-gradient(
+      to bottom,
+      rgba(56, 129, 180, 0.9), /* top color #3881B4 with 90% opacity */
+      rgba(56, 129, 180, 0.7)  /* bottom color slightly lighter for gradient effect */
+    );
+    border-radius: 16px;
+    padding: 2rem;
+    width: 40%; /* subscription box width */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #ffffff; /* text white for contrast */
+  }
+  
+  .subscribeWrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  }
+
+  .subscribeTitle {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+  
+  .subscribeDesc {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.2rem;
+  }
+  
+  /* FORM */
+  .subscribeForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  
+  .subscribeInput {
+    padding: 0.85rem 1.1rem;
+    border-radius: 999px;
+    border: none; /* removed border */
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .subscribeInput:focus {
+    background: rgba(255, 255, 255, 0.25);
+    outline: none;
+  }
+  
+  .subscribeBtn {
+    padding: 0.85rem 1.8rem;
+    border-radius: 999px;
+    border: none;
+    background: #000; /* black button */
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .subscribeBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+  
+  .subscribeNote {
+    margin-top: 0.8rem;
+    font-size: 0.88rem;
+    min-height: 20px;
+    color: #000;
+  }
+  
+  /* ============================= */
+  /* REGIONAL ADDRESSES (ACCORDION) */
+  /* ============================= */
+  .regions {
+    flex: 1 1 280px;
+  }
+  
+  .region {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    background: rgba(0, 0, 0, 0.03);
+    transition: background 0.3s ease;
+  }
+  
+  .region[open] {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  .regionTitle {
+    cursor: pointer;
+    padding: 0.8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #111;
+  }
+  
+  .regionBody {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .contactRow a {
+    display: inline-block;
+    margin-right: 12px;
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .contactRow a:hover {
+    color: #0056b3;
+  }
+  
+  /* ============================= */
+  /* COPYRIGHT BOTTOM */
+  /* ============================= */
+  .bottom {
+    margin-top: 50px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  /* ============================= */
+  /* RESPONSIVE DESIGN */
+  /* ============================= */
+  @media (max-width: 1200px) {
+    .subscribeWrapper {
+      width: 60%; /* medium screens */
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .container {
+      flex-direction: column;
+      gap: 30px;
+    }
+    .subscribeWrapper {
+      width: 100%; /* full width on mobile */
+    }
+    .subscribeInput,
+    .subscribeBtn {
+      width: 100%;
+    }
   }
   

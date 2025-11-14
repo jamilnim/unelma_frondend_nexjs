@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// Base URL for your Strapi backend
 const BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 
 export const API = axios.create({
@@ -17,7 +16,7 @@ export function getStrapiMedia(media) {
   // Direct URL
   if (media.url) return media.url.startsWith("http") ? media.url : `${BASE_URL}${media.url}`;
 
-  // Single relation object
+  // Single relation
   if (media.data?.attributes?.url)
     return media.data.attributes.url.startsWith("http")
       ? media.data.attributes.url

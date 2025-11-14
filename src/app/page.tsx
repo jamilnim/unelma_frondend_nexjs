@@ -2,22 +2,21 @@
 
 // import styles from "../styles/Home.module.css";
 import CaseCard from "../component/case/CaseCard";
-import HeroSpot from "../component/herospot/HeroSpot"
+import HeroSpot from "../component/herospot/HeroSpot";
 import CaseCardHighlight from "../component/case/CaseCardHighlight";
-import Hightlight from "../component/highlight/Hightlight"
-import ProductCardList from "../component/product/ProductCardList"
-import NextButton from "../component/tools/NextButton"
-
+import ProductCardList from "../component/product/ProductCardList";
+import CustomerFeedbackCard from "../component/customerFeedback/CustomerFeedbackCard";
+import BlogSection from "../component/blog/BlogSection";
 
 export default function Home() {
   return (
     <div>
+      <HeroSpot />
 
-      <HeroSpot/>
-      <Hightlight/>
-      <CaseCardHighlight/>
-      <ProductCardList/>
-      <NextButton onClick={undefined}/>
+      <CaseCardHighlight />
+      <ProductCardList />
+      <CustomerFeedbackCard />
+      <BlogSection />
     </div>
   );
 }

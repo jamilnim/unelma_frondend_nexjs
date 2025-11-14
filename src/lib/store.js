@@ -6,6 +6,8 @@ import authReducer from "./features/auth/authSlice";
 import serviceReducer from "./features/service/serviceSlice";
 import productReducer from "./features/product/productSlice";
 import reviewReducer from "./features/product/reviewSlice";
+import customerFeedbackReducer from "./features/customerFeedback/customerfeedbackSlice";
+import inquiryReducer from "./features/inquiry/inquirySlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +18,7 @@ export const store = configureStore({
     services: serviceReducer,
     product: productReducer,
     reviews: reviewReducer,
+    customerFeedback: customerFeedbackReducer,
+    inquiry: inquiryReducer,
   },
 });

@@ -27,7 +27,6 @@ export default function CaseCard() {
           const title = item.projectName ?? "Untitled";
           let imgUrl = null;
 
-          // Handle topImage array directly
           if (Array.isArray(item.topImage) && item.topImage.length > 0) {
             imgUrl = item.topImage[0]?.url;
           }
@@ -37,7 +36,6 @@ export default function CaseCard() {
             : "https://placehold.co/600x400?text=No+Image";
 
           return (
-            
             <div
               key={item.id}
               className={styles.card}
@@ -46,7 +44,6 @@ export default function CaseCard() {
               <img src={finalImg} alt={title} />
               <h3>{title}</h3>
             </div>
-        
           );
         })
       ) : (

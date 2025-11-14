@@ -1,8 +1,6 @@
-// src/lib/features/service/serviceSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Fetch all service categories
 export const fetchCategories = createAsyncThunk(
   "services/fetchCategories",
   async () => {
@@ -13,14 +11,13 @@ export const fetchCategories = createAsyncThunk(
   }
 );
 
-// Fetch single service by slug
 export const fetchServiceBySlug = createAsyncThunk(
   "services/fetchServiceBySlug",
   async (slug) => {
     const res = await axios.get(
       `http://localhost:1337/api/service-categories?filters[slug][$eq]=${slug}&populate=*`
     );
-    return res.data.data[0]; // returns first matching service
+    return res.data.data[0];
   }
 );
 
@@ -35,7 +32,7 @@ const serviceSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // fetchCategories
+
       .addCase(fetchCategories.pending, (state) => {
         state.loading = true;
       })

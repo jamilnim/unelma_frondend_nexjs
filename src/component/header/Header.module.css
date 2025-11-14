@@ -1,76 +1,165 @@
-.header {
-  position: absolute; /* Sit on top of hero section */
-  top: 1rem; /* Slight spacing from top */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Perfect centering */
-  width: 90%;
-  height: 5rem;
-  background: rgba(147, 171, 223, 0.3); /* translucent blue overlay */
-  color: black;
-  border-radius: 5px; /* soft curved edges */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(10px); /* glassy transparency */
-  z-index: 1000; /* make sure it's above hero */
+/* ===================== Top Bar ===================== */
+.topBar {
+    background: #1a1d21;
+    padding: 6px 0;
+    color: #d1d5db;
+    font-size: 14px;
+  }
+  .topContent {
+    max-width: 1300px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .socials i {
+    margin-right: 12px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .topRight {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .topRight a {
+    color: #d1d5db;
+    text-decoration: none;
+  }
+  .language {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  .quoteBtn {
+    background: #4f7cff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: white !important;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .logoutBtn {
+    background: #ef4444;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+  }
   
-}
-
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: rgb(252, 252, 255);
-}
-
-.nav a {
-  margin: 0 1rem;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  transition: opacity 0.2s ease;
-}
-
-.nav a:hover {
-  opacity: 0.8;
-}
-
-.authButtons {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.loginBtn,
-.registerBtn,
-.logoutBtn {
-  background: transparent; /* no white background */
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  font-weight: 500;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.loginBtn:hover,
-.registerBtn:hover,
-.logoutBtn:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.welcome {
-  margin-right: 0.5rem;
-  font-weight: 500;
-}
+  /* ===================== Header ===================== */
+  .header {
+    background: rgba(255,255,255,0.95);
+    padding: 12px 0;
+    border-bottom: 1px solid #e5e7eb;
+    overflow: visible;
+    position: relative;
+  }
+  .container {
+    max-width: 1300px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* ===================== Logo ===================== */
+  .logoContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .logo {
+    height: 40px;
+    width: auto;
+    transition: filter 0.3s ease;
+  }
+  .logo:hover {
+    filter: hue-rotate(200deg) brightness(1.2);
+  }
+  .logoTitle {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  /* ===================== Icons ===================== */
+  .icons {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .icons i {
+    font-size: 18px;
+    color: #616161;
+    cursor: pointer;
+  }
+  
+  /* ===================== Nav ===================== */
+  .navContainer {
+    display: flex;
+    gap: 10px;
+    position: relative;
+    z-index: 1000;
+  }
+  .navItem {
+    position: relative;
+  }
+  .btn {
+    padding: 6px 10px;
+    font-size: 14px;
+    color: #4b5563;
+    font-weight: 500;
+    border-radius: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background: #4f7cff;
+    color: white;
+  }
+  
+  /* ===================== Horizontal Dropdown ===================== */
+  .dropdownMenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    padding: 6px;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    z-index: 2000;
+    white-space: nowrap; /* important for horizontal layout */
+  }
+  
+  .navItem:hover .dropdownMenu {
+    display: flex; /* horizontal layout */
+    gap: 6px;
+  }
+  
+  .dropdownMenu a {
+    padding: 6px 12px;
+    display: inline-block;
+    color: #374151;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+  
+  .dropdownMenu a:hover {
+    background: #f3f4f6;
+  }
+  
+  /* ===================== Responsive ===================== */
+  @media (max-width: 900px) {
+    .navContainer {
+      display: none;
+    }
+  }
+  

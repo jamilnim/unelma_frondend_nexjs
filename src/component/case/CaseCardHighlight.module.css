@@ -1,163 +1,73 @@
-/* Wrapper stacks heading, carousel row, then CTA */
 .wrapper {
+    padding: 2rem;
+    /* Gradient from top (#6fb9ee) to bottom (#ffffff) with 40% opacity */
+    
+  }
+
+  .heading {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .carouselWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100vh;
-    padding: 20px;
-    gap: 16px;
-    box-sizing: border-box;
-    background-color: black;
-    
   }
   
-  /* Heading at the top */
-  .heading {
-    width: 100%;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 0;
-    color: #ffffff;
-  }
-  
-  /* Row that contains left button, scroll area, right button */
-  .carouselRow {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap: 12px;
-    justify-content: center; /* centers the whole row */
-    box-sizing: border-box;
-  }
-  
-  /* left/right nav buttons */
-  .navButton {
-    background: #0070f3;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 1.6rem;
-    width: 48px;
-    height: 48px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .navButton:hover {
-    background: #005bb5;
-  }
-  
-  /* Scroll container sits between nav buttons and takes most width */
   .scrollContainer {
     display: flex;
-    gap: 20px;
+    gap: 1rem;
     overflow-x: auto;
     scroll-behavior: smooth;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
-    width: calc(100% - 120px); /* leave room for the nav buttons */
-    padding-bottom: 8px;
-    box-sizing: border-box;
+    padding: 1rem 0;
+    justify-content: center;
+    width: 95%;
+    height: fit-content;
   }
   
-  .scrollContainer::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* Card sizing and style */
   .card {
-    margin-top: 4rem;
-    flex: 0 0 calc(100% / 3.5);
-    max-width: 30%;
-    height: 20rem;
-    background: white; border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    min-width: 30%;
+    max-width: 300px;
+    height: 20rem;                /* fixed card height */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;             /* ensure content doesn't overflow */
   }
   
   .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-25px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
   }
   
+  /* Make image fit card height proportionally */
   .card img {
     width: 100%;
-    height: 180px;
-    object-fit: cover;
+    height: 70%;                  /* take half of card height */
+    object-fit: cover;            /* crop to fit */
   }
   
-  .info {
-    padding: 1rem;
+  /* Content area inside card */
+  .cardContent {
+    padding: 0.5rem;
     text-align: center;
-  }
-  
-  .info h3 {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
-  
-  .category {
-    margin-top: 0.3rem;
-    color: #777;
-    font-size: 0.9rem;
-  }
-  
-  /* CTA row centers the button below the carousel */
-  .ctaRow {
-    width: 100%;
+    height: 50%;                  /* remaining half of card height */
     display: flex;
-    justify-content: center; /* center the Know More button */
-    margin-top: 8px;
+    flex-direction: column;
+    justify-content: center;
   }
   
-  /* Know More button */
-  .knowMoreBtn {
-    background: #0070f3;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .knowMoreBtn:hover {
-    background: #005bb5;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 900px) {
-    .scrollContainer {
-      width: calc(100% - 96px);
-    }
-    .card {
-      flex: 0 0 calc(100% / 2.5);
-      max-width: 200px;
-    }
-  }
-  
-  @media (max-width: 600px) {
-    .navButton {
-      width: 40px;
-      height: 40px;
-      font-size: 1.2rem;
-    }
-    .scrollContainer {
-      width: calc(100% - 88px);
-    }
-    .card {
-      flex: 0 0 calc(100% / 1.6);
-      max-width: 260px;
-    }
+  .buttonsRow {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-top: 1rem;
   }
   

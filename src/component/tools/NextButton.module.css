@@ -1,31 +1,49 @@
-.nextBtn {
-    position: relative;
-    display: inline-flex;
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    --color-text: #9ee5fa;
+    --color-background: #353535;
+  }
+  
+  .btnContent {
+    display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
-    background: linear-gradient(45deg, #007bff, #00b4ff);
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 40px;
+    padding: 0 15px;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    color: var(--color-text);
+    background: var(--color-background);
+    transition: 0.3s;
+    border-radius: 50px;
+    box-shadow: 0 0 0.2em 0 var(--color-background);
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-    overflow: hidden;
+    border: none;
   }
   
-  .arrow {
-    display: inline-block;
-    transition: transform 0.3s ease;
+  .btnContent:hover .iconArrow {
+    margin-left: 25px;
   }
   
-  .nextBtn:hover {
-    background: linear-gradient(45deg, #0056d6, #008cff);
-    transform: translateX(3px);
+  .iconArrow {
+    transition: 0.5s;
+    margin-left: 15px;
+    transform: scale(0.6);
   }
   
-  .nextBtn:hover .arrow {
-    transform: translateX(6px);
+  .flip svg {
+    transform: scaleX(-1); /* flip arrow for Prev button */
+  }
+  
+  /* SVG Animations */
+  #arrowIconOne { transition: 0.4s; transform: translateX(-60%); }
+  #arrowIconTwo { transition: 0.5s; transform: translateX(-30%); }
+  .btnContent:hover #arrowIconThree { animation: colorAnim 1s infinite 0.2s; }
+  .btnContent:hover #arrowIconOne { transform: translateX(0%); animation: colorAnim 1s infinite 0.6s; }
+  .btnContent:hover #arrowIconTwo { transform: translateX(0%); animation: colorAnim 1s infinite 0.4s; }
+  
+  @keyframes colorAnim {
+    0% { fill: white; }
+    50% { fill: var(--color-background); }
+    100% { fill: #9ee5fa; }
   }
   

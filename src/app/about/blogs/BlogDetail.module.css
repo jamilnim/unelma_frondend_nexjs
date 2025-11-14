@@ -1,0 +1,127 @@
+.blogDetail {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  font-family: "Inter", system-ui, -apple-system;
+  color: #111;
+  line-height: 1.7;
+  transition: all 0.3s ease;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #56c16b, #8b5cf6, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.date {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.coverWrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+.cover {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.cover:hover {
+  transform: scale(1.03);
+  filter: brightness(1.05);
+}
+
+.content {
+  font-size: 1rem;
+  margin-top: 2rem;
+}
+
+.excerpt {
+  font-style: italic;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.richText p {
+  margin-bottom: 1rem;
+}
+
+.richText h3 {
+  font-size: 1.4rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.inlineImage {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.codeBlock {
+  background: #f6f6f6;
+  padding: 0.8rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+
+.footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+  text-align: center;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.social {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #56c16b, #8b5cf6);
+  color: #fff;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .richText h3 {
+    font-size: 1.2rem;
+  }
+
+  .blogDetail {
+    padding: 0 0.8rem;
+  }
+}
