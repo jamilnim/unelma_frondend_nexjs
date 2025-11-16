@@ -1,6 +1,6 @@
 // components/tools/NextButton.jsx
 import React from "react";
-import styles from "./nextButton.module.css";
+import styles from "./NextButton.module.css";
 
 const NextButton = ({ onClick, children, flip = false }) => {
   return (
