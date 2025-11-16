@@ -1,0 +1,24 @@
+.chartWrapper {
+    width: 100%;
+    height: 300px;
+  }
+  
+  .barChart {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .barBackground {
+    fill: #eee; /* Background for full 100% bar */
+  }
+  
+  .barBlue {
+    fill: #3881B4; /* Color 1 */
+    border-radius: 10px;
+  }
+  
+  .barLightBlue {
+    fill: #49ACF1; /* Color 2 */
+    border-radius: 10px;
+  }
+  

@@ -1,0 +1,103 @@
+.aboutDetailSection {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background: #f5f5f5;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: justify;
+  }
+  
+  .imageWrapper {
+    width: 100%;
+  }
+  
+  .aboutImage {
+    width: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .title {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  /* Detail text + mission/vision layout */
+  .storyAndCards {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .story {
+    flex: 2;
+    min-width: 300px;
+  }
+  
+  .story p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+  
+  .cardsColumn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .missionCard,
+  .visionCard {
+    background-color: #3881B4;
+    color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    font-style: normal;
+    font-weight: 600;
+    height: 20rem;
+    
+  }
+  
+  .missionCard h2,
+  .visionCard h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    
+  }
+  
+  .missionCard p,
+  .visionCard p {
+    font-size: 20px;
+    font-weight: 300;
+    text-align: left;
+    font-style: italic;
+  }
+  
+  /* Graphs */
+  .graphsRow {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .graphWrapper {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  
+  .graphWrapper h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  

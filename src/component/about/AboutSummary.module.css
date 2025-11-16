@@ -1,0 +1,148 @@
+/* WRAPPER */
+.wrapper {
+    width: 100%;
+    padding: 50px 4rem;
+    box-sizing: border-box;
+  }
+  
+  /* MAIN TITLE CENTERED */
+  .mainTitle {
+    text-align: center;
+    font-size: 38px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    color: #111;
+  }
+  
+  /* CONTENT ROW */
+  .summaryWrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    width: 100%;
+  }
+  
+  /* LEFT IMAGE */
+  .left {
+    width: 50%;
+    flex-shrink: 0;
+  }
+  
+  /* IMAGE WRAPPER - RELATIVE */
+  .imageWrapper {
+    position: relative; /* Needed for absolute positioning of logo */
+    width: 100%;
+  }
+  
+  /* MAIN IMAGE */
+  .image {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    object-fit: cover;
+    box-shadow: 0px 3px 18px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* LOGO OVERLAY */
+  .logo {
+    position: absolute;
+    top: 50%;       /* 50% from top of main image */
+    left: 100%;      /* 90% from left edge of main image */
+    transform: translate(-50%, -50%);
+    width: 150px;    /* adjust size as needed */
+    height: 150px;
+    animation: spin 60s linear infinite;
+    z-index: 10;
+    background-color: transparent;
+    border: 2px white;
+  }
+  
+  /* Spin keyframes */
+  @keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  
+  /* RIGHT SIDE TEXT */
+  .right {
+    width: 45%;
+  }
+  
+  /* STORY SNIPPET */
+  .snippet {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    margin-left: 15px;
+    color: #444;
+  }
+  
+  /* HIGHLIGHTED POINTS */
+  .pointList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px;
+  }
+  
+  .pointItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 17px;
+    color: #222;
+  }
+  
+  .tickIcon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #3881B4;
+    color: white;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .knowMoreBtn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #3881B4;
+    color: white;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  .knowMoreBtn:hover {
+    background: #0059c9;
+  }
+  
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .summaryWrapper {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .left, .right {
+      width: 100%;
+    }
+  
+    .pointList {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  
+    .logo {
+      width: 60px;
+      height: 60px;
+      left: 80%;
+    }
+  }
+  

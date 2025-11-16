@@ -1,4 +1,3 @@
-/* Hero Section */
 .hero {
   position: relative;
   width: 100%;
@@ -11,22 +10,15 @@
   justify-content: center;
 }
 
-/* Bottom gradient overlay */
 .gradientOverlay {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 55%;
   z-index: 1;
-
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.55),
-    rgba(0, 0, 0, 0)
-  );
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
 }
 
-/* Overlay content */
 .overlay {
   position: relative;
   z-index: 2;
@@ -35,30 +27,34 @@
   width: 100%;
   height: 100%;
   padding: 1rem;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* Logo */
-.logo {
-  max-width: 120px;
-  margin-bottom: 1rem;
-  opacity: 0.9;
-}
-
-/* Text */
+/* Title with last two letters in blue */
 .title {
-  font-size: 3rem;
+  font-size: 6rem;
   font-weight: bold;
 }
+.titleHighlight {
+  color: #3881B4;
+}
+
+/* Slogan with last three words highlighted */
 .slogan {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   max-width: 600px;
   margin-bottom: 1.5rem;
   line-height: 1.6;
+}
+.sloganHighlight {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #3881B4;
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  font-weight: bold;
 }
 
 /* Stats */

@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHero } from "../../lib/features/hero/heroSlice";
@@ -7,7 +8,7 @@ import CountUp from "./CountUp";
 import styles from "./HeroSpot.module.css";
 import AskQuoteButton from "../inquiry/AskQuoteButton";
 
-const HeroSpot = () => {
+export default function HeroSpot() {
   const dispatch = useDispatch();
   const { data: hero, loading, error } = useSelector((state) => state.hero);
 
@@ -21,19 +22,40 @@ const HeroSpot = () => {
 
   const title = hero.title || "No Title";
   const slogan = hero.slogan?.[0]?.children?.[0]?.text || "No Slogan";
+
   const bgUrl = hero.backgroundMedia?.[0]?.url
     ? `http://localhost:1337${hero.backgroundMedia[0].url}`
     : null;
-  const logoUrl = hero.logo?.[0]?.url
-    ? `http://localhost:1337${hero.logo[0].url}`
-    : null;
 
-  // FULL numbers for counting animation
+  // Highlight last 2 letters of title
+  const highlightTitle = (text) => {
+    if (!text || text.length < 2) return text;
+    const main = text.slice(0, -2);
+    const lastTwo = text.slice(-2);
+    return (
+      <>
+        {main}
+        <span className={styles.titleHighlight}>{lastTwo}</span>
+      </>
+    );
+  };
+
+  // Highlight last 3 words of slogan
+  const highlightSlogan = (text) => {
+    if (!text) return text;
+    const words = text.split(" ");
+    const mainWords = words.slice(0, -3).join(" ");
+    const lastWords = words.slice(-3).join(" ");
+    return (
+      <>
+        {mainWords}{" "}
+        <span className={styles.sloganHighlight}>{lastWords}</span>
+      </>
+    );
+  };
+
   const statsData = [
-    {
-      value: 1000000,
-      label: "Users Engaged through Custom Platform Solutions",
-    },
+    { value: 1000000, label: "Users Engaged through Custom Platform Solutions" },
     { value: 3000000, label: "App & Platform Downloads Worldwide" },
     { value: "#1", label: "Rated Digital Wallet Platform in Nepal" },
   ];
@@ -41,22 +63,18 @@ const HeroSpot = () => {
   return (
     <section
       className={styles.hero}
-      style={{
-        backgroundImage: bgUrl ? `url(${bgUrl})` : "none",
-      }}
+      style={{ backgroundImage: bgUrl ? `url(${bgUrl})` : "none" }}
     >
       <div className={styles.gradientOverlay}></div>
 
       <div className={styles.overlay}>
-        {logoUrl && <img src={logoUrl} alt="Logo" className={styles.logo} />}
-
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
           className={styles.title}
         >
-          {title}
+          {highlightTitle(title)}
         </motion.h1>
 
         <motion.p
@@ -65,7 +83,7 @@ const HeroSpot = () => {
           transition={{ delay: 0.5, duration: 0.8 }}
           className={styles.slogan}
         >
-          {slogan}
+          {highlightSlogan(slogan)}
         </motion.p>
 
         <motion.div
@@ -77,7 +95,6 @@ const HeroSpot = () => {
           <AskQuoteButton subject="Hot Store Inquiry" />
         </motion.div>
 
-        {/* Stats */}
         <div className={styles.stats}>
           {statsData.map((stat, index) => (
             <motion.div
@@ -107,6 +124,4 @@ const HeroSpot = () => {
       </div>
     </section>
   );
-};
-
-export default HeroSpot;
+}

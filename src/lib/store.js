@@ -8,6 +8,7 @@ import productReducer from "./features/product/productSlice";
 import reviewReducer from "./features/product/reviewSlice";
 import customerFeedbackReducer from "./features/customerFeedback/customerfeedbackSlice";
 import inquiryReducer from "./features/inquiry/inquirySlice";
+import aboutReducer from "./features/about/aboutSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
     reviews: reviewReducer,
     customerFeedback: customerFeedbackReducer,
     inquiry: inquiryReducer,
+    about: aboutReducer,
   },
 });

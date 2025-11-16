@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Base URL for your Strapi backend
-const BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+export const BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 
 export const API = axios.create({
   baseURL: BASE_URL,
@@ -33,12 +33,40 @@ export function getStrapiMedia(media) {
 }
 
 /**
+ * Get Strapi Image URL (your requested helper)
+ */
+export function getStrapiImage(imageObj) {
+  if (!imageObj) return null;
+
+  const url =
+    imageObj.url ||
+    imageObj?.formats?.medium?.url ||
+    imageObj?.formats?.small?.url ||
+    imageObj?.formats?.thumbnail?.url;
+
+  if (!url) return null;
+
+  return url.startsWith("http") ? url : `${BASE_URL}${url}`;
+}
+
+/**
  * Fetch latest posts with cover populated
  */
 export async function fetchLatestPosts({ pageSize = 4 } = {}) {
   const url = `/api/blogs?populate=cover&sort=publishedAt:desc&pagination[page]=1&pagination[pageSize]=${pageSize}`;
   const res = await API.get(url);
   return res.data?.data || [];
+}
+
+/**
+ * ✅ Fetch About Page Data (NEW)
+ * populate=* gives image + strengths + users + detailStory
+ */
+export async function fetchAboutAPI() {
+  const url = `/api/abouts?populate=*`;
+  const res = await API.get(url);
+
+  return res.data?.data?.[0] || null;
 }
 
 export default API;

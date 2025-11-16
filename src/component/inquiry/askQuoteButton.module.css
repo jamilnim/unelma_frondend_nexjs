@@ -4,7 +4,7 @@
     margin: auto;
     padding: 11.5px 18px;
     transition: all 0.2s ease;
-    border: 3px solid #552da8;
+    border: 3px solid #ffffff;
     border-radius: 50px;
     background: #3881B4;
     cursor: pointer;
@@ -31,7 +31,7 @@
     position: relative;
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
-    color: white;
+    color: rgb(255, 254, 254);
     font-weight: 500;
     letter-spacing: 0.05em;
     z-index: 2;
@@ -44,7 +44,7 @@
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke: white;
+    stroke: rgb(255, 255, 255);
     stroke-width: 2;
     transform: translateX(-5px);
     transition: all 0.5s ease;
@@ -53,7 +53,8 @@
   
   .cta:hover:before {
     width: 100%;
-    background: #1c1c1c;
+    background: hsl(205, 85%, 76%);
+  
   }
   
   .cta:hover svg {

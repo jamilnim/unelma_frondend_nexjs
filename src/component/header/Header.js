@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../lib/features/auth/authSlice";
 import { fetchHero } from "../../lib/features/hero/heroSlice";
+
 import styles from "./Header.module.css";
 
 export default function Header() {

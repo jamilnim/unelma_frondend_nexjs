@@ -31,6 +31,10 @@
     border: none;
     color: white;
     cursor: pointer;
+  
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
   }
   .quoteBtn {
     background: #4f7cff;
@@ -109,6 +113,8 @@
   .navItem {
     position: relative;
   }
+  
+  /* === BUTTONS (NO ARROWS, NO SAFARI DEFAULT ICONS) === */
   .btn {
     padding: 6px 10px;
     font-size: 14px;
@@ -118,7 +124,19 @@
     background: none;
     border: none;
     cursor: pointer;
+  
+    /* remove ALL browser arrows */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: none !important;
   }
+  
+  /* also remove any theme or pseudo-element arrow */
+  .btn::after {
+    content: none !important;
+  }
+  
   .btn:hover {
     background: #4f7cff;
     color: white;
@@ -135,14 +153,12 @@
     border-radius: 6px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.12);
     z-index: 2000;
-    white-space: nowrap; /* important for horizontal layout */
+    white-space: nowrap;
   }
-  
   .navItem:hover .dropdownMenu {
-    display: flex; /* horizontal layout */
+    display: flex;
     gap: 6px;
   }
-  
   .dropdownMenu a {
     padding: 6px 12px;
     display: inline-block;
@@ -151,7 +167,6 @@
     font-size: 14px;
     border-radius: 4px;
   }
-  
   .dropdownMenu a:hover {
     background: #f3f4f6;
   }
