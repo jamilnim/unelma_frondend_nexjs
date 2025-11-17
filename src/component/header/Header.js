@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../lib/features/auth/authSlice";
 import { fetchHero } from "../../lib/features/hero/heroSlice";
+import LanguageToggle from "../language/LanguageToggle";
 
 import styles from "./Header.module.css";
 
@@ -49,12 +50,7 @@ export default function Header() {
                 <Link href="/register">Register</Link>
               </>
             )}
-            <select className={styles.language}>
-              <option>English</option>
-              <option>Nepali</option>
-              <option>Soumi</option>
-              <option>Eesti</option>
-            </select>
+            <LanguageToggle />
             <Link href="/request-quote" className={styles.quoteBtn}>
               Get A Quote
             </Link>
