@@ -1,0 +1,100 @@
+.wrapper {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+}
+
+.left {
+  flex: 2;
+}
+
+.mainImage {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.mainTitle {
+  font-size: 28px;
+  margin-top: 20px;
+  font-weight: 700;
+}
+
+.categoryTag {
+  display: inline-block;
+  margin-top: 10px;
+  background: #e0e7ff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: #4338ca;
+  font-weight: 600;
+}
+
+.description {
+  margin-top: 20px;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.right {
+  flex: 1;
+}
+
+.servicesBox {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.serviceItem {
+  display: block;
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+  color: #374151;
+  text-decoration: none;
+}
+
+.serviceItem:hover {
+  background: #eef2ff;
+}
+
+.active {
+  background: #e0e7ff;
+  border-left: 4px solid #4338ca;
+}
+
+.queryBox {
+  background: #575f9f;
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+}
+
+.queryBox h2 {
+  margin-bottom: 20px;
+}
+
+.queryBox form input,
+.queryBox form textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+}
+
+.queryBox button {
+  width: 100%;
+  padding: 12px;
+  background: white;
+  color: #1d4ed8;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.h1 {
+  color: white;
+}
