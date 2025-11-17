@@ -34,6 +34,13 @@ export default function CaseCardHighlight() {
       <h1 className={styles.heading}>Recent Works</h1>
 
       <div className={styles.carouselWrapper}>
+        
+        {/* LEFT BUTTON */}
+        <div className={styles.sideButtonLeft}>
+          <NextButton onClick={() => scroll("left")} flip />
+        </div>
+
+        {/* SCROLL CONTAINER */}
         <div className={styles.scrollContainer} ref={scrollRef}>
           {Array.isArray(items) && items.length > 0 ? (
             items.map((item) => {
@@ -49,7 +56,12 @@ export default function CaseCardHighlight() {
                   className={styles.card}
                   onClick={() => router.push(`/case/${item.case_id}`)}
                 >
+                  <div className={styles.goCorner}>
+                    <div className={styles.goArrow}>→</div>
+                  </div>
+
                   <img src={imgUrl} alt={title} className={styles.cardImage} />
+
                   <div className={styles.cardContent}>
                     <h3 className={styles.cardTitle}>{title}</h3>
                     <p className={styles.cardDesc}>{item.category}</p>
@@ -62,13 +74,11 @@ export default function CaseCardHighlight() {
           )}
         </div>
 
-        {/* Buttons below carousel */}
-        <div className={styles.buttonsRow}>
-          <NextButton onClick={() => scroll("left")} flip>
-            
-          </NextButton>
-          <NextButton onClick={() => scroll("right")}></NextButton>
+        {/* RIGHT BUTTON */}
+        <div className={styles.sideButtonRight}>
+          <NextButton onClick={() => scroll("right")} />
         </div>
+
       </div>
     </section>
   );

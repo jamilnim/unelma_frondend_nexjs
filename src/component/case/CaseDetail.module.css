@@ -1,86 +1,142 @@
-.detail {
+/* Page wrapper */
+.pageWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+  }
+  
+  /* Main card container */
+  .detailCard {
+    width: 80%;
+    max-width: 1100px;
+    background: white;
     padding: 2rem;
-    max-width: 900px;
-    margin: 0 auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
   }
   
-  .title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .category {
-    color: #666;
+  /* HERO IMAGE */
+  .heroImage {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
     margin-bottom: 1.5rem;
   }
   
-  .infoGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
-    margin-bottom: 2rem;
+  /* Title */
+  .title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
   }
   
+  /* Category */
+  .category {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Main content layout */
+  .mainContent {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  /* LEFT COLUMN - Info Cards */
+  .leftColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 15%; /* left column width */
+  }
+  
+  /* INFO CARD */
+  .infoCard {
+    width: 10rem;
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* vertical centering */
+    text-align: center;
+    background: #f9f9f9;
+    padding: 0.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .infoIcon {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+  }
+  
+  .infoLabel {
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+  }
+  
+  .infoValue {
+    font-size: 0.95rem;
+    color: #333;
+  }
+  
+  /* RIGHT COLUMN - Details */
+  .rightColumn {
+    flex: 1; /* remaining width */
+  }
+  
+  /* Sections */
   .section {
     margin-bottom: 2rem;
   }
   
   .section h2 {
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+    font-size: 1.4rem;
   }
   
+  /* Gallery */
   .gallerySection {
     margin-top: 2rem;
   }
   
-  .galleryScroll {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-    scroll-behavior: smooth;
-  }
-  
-  .galleryScroll::-webkit-scrollbar {
-    height: 8px;
-  }
-  
-  .galleryScroll::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
-  }
-  
-  .galleryItem {
-    flex: 0 0 auto;
-    width: 300px;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .galleryItem img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+  .galleryGrid {
     margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
   }
   
-  .gallery img {
+  .galleryImg {
     width: 100%;
-    border-radius: 10px;
+    height: 220px;
     object-fit: cover;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.25s ease;
   }
   
-  .gallery img:hover {
+  .galleryImg:hover {
     transform: scale(1.03);
+  }
+  
+  /* Ask Quote Button Wrapper - bottom right of card */
+  .askQuoteButtonWrapper {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+  }
+  
+  /* CaseCardHighlight wrapper */
+  .caseCardHighlightWrapper {
+    width: 80%;
+    margin-top: 2rem;
   }
   

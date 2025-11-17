@@ -36,20 +36,6 @@ export default function CaseDetailPage() {
 
   return (
     <div style={{ padding: '2rem' }}>
-      <button
-        onClick={() => router.back()}
-        style={{
-          marginBottom: '1rem',
-          background: '#0070f3',
-          color: 'white',
-          padding: '0.5rem 1rem',
-          border: 'none',
-          borderRadius: '6px',
-          cursor: 'pointer'
-        }}
-      >
-        ← Back
-      </button>
 
       <CaseDetail item={item} />
     </div>
