@@ -35,7 +35,7 @@ const setCookie = (value) => {
 };
 
 export default function LanguageToggle() {
-  const [current, setCurrent] = useState("en");
+  const [current, setCurrent] = useState(() => getCurrentFromCookie());
 
   const removeBanner = () => {
     if (typeof window === "undefined") return;
@@ -49,10 +49,6 @@ export default function LanguageToggle() {
       body.style.position = "static";
     }
   };
-
-  useEffect(() => {
-    setCurrent(getCurrentFromCookie());
-  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
