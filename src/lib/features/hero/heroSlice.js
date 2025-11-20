@@ -8,9 +8,7 @@ export const fetchHero = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       // Fetch all hero attributes and media
-      const res = await axios.get(
-        `${API_URL}/api/hero-spots?populate=*`
-      );
+      const res = await axios.get(`${API_URL}/api/hero-spots?populate=*`);
 
       if (!res.data.data || res.data.data.length === 0) {
         return rejectWithValue("No hero data found");

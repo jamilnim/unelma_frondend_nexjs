@@ -1,0 +1,142 @@
+/* NewsletterPopup.module.css */
+
+/* Full screen overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75); /* slightly darker overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* --- Theme Variables (Optional, but good practice for clarity) --- */
+:root {
+  --primary-bg: #1e3a8a; /* Deep Indigo/Blue */
+  --accent-color: #38bdf8; /* Bright Sky Blue */
+  --text-color-light: #f3f4f6;
+  --input-bg: #f9fafb;
+  --shadow-color: rgba(30, 58, 138, 0.5); /* Shadow matching primary color */
+}
+
+/* Popup container */
+.subscribeWrapper {
+  position: relative;
+  /* Deep, professional background */
+  background: var(--primary-bg);
+  padding: 4rem 3rem; /* Increased padding for more whitespace */
+  border-radius: 12px; /* Smoother, professional corner radius */
+  text-align: center;
+  color: var(--text-color-light);
+  max-width: 500px; /* Slightly tighter width focuses the content */
+  width: 90%;
+  /* Modern, subtle box shadow */
+  box-shadow: 0 20px 40px var(--shadow-color),
+    0 0 0 8px rgba(255, 255, 255, 0.1);
+  z-index: 10;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+}
+
+/* Close button */
+.closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem; /* Slightly smaller, cleaner icon */
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7); /* Subtle white color */
+  cursor: pointer;
+  z-index: 11;
+  transition: color 0.2s ease;
+}
+
+.closeBtn:hover {
+  color: var(--text-color-light); /* Lights up on hover */
+}
+
+/* Subscribe content */
+.subscribeContent {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Typography Refinement --- */
+.subscribeTitle {
+  font-size: 2.25rem; /* Larger, more impactful title */
+  font-weight: 800; /* Extra bold */
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.subscribeDesc {
+  font-size: 1.05rem;
+  margin-bottom: 2rem; /* Increased margin */
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.subscribeForm {
+  display: flex;
+  flex-direction: column; /* Stacked input/button for mobile/modern look */
+  gap: 1rem;
+}
+
+.subscribeInput {
+  background: var(--input-bg);
+  padding: 1rem 1.25rem;
+  border-radius: 8px; /* Square/sleek corners */
+  border: 2px solid transparent;
+  font-size: 1rem;
+  color: #1f2937; /* Dark text for high contrast */
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.subscribeInput:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3); /* Subtle blue glow */
+}
+
+.subscribeBtn {
+  padding: 1rem 1.8rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent-color); /* Bright accent color for CTA */
+  color: #0c4a6e; /* Dark professional blue text on accent */
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+}
+
+.subscribeBtn:hover {
+  background: #7dd3fc; /* Lighter shade on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.subscribeNote {
+  margin-top: 1.5rem; /* Increased margin */
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Decorative element (optional: adds a professional abstract look) */
+.subscribeWrapper::before {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.05); /* Very subtle light shape */
+  border-radius: 50%;
+  filter: blur(50px);
+  z-index: 0;
+}

@@ -9,10 +9,12 @@ import ProductCardList from "../component/product/ProductCardList";
 import NextButton from "../component/tools/NextButton";
 import BlogSection from "../component/blog/BlogSection";
 import BackToTop from "../component/tools/topButton/BackToTop";
+import NewsletterPopup from "../component/NewsletterPopup/NewsletterPopup";
 
 export default function Home() {
   return (
     <div>
+      <NewsletterPopup />
       <HeroSpot />
       <Hightlight />
       <CaseCardHighlight />

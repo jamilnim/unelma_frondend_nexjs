@@ -1,107 +1,143 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../lib/features/auth/authSlice";
+import { fetchHero } from "../../lib/features/hero/heroSlice";
+
 import styles from "./Header.module.css";
 
 export default function Header() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false); // Added scroll state
+  const { data: hero } = useSelector((state) => state.hero);
 
-  const handleLogout = () => {
-    dispatch(logoutUser());
-  };
-
-  // Listen for scroll to update header style
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50); // Change after 50px scroll
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    if (!hero) dispatch(fetchHero());
+  }, [dispatch, hero]);
+
+  const handleLogout = () => dispatch(logoutUser());
+
+  const logoUrl = hero?.logo?.[0]?.url
+    ? `http://localhost:1337${hero.logo[0].url}`
+    : "http://localhost:1337/uploads/unelma_platforms_88dc9af69c.jpg";
+
+  const heroTitle = hero?.title || "Unelma";
 
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
-      <div className={styles.container}>
-        {/* Logo */}
-        <div className={styles.leftSection}>
-          <img
-            src="/uploads/unelma-logi.png"
-            alt="Unelma Logo"
-            className={styles.logoImage}
-          />
-          <Link href="/" className={styles.logoText}>
-            Unelma
-          </Link>
-        </div>
-
-        {/* Hamburger */}
-        <button
-          className={styles.menuToggle}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className={menuOpen ? styles.barActive : styles.bar}></span>
-          <span className={menuOpen ? styles.barActive : styles.bar}></span>
-          <span className={menuOpen ? styles.barActive : styles.bar}></span>
-        </button>
-
-        {/* Navigation */}
-        <nav
-          className={`${styles.nav} ${menuOpen ? styles.navOpen : ""}`}
-          onMouseLeave={() => setServicesOpen(false)}
-        >
-          <Link href="/">Home</Link>
-          <Link href="/why-us">Why us</Link>
-          <Link href="/about">About us</Link>
-
-          <div
-            className={styles.dropdown}
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
-          >
-            <button className={styles.dropdownBtn}>Services ▾</button>
-            {servicesOpen && (
-              <div className={styles.dropdownContent}>
-                <Link href="/services/web">Web Development</Link>
-                <Link href="/services/app">App Development</Link>
-                <Link href="/services/marketing">Digital Marketing</Link>
-              </div>
-            )}
+    <>
+      {/* Top Bar */}
+      <div className={styles.topBar}>
+        <div className={styles.topContent}>
+          <div className={styles.socials}>
+            <i className="bi bi-twitter"></i>
+            <i className="bi bi-facebook"></i>
+            <i className="bi bi-linkedin"></i>
           </div>
-
-          <Link href="/casestudy">Cases</Link>
-          <Link href="/blogs">Blog</Link>
-          <Link href="/contact">Contact</Link>
-        </nav>
-
-        {/* Auth */}
-        <div className={styles.auth}>
-          {user ? (
-            <>
-              <span className={styles.welcome}>Hi, {user.username}</span>
-              <button className={styles.logoutBtn} onClick={handleLogout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link href="/login" className={styles.loginBtn}>
-                Login
-              </Link>
-              <Link href="/register" className={styles.registerBtn}>
-                Register
-              </Link>
-            </>
-          )}
+          <div className={styles.topRight}>
+            {user ? (
+              <>
+                <span>Hi, {user.username}</span>
+                <button onClick={handleLogout} className={styles.logoutBtn}>
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/login">Login</Link> /{" "}
+                <Link href="/register">Register</Link>
+              </>
+            )}
+            <select className={styles.language}>
+              <option>English</option>
+              <option>Nepali</option>
+              <option>Soumi</option>
+              <option>Eesti</option>
+            </select>
+            <Link href="/request-quote" className={styles.quoteBtn}>
+              Get A Quote
+            </Link>
+          </div>
         </div>
       </div>
-    </header>
+
+      {/* Header */}
+      <header className={styles.header}>
+        <div className={styles.container}>
+          {/* Logo */}
+          <Link href="/" className={styles.logoContainer}>
+            <img src={logoUrl} alt="Logo" className={styles.logo} />
+            <span className={styles.logoTitle}>{heroTitle}</span>
+          </Link>
+
+          {/* Icons */}
+          <div className={styles.icons}>
+            <i className="bi bi-search"></i>
+            <i className="bi bi-heart"></i>
+          </div>
+
+          {/* Nav */}
+          <nav className={styles.navContainer}>
+            <div className={styles.navItem}>
+              <Link href="/" className={styles.btn}>
+                Home
+              </Link>
+            </div>
+
+            <div className={styles.navItem}>
+              <button className={styles.btn}>About ▾</button>
+              <div className={styles.dropdownMenu}>
+                <Link href="/about/about">About</Link>
+                <Link href="/about/blogs">Blog</Link>
+              </div>
+            </div>
+
+            <div className={styles.navItem}>
+              <button className={styles.btn}>Appointment ▾</button>
+              <div className={styles.dropdownMenu}>
+                <Link href="/appointment/introduction-meeting">
+                  Intro Meeting
+                </Link>
+                <Link href="/appointment/job-interview">Job Interview</Link>
+              </div>
+            </div>
+
+            <div className={styles.navItem}>
+              <button className={styles.btn}>Service ▾</button>
+              <div className={styles.dropdownMenu}>
+                <Link href="/services">All Services</Link>
+                <Link href="/services/startup-development">
+                  Startup Development
+                </Link>
+              </div>
+            </div>
+
+            <div className={styles.navItem}>
+              <Link href="/casestudy" className={styles.btn}>
+                Case Study
+              </Link>
+            </div>
+
+            <div className={styles.navItem}>
+              <button className={styles.btn}>Career ▾</button>
+              <div className={styles.dropdownMenu}>
+                <Link href="/career/jobs">Jobs</Link>
+                <Link href="/career/internship">Internship</Link>
+              </div>
+            </div>
+            <div className={styles.navItem}>
+              <Link href="/blogs/">Blog</Link>
+            </div>
+
+            <div className={styles.navItem}>
+              <Link href="/contact" className={styles.btn}>
+                Contact
+              </Link>
+            </div>
+          </nav>
+        </div>
+      </header>
+    </>
   );
 }

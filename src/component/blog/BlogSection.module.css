@@ -1,75 +1,314 @@
+/* --- CSS Variables --- */
+:root {
+  --primary-color: #3881b4;
+  --primary-dark-color: #2a688a; /* A darker shade for accents */
+  --text-color: #1a202c;
+  --text-secondary: #6b7280;
+  --card-background: #ffffff;
+  --card-border-light: #e2e8f0;
+  --card-shadow-initial: 0 6px 20px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.15);
+  --reveal-offset: 40px; /* How much the button slides up */
+}
+
 .section {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 4rem 1.5rem;
+  background-color: #f9fafb;
 }
+
+/* --- Header (Refined) --- */
 .header {
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* Align title and button on bottom */
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--primary-color); /* Strong accent line */
+  padding-bottom: 0.75rem;
 }
+
 .title {
   margin: 0;
-  font-size: 1.5rem;
-  letter-spacing: -0.02em;
+  font-size: 2.8rem;
+  letter-spacing: -0.05em;
+  font-weight: 800;
+  color: var(--text-color);
+  line-height: 1.1;
 }
+
 .seeMore {
   text-decoration: none;
   font-weight: 600;
-  color: inherit;
-  opacity: 0.85;
+  font-size: 1rem;
+  color: var(--primary-dark-color); /* Darker primary for contrast */
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  padding: 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
+
+.seeMore:hover {
+  opacity: 0.85;
+  transform: translateX(4px);
+}
+
+/* --- Grid --- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
+  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
+
+/* --- Dynamic Layered Reveal Card --- */
 .card {
-  background: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.06);
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  display: flex;
+  flex-direction: column;
+  background: var(--card-background);
+  border-radius: 16px;
+  overflow: hidden; /* Crucial for hiding parts of the reveal */
+  position: relative;
+
+  box-shadow: var(--card-shadow-initial);
+  border: 1px solid var(--card-border-light);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  perspective: 1000px; /* For subtle 3D effects if needed later */
 }
+
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(16, 24, 40, 0.12);
+  transform: translateY(-8px); /* More pronounced lift */
+  box-shadow: var(--card-shadow-hover);
+  border-color: var(--primary-light-color);
 }
+
 .cardLink {
-  display: block;
-  color: inherit;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1; /* Ensure link covers card content */
 }
+
+/* --- Media Wrap with Asymmetrical Shape --- */
 .mediaWrap {
   width: 100%;
-  height: 160px;
+  aspect-ratio: 16/10; /* Slightly taller image for impact */
+  flex-shrink: 0;
   position: relative;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0; /* Top corners rounded */
+
+  /* Asymmetrical Cut: Uses a clip-path for a diagonal bottom edge */
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0% 100%);
+  transition: clip-path 0.4s ease;
 }
+
+.card:hover .mediaWrap {
+  /* Subtle change on hover to emphasize the dynamic nature */
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+}
+
 .cover {
   object-fit: cover;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
 }
+
+.card:hover .cover {
+  transform: scale(1.1); /* More pronounced zoom */
+}
+
 .coverPlaceholder {
   width: 100%;
-  height: 160px;
-  background: linear-gradient(90deg, #f3f4f6 0%, #eceff1 100%);
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #cbd5e0,
+    #a0aec0
+  ); /* Darker placeholder */
 }
-.content {
-  padding: 1rem 1rem 1.25rem 1rem;
+
+/* --- Category Tag (Floating on image) --- */
+.categoryTag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px; /* Slightly squared pill */
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
 }
-.postTitle {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.05rem;
+
+.card:hover .categoryTag {
+  background-color: var(--primary-dark-color); /* Darken on hover */
 }
-.excerpt {
-  margin: 0 0 0.75rem 0;
-  color: #555;
-  font-size: 0.95rem;
-  line-height: 1.35;
+
+/* --- Card Content (Layered/Inset) --- */
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  /* Pull content up to overlap the image's asymmetrical bottom */
+  margin-top: -30px;
+  background: var(
+    --card-background
+  ); /* Explicit white background for layering */
+  position: relative;
+  z-index: 3; /* Ensure content sits above image */
+  border-radius: 0 0 16px 16px; /* Bottom corners rounded */
+  flex-grow: 1; /* Allow content to grow */
 }
-.time {
-  display: block;
+
+/* Top Meta Row (Date only - subtle) */
+.metaTop {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 0.8rem;
   font-size: 0.8rem;
-  color: #8b8f97;
+  font-weight: 500;
+  color: #9ca3af;
+}
+
+.cardTitle {
+  margin: 0 0 0.6rem 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.card:hover .cardTitle {
+  color: var(--primary-dark-color);
+}
+
+.cardExcerpt {
+  margin: 0 0 1rem 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+/* --- Animated Read More Button --- */
+.readMoreButton {
+  position: absolute;
+  bottom: 0; /* Position at the bottom of the card */
+  left: 0;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 0 16px 16px; /* Match card's bottom radius */
+
+  /* Initially hide the button by transforming it down */
+  transform: translateY(var(--reveal-offset));
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease,
+    background-color 0.3s ease;
+  z-index: 4; /* Ensure it's above other content when revealed */
+}
+
+.card:hover .readMoreButton {
+  transform: translateY(0); /* Slide up into view */
+  opacity: 1;
+  background-color: var(
+    --primary-dark-color
+  ); /* Darker on hover for active state */
+}
+
+.readMoreButton .arrowIcon {
+  width: 1.2em;
+  height: 1.2em;
+  stroke: #fff; /* White arrow */
+  stroke-width: 2.5;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .readMoreButton .arrowIcon {
+  transform: translateX(8px); /* Arrow glides right on hover */
+}
+
+/* --- Messages --- */
+.message,
+.messageError {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 2rem 0;
+}
+
+/* --- Responsive Adaptations --- */
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .mediaWrap {
+    /* Slightly flatter asymmetrical cut on mobile */
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+  }
+
+  .cardBody {
+    padding: 1.25rem;
+    margin-top: -20px; /* Adjust overlap */
+  }
+
+  .categoryTag {
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.7rem;
+  }
+
+  .cardTitle {
+    font-size: 1.2rem;
+  }
+
+  .readMoreButton {
+    padding: 0.8rem 1.25rem;
+    font-size: 0.9rem;
+    transform: translateY(var(--reveal-offset)); /* Still hides */
+  }
 }
