@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./services.module.css";
 
+import ServiceHeroSpot from "../../component/serviceHeroSpot/ServiceHeroSpot";
+
 export default function ServicesPage() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,8 +17,7 @@ export default function ServicesPage() {
           "http://localhost:1337/api/service-categories?populate=*"
         );
         const data = await res.json();
-        console.log("Fetched categories:", data);
-        setCategories(data.data || []); // data array
+        setCategories(data.data || []);
       } catch (err) {
         console.error("Error fetching categories:", err);
         setCategories([]);
@@ -28,31 +29,44 @@ export default function ServicesPage() {
     fetchCategories();
   }, []);
 
-  if (loading) return <p className={styles.message}>Loading services...</p>;
-  if (!categories.length)
-    return <p className={styles.message}>No services found.</p>;
-
   return (
-    <div className={styles.container}>
-      {categories.map((category) => {
-        const title = category.name || "Unnamed Service";
-        const slug = category.slug ? `/services/${category.slug}` : "#";
-        const imageUrl =
-          category.imageIcon?.[0]?.formats?.medium?.url ||
-          category.imageIcon?.[0]?.url ||
-          "/placeholder.png";
+    <div>
+      <ServiceHeroSpot />
 
-        return (
-          <Link key={category.id} href={slug} className={styles.card}>
-            <img
-              src={`http://localhost:1337${imageUrl}`}
-              alt={title}
-              className={styles.image}
-            />
-            <h3 className={styles.title}>{title}</h3>
-          </Link>
-        );
-      })}
+      <div className={styles.container}>
+        {loading ? (
+          <p className={styles.loading}>Loading services...</p>
+        ) : (
+          categories.map((category) => {
+            const title = category.name || "Unnamed Service";
+            const slug = category.slug
+              ? `/services/${category.slug}`
+              : "/services";
+
+            const imageUrl =
+              category.imageIcon?.[0]?.formats?.medium?.url ||
+              category.imageIcon?.[0]?.url ||
+              "/placeholder.png";
+
+            const description =
+              category.description?.slice(0, 120) || "No description available";
+
+            return (
+              <div key={category.id} className={styles.cardWrapper}>
+                <Link href={slug} className={styles.card}>
+                  <img
+                    src={`http://localhost:1337${imageUrl}`}
+                    alt={title}
+                    className={styles.image}
+                  />
+                  <h3 className={styles.title}>{title}</h3>
+                  <p className={styles.description}>{description}...</p>
+                </Link>
+              </div>
+            );
+          })
+        )}
+      </div>
     </div>
   );
 }

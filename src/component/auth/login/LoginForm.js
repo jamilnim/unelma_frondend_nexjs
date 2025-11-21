@@ -4,11 +4,13 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../lib/features/auth/authSlice";
 import styles from "./loginForm.module.css";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect"); // grab redirect from URL
   const { loading, error } = useSelector((state) => state.auth);
 
   const [form, setForm] = useState({
@@ -38,7 +40,10 @@ export default function LoginForm() {
     if (res.payload?.user) {
       const role = res.payload.user.role?.name.toLowerCase();
 
-      if (role === "admin" || role === "frontend admin") {
+      // If redirect exists, go there. Otherwise, go by role.
+      if (redirect) {
+        router.push(redirect);
+      } else if (role === "admin" || role === "frontend admin") {
         router.push("/admin-panel");
       } else {
         router.push("/dashboard");

@@ -80,7 +80,9 @@ export default function Header() {
           {/* Nav */}
           <nav className={styles.navContainer}>
             <div className={styles.navItem}>
-              <Link href="/" className={styles.btn}>Home</Link>
+              <Link href="/" className={styles.btn}>
+                Home
+              </Link>
             </div>
 
             <div className={styles.navItem}>
@@ -94,7 +96,9 @@ export default function Header() {
             <div className={styles.navItem}>
               <button className={styles.btn}>Appointment ▾</button>
               <div className={styles.dropdownMenu}>
-                <Link href="/appointment/introduction-meeting">Intro Meeting</Link>
+                <Link href="/appointment/introduction-meeting">
+                  Intro Meeting
+                </Link>
                 <Link href="/appointment/job-interview">Job Interview</Link>
               </div>
             </div>
@@ -103,12 +107,16 @@ export default function Header() {
               <button className={styles.btn}>Service ▾</button>
               <div className={styles.dropdownMenu}>
                 <Link href="/services">All Services</Link>
-                <Link href="/services/startup-development">Startup Development</Link>
+                <Link href="/services/startup-development">
+                  Startup Development
+                </Link>
               </div>
             </div>
 
             <div className={styles.navItem}>
-              <Link href="/casestudy" className={styles.btn}>Case Study</Link>
+              <Link href="/casestudy" className={styles.btn}>
+                Case Study
+              </Link>
             </div>
 
             <div className={styles.navItem}>
@@ -120,7 +128,9 @@ export default function Header() {
             </div>
 
             <div className={styles.navItem}>
-              <Link href="/contact" className={styles.btn}>Contact</Link>
+              <Link href="/contact" className={styles.btn}>
+                Contact
+              </Link>
             </div>
           </nav>
         </div>

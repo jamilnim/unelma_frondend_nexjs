@@ -1,74 +1,97 @@
-/* services.module.css */
-
-/* Main container for the category page */
+/* Main container: spacing from hero spot */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 1300px;
+  margin: 3rem auto 4rem auto; /* top margin from hero, bottom spacing */
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center; /* center cards */
+  gap: 2.5rem;
+  padding: 0 1rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Category title */
-.categoryTitle {
-  font-size: 2.5rem;
-  font-weight: 700;
-  text-transform: capitalize;
-  margin-bottom: 1.5rem;
-  color:white;
-  text-align: center;
+/* Wrapper for each card: gives separation and shadow */
+.cardWrapper {
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  width: 300px;
 }
 
-/* Service card container */
+.cardWrapper:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Card link container */
 .card {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  background-color: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-  padding: 1rem;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
 }
 
 /* Service image */
 .image {
   width: 100%;
-  max-width: 300px;
-  height: 200px;
+  height: 250px;
   object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+  transition: transform 0.25s ease;
+}
+
+.cardWrapper:hover .image {
+  transform: scale(1.05);
 }
 
 /* Service title */
-.card h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #333;
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
   text-align: center;
-  margin: 0;
+  margin-bottom: 0.5rem;
 }
 
+/* Service description */
+.description {
+  font-size: 0.95rem;
+  color: #64748b;
+  text-align: center;
+  line-height: 1.5;
+}
 
-/* Responsive grid layout */
-@media (min-width: 768px) {
-  .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2rem;
+/* Loading state */
+.loading {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #64748b;
+  margin-top: 3rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cardWrapper {
+    width: 45%;
   }
+  .image {
+    height: 220px;
+  }
+}
 
-  .categoryTitle {
-    grid-column: 1 / -1;
+@media (max-width: 768px) {
+  .cardWrapper {
+    width: 90%;
+  }
+  .image {
+    height: 200px;
+  }
+  .card {
+    padding: 1.5rem;
   }
 }

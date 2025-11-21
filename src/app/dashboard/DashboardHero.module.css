@@ -1,0 +1,100 @@
+.dashboardContainer {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  /* Hero Section */
+  .dashboardHero {
+    position: relative;
+    width: 100%;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .dashboardHero:hover {
+    transform: scale(1.02);
+  }
+  
+  .dashboardHero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 1rem;
+  }
+  
+  .heroContent {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .heroTitle {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .heroCTA {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #0070f3;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .heroCTA:hover {
+    background-color: #005bb5;
+  }
+  
+  /* Welcome Section */
+  .welcomeSection {
+    text-align: left;
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border-radius: 0.75rem;
+  }
+  
+  .welcomeSection h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .welcomeSection p {
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .heroTitle {
+      font-size: 2rem;
+    }
+    .heroSubtitle {
+      font-size: 1rem;
+    }
+    .dashboardHero {
+      min-height: 250px;
+    }
+  }
+  

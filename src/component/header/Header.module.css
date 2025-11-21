@@ -1,180 +1,189 @@
 /* ===================== Top Bar ===================== */
 .topBar {
-    background: #1a1d21;
-    padding: 6px 0;
-    color: #d1d5db;
-    font-size: 14px;
-  }
-  .topContent {
-    max-width: 1300px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .socials i {
-    margin-right: 12px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  .topRight {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .topRight a {
-    color: #d1d5db;
-    text-decoration: none;
-  }
-  .language {
-    background: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-  
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  }
-  .quoteBtn {
-    background: #4f7cff;
-    padding: 6px 12px;
-    border-radius: 4px;
-    color: white !important;
-    font-weight: 500;
-    text-decoration: none;
-  }
-  .logoutBtn {
-    background: #ef4444;
-    border: none;
-    padding: 4px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    color: white;
-    font-size: 14px;
-  }
-  
-  /* ===================== Header ===================== */
-  .header {
-    background: rgba(255,255,255,0.95);
-    padding: 12px 0;
-    border-bottom: 1px solid #e5e7eb;
-    overflow: visible;
-    position: relative;
-  }
-  .container {
-    max-width: 1300px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  /* ===================== Logo ===================== */
-  .logoContainer {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-  }
-  .logo {
-    height: 40px;
-    width: auto;
-    transition: filter 0.3s ease;
-  }
-  .logo:hover {
-    filter: hue-rotate(200deg) brightness(1.2);
-  }
-  .logoTitle {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #000;
-  }
-  
-  /* ===================== Icons ===================== */
-  .icons {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-  }
-  .icons i {
-    font-size: 18px;
-    color: #616161;
-    cursor: pointer;
-  }
-  
-  /* ===================== Nav ===================== */
+  background: #1a1d21;
+  padding: 6px 0;
+  color: #d1d5db;
+  font-size: 14px;
+}
+.topContent {
+  max-width: 1300px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.socials i {
+  margin-right: 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.topRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.topRight a {
+  color: #d1d5db;
+  text-decoration: none;
+}
+.language {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.quoteBtn {
+  background: #4f7cff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: white !important;
+  font-weight: 500;
+  text-decoration: none;
+}
+.logoutBtn {
+  background: #ef4444;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+}
+
+/* ===================== Header ===================== */
+.header {
+  background: rgba(255,255,255,0.95);
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+  overflow: visible;
+  position: relative;
+}
+.container {
+  max-width: 1300px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===================== Logo ===================== */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.logo {
+  height: 40px;
+  width: auto;
+  transition: filter 0.3s ease;
+}
+.logo:hover {
+  filter: hue-rotate(200deg) brightness(1.2);
+}
+.logoTitle {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #000;
+}
+
+/* ===================== Icons ===================== */
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.icons i {
+  font-size: 18px;
+  color: #616161;
+  cursor: pointer;
+}
+
+/* ===================== Nav ===================== */
+.navContainer {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  z-index: 1000;
+}
+.navItem {
+  position: relative;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 16px;      /* bigger padding */
+  font-size: 15px;         /* slightly larger font */
+  color: #4b5563;
+  font-weight: 600;        /* slightly bolder */
+  border-radius: 6px;      /* nicer shape */
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  background: #4f7cff;
+  color: white;
+}
+
+
+.btn::after {
+  content: none !important;
+}
+
+
+
+/* ===================== Dropdown (VERTICAL) ===================== */
+
+/* Hidden by default */
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  padding: 6px 0;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  z-index: 2000;
+
+  min-width: 150px;
+
+  display: none;                 /* Hide default */
+  flex-direction: column;        /* Vertical */
+  gap: 4px;
+}
+
+/* Show when parent is hovered */
+.navItem:hover .dropdownMenu {
+  display: flex;
+}
+
+.dropdownMenu a {
+  padding: 6px 12px;
+  display: block;
+  color: #374151;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.dropdownMenu a:hover {
+  background: #f3f4f6;
+}
+
+/* ===================== Responsive ===================== */
+@media (max-width: 900px) {
   .navContainer {
-    display: flex;
-    gap: 10px;
-    position: relative;
-    z-index: 1000;
-  }
-  .navItem {
-    position: relative;
-  }
-  
-  /* === BUTTONS (NO ARROWS, NO SAFARI DEFAULT ICONS) === */
-  .btn {
-    padding: 6px 10px;
-    font-size: 14px;
-    color: #4b5563;
-    font-weight: 500;
-    border-radius: 4px;
-    background: none;
-    border: none;
-    cursor: pointer;
-  
-    /* remove ALL browser arrows */
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: none !important;
-  }
-  
-  /* also remove any theme or pseudo-element arrow */
-  .btn::after {
-    content: none !important;
-  }
-  
-  .btn:hover {
-    background: #4f7cff;
-    color: white;
-  }
-  
-  /* ===================== Horizontal Dropdown ===================== */
-  .dropdownMenu {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    padding: 6px;
-    border-radius: 6px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-    z-index: 2000;
-    white-space: nowrap;
   }
-  .navItem:hover .dropdownMenu {
-    display: flex;
-    gap: 6px;
-  }
-  .dropdownMenu a {
-    padding: 6px 12px;
-    display: inline-block;
-    color: #374151;
-    text-decoration: none;
-    font-size: 14px;
-    border-radius: 4px;
-  }
-  .dropdownMenu a:hover {
-    background: #f3f4f6;
-  }
-  
-  /* ===================== Responsive ===================== */
-  @media (max-width: 900px) {
-    .navContainer {
-      display: none;
-    }
-  }
-  
+}
