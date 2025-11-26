@@ -1,5 +1,10 @@
+"use client";
+
+import { useSelector } from "react-redux";
 import InquiryForm from "../../component/inquiry/InquiryForm";
 
 export default function InquiryPage() {
-  return <InquiryForm />;
+  const { user, jwt } = useSelector((state) => state.auth);
+
+  return <InquiryForm user={user} jwt={jwt} />;
 }

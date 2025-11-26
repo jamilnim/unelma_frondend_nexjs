@@ -30,7 +30,7 @@ export default function InquiryForm() {
     } else {
       setForm((prev) => ({
         ...prev,
-        name: user.username || "",
+        name: user.username || "", // use username as default
         email: user.email || "",
       }));
     }
@@ -56,16 +56,15 @@ export default function InquiryForm() {
       return;
     }
 
+    // Send username in 'name' field instead of user ID
     const data = {
-      name: form.name,
+      name: user.username,       // ✅ username
       subject: form.subject,
-      email: form.email,
+      email: user.email,
       message: form.message,
-      file: form.file,
-      user: user.id,
     };
 
-    await dispatch(createInquiry({ data, jwt }));
+    await dispatch(createInquiry({ data, file: form.file, jwt }));
   };
 
   useEffect(() => {
@@ -86,12 +85,44 @@ export default function InquiryForm() {
     <form onSubmit={handleSubmit} className={styles.form}>
       <h2>Request A Quote</h2>
 
-      <input name="name" value={form.name} onChange={handleChange} placeholder="Your Name" required />
-      <input name="subject" value={form.subject} onChange={handleChange} placeholder="Your Subject" required />
-      <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Your Email" required />
-      <input type="file" name="file" accept=".pdf,.txt" onChange={handleFileChange} />
-      <textarea name="message" value={form.message} onChange={handleChange} placeholder="Your Message" required />
-      <button type="submit" disabled={loading}>{loading ? "Sending..." : "Send Quote"}</button>
+      <input
+        name="name"
+        value={form.name}
+        onChange={handleChange}
+        placeholder="Your Name"
+        required
+      />
+      <input
+        name="subject"
+        value={form.subject}
+        onChange={handleChange}
+        placeholder="Your Subject"
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        value={form.email}
+        onChange={handleChange}
+        placeholder="Your Email"
+        required
+      />
+      <input
+        type="file"
+        name="file"
+        accept=".pdf,.txt"
+        onChange={handleFileChange}
+      />
+      <textarea
+        name="message"
+        value={form.message}
+        onChange={handleChange}
+        placeholder="Your Message"
+        required
+      />
+      <button type="submit" disabled={loading}>
+        {loading ? "Sending..." : "Send Quote"}
+      </button>
 
       {error && <p className={styles.error}>{error}</p>}
     </form>

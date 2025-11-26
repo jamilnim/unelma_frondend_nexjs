@@ -18,7 +18,7 @@ export default function ReviewList({ productId }) {
 
   return (
     <div className={styles.reviewList}>
-      <h3>Customer Reviews</h3>
+      
       {items.map((rev) => {
         // Use direct properties from API response
         const r = rev.attributes || rev;

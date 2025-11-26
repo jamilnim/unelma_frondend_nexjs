@@ -54,7 +54,7 @@
   .btn {
     width: max-content;
     padding: 8px 16px;
-    background-color: #1677ff;
+    background-color: #3881B4;
     color: white;
     border: none;
     border-radius: 6px;
@@ -65,10 +65,11 @@
   .btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+   
   }
   
   .btn:hover:not(:disabled) {
-    background-color: #125fcc;
+    background-color: #49ACF1;
   }
   
   .success {

@@ -2,7 +2,7 @@
 import LoginForm from "../../component/auth/login/LoginForm";
 import styles from "./login.module.css";
 
-export default function LoginPage() {
+export default function Login() {
   return (
     <div className={styles.container}>
       <div className={styles.card}>

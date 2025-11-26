@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./BlogSection.module.css";
 import { fetchLatestPosts, getStrapiMedia } from "../../lib/features/blogs/api";
+import SeeallBlogs from "../tools/SeeallBlogs";
 
 // Helper to extract plain text from Strapi rich text blocks
 function extractPlainText(content) {
@@ -44,17 +45,12 @@ export default function BlogSection() {
 
   return (
     <section className={styles.section}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Latest from our blog</h2>
-        <Link
-          href="/blogs"
-          className={styles.seeMore}
-          aria-label="See all blogs"
-        >
-          See all blogs →
-        </Link>
-      </div>
-
+           <div className={styles.header}>Blogs</div>
+           <div className={styles.subheader}>Insights, Stories & Updates from Our Team</div>
+           <Link href="/about/blogs" >
+          <SeeallBlogs/>
+          </Link>
+     
       <div className={styles.grid}>
         {posts.map((post) => {
           const item = post.attributes || post;
@@ -68,7 +64,7 @@ export default function BlogSection() {
 
           return (
             <article key={post.id} className={styles.card}>
-              <Link href={`/blogs/${item.slug}`} className={styles.cardLink}>
+              <Link href={`/about/blogs/${item.slug}`} className={styles.cardLink}>
                 {/* Blog Card Image */}
                 <div className={styles.mediaWrap}>
                   {coverUrl ? (

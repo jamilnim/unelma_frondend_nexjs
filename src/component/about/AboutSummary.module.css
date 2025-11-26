@@ -1,148 +1,173 @@
+/* ------------------------------
+   MOBILE-FIRST BASE STYLES
+--------------------------------*/
+
 /* WRAPPER */
+.header {
+  font-size: 1.4rem;
+  color: #3881b4;
+  text-align: left;
+  margin-left: 1rem;
+}
+
+.subheader {
+  font-size: 2.25rem; /* 25% smaller than 3rem */
+  color: black;
+  text-align: left;
+  margin-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
 .wrapper {
-    width: 100%;
-    padding: 50px 4rem;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 30px 1.5rem;
+  box-sizing: border-box;
+}
+
+/* MAIN TITLE CENTERED */
+.mainTitle {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 30px;
+  color: #111;
+}
+
+/* CONTENT COLUMN (STACKED MOBILE) */
+.summaryWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* LEFT IMAGE */
+.left {
+  width: 100%;
+}
+
+/* IMAGE WRAPPER */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* MAIN IMAGE */
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  object-fit: cover;
+  box-shadow: 0px 3px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* ------------------------------
+   MOBILE-FIRST BASE STYLES
+--------------------------------*/
+
+.logo {
+  position: absolute;
+  top: 95%; /* ✔ bottom-right for mobile */
+  left: 95%;
+  transform: translate(-50%, -50%);
+  width: 112px; /* 150px - 25% */
+  height: 112px;
+  animation: spin 60s linear infinite;
+  z-index: 10;
+  background-color: transparent;
+}
+
+
+
+
+/* BODY TEXT */
+.snippet {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  color: #444;
+  text-align: justify; /* ⭐ TEXT JUSTIFIED */
+}
+
+/* POINT LIST GRID — STACK MOBILE */
+.pointList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.pointItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  color: #222;
+}
+
+.tickIcon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  color: black;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* SPIN KEYFRAMES */
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
   }
-  
-  /* MAIN TITLE CENTERED */
-  .mainTitle {
-    text-align: center;
-    font-size: 38px;
-    font-weight: 800;
-    margin-bottom: 40px;
-    color: #111;
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
-  
-  /* CONTENT ROW */
+}
+
+/* ---------------------------------------
+   DESKTOP VERSION (Larger Screens)
+------------------------------------------*/
+@media (min-width: 900px) {
   .summaryWrapper {
-    display: flex;
-    align-items: flex-start;
+    flex-direction: row;
     gap: 40px;
-    width: 100%;
   }
-  
-  /* LEFT IMAGE */
+
   .left {
     width: 50%;
-    flex-shrink: 0;
   }
-  
-  /* IMAGE WRAPPER - RELATIVE */
-  .imageWrapper {
-    position: relative; /* Needed for absolute positioning of logo */
-    width: 100%;
-  }
-  
-  /* MAIN IMAGE */
-  .image {
-    width: 100%;
-    height: auto;
-    border-radius: 14px;
-    object-fit: cover;
-    box-shadow: 0px 3px 18px rgba(0, 0, 0, 0.12);
-  }
-  
-  /* LOGO OVERLAY */
-  .logo {
-    position: absolute;
-    top: 50%;       /* 50% from top of main image */
-    left: 100%;      /* 90% from left edge of main image */
-    transform: translate(-50%, -50%);
-    width: 150px;    /* adjust size as needed */
-    height: 150px;
-    animation: spin 60s linear infinite;
-    z-index: 10;
-    background-color: transparent;
-    border: 2px white;
-  }
-  
-  /* Spin keyframes */
-  @keyframes spin {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-  }
-  
-  /* RIGHT SIDE TEXT */
+
   .right {
     width: 45%;
   }
-  
-  /* STORY SNIPPET */
-  .snippet {
-    font-size: 18px;
-    line-height: 1.8;
-    margin-bottom: 30px;
-    margin-left: 15px;
-    color: #444;
-  }
-  
-  /* HIGHLIGHTED POINTS */
+
   .pointList {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px 30px;
-    list-style: none;
-    padding: 0;
-    margin: 0 0 30px;
   }
-  
-  .pointItem {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 17px;
-    color: #222;
+
+  /* Desktop logo size slightly larger */
+  .logo {
+    position: absolute;
+    top: 50%; /* ✔ original restored */
+    left: 100%; /* ✔ original restored */
+    transform: translate(-50%, -50%);
+    width: 150px; /* original size */
+    height: 150px;
   }
-  
-  .tickIcon {
-    width: 28px;
-    height: 28px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #3881B4;
-    color: white;
-    border-radius: 50%;
-    font-size: 16px;
-    font-weight: bold;
+
+  .subheader {
+    font-size: 3rem; /* Full size on desktop */
   }
-  
-  .knowMoreBtn {
-    display: inline-block;
-    padding: 12px 20px;
-    background: #3881B4;
-    color: white;
-    font-weight: 600;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: 0.3s;
+
+  .snippet {
+    font-size: 18px;
   }
-  
-  .knowMoreBtn:hover {
-    background: #0059c9;
-  }
-  
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    .summaryWrapper {
-      flex-direction: column;
-      gap: 20px;
-    }
-  
-    .left, .right {
-      width: 100%;
-    }
-  
-    .pointList {
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-  
-    .logo {
-      width: 60px;
-      height: 60px;
-      left: 80%;
-    }
-  }
-  
+}

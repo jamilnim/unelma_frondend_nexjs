@@ -1,15 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import API from "../../api"; // ✅ shared axios instance
+import API from "../../api";
 
 // Create Inquiry
 export const createInquiry = createAsyncThunk(
   "inquiry/createInquiry",
-  async ({ data, jwt }, { rejectWithValue }) => {
+  async ({ data, file, jwt }, { rejectWithValue }) => {
     try {
       const formData = new FormData();
+
+      // Append text fields under 'data'
       Object.entries(data).forEach(([key, value]) => {
-        formData.append(key, value);
+        formData.append(`data[${key}]`, value);
       });
+
+      // Append file if exists
+      if (file) {
+        formData.append("files.file", file);
+      }
 
       const res = await API.post("/api/inquiries", formData, {
         headers: {
@@ -20,7 +27,9 @@ export const createInquiry = createAsyncThunk(
 
       return res.data;
     } catch (err) {
-      return rejectWithValue(err.response?.data?.error?.message || err.message);
+      return rejectWithValue(
+        err.response?.data?.error?.message || err.message
+      );
     }
   }
 );

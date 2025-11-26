@@ -6,6 +6,7 @@ import { fetchProducts } from "../../lib/features/product/productSlice";
 import { fetchHero } from "../../lib/features/hero/heroSlice";
 import styles from "./ProductCardList.module.css";
 import AskQuoteButton from "../inquiry/AskQuoteButton";
+import ArrowButton from "../tools/ArrowButton";
 
 export default function ProductCardList() {
   const dispatch = useDispatch();
@@ -28,22 +29,25 @@ export default function ProductCardList() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.header}>Our Products</div>
 
-      <h2 className={styles.heading}>Our Products</h2>
+      <div className={styles.subheader}>
+        Enhance your business digitally <br /> with our powerful products
+      </div>
 
       <div className={styles.contentWrapper}>
-
-        {/* LEFT SIDE – HERO TEXT */}
+        {/* LEFT - HERO TEXT */}
         <div className={styles.heroText}>
           {heroData?.ourProduct ? (
             <p>{heroData.ourProduct}</p>
           ) : (
             <p>No hero text available</p>
           )}
+
           <AskQuoteButton subject="Hot Store Inquiry" />
         </div>
 
-        {/* RIGHT – PRODUCT SLIDER */}
+        {/* MIDDLE - SLIDER */}
         <div className={styles.slider}>
           <div className={styles.list}>
             {duplicatedItems.map((product, index) => {
@@ -62,6 +66,7 @@ export default function ProductCardList() {
                       alt={product.name}
                       className={styles.image}
                     />
+
                     <div className={styles.cardInfo}>
                       <h3>{product.name}</h3>
                       <p className={styles.price}>
@@ -74,9 +79,7 @@ export default function ProductCardList() {
 
                       {product.slug ? (
                         <Link href={`/productPage/${product.slug}`}>
-                          <button className={styles.detailBtn}>
-                            View Details
-                          </button>
+                          <button className={styles.detailBtn}>View Details</button>
                         </Link>
                       ) : (
                         <button className={styles.detailBtn} disabled>
@@ -91,6 +94,10 @@ export default function ProductCardList() {
           </div>
         </div>
 
+        {/* RIGHT DECORATIVE BOX */}
+        <div className={styles.rightBox}>
+          <ArrowButton/>
+        </div>
       </div>
     </div>
   );

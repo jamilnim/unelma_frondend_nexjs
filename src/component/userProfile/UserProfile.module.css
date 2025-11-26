@@ -1,0 +1,78 @@
+.profileFace {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: sans-serif;
+  }
+  
+  .userSection, .ordersSection {
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .userInfo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .userDetails p {
+    margin: 5px 0;
+  }
+  
+  .orderCard {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+  }
+  
+  .orderHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .itemsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  
+  .orderItem {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .orderItem img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .downloadBtn {
+    background: #16a085;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .downloadBtn:hover {
+    background: #13856d;
+  }
+  

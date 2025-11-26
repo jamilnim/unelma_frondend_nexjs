@@ -1,0 +1,110 @@
+/* MOBILE FIRST — Smaller button (25% reduced) */
+.ctaKnowMore {
+    position: relative;
+    margin: auto;
+    padding: 9px 14px;
+    transition: all 0.2s ease;
+    border: 3px solid #fbfbfb;
+    border-radius: 50px;
+    background: #3881b4;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    /* reduced 25% */
+    width: 13.5rem;
+    height: 3rem;
+    box-shadow: 0 4px 8px rgba(128, 128, 128, 0.5);
+}
+
+.ctaKnowMore:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    border-radius: 50px;
+    background: white;
+
+    /* reduced 25% */
+    width: 40px;
+    height: 40px;
+
+    transition: all 0.8s ease;
+}
+
+.ctaKnowMore span {
+    position: relative;
+    font-family: "Montserrat", sans-serif;
+
+    /* reduced 25% */
+    font-size: 12px;
+
+    color: rgb(255, 254, 254);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    z-index: 2;
+}
+
+.arrow {
+    position: relative;
+    top: 0;
+
+    /* reduced 25% */
+    margin-left: 95px;
+
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #3881b4;
+    stroke-width: 4;
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+    z-index: 2;
+}
+
+/* Hover states */
+.ctaKnowMore:hover:before {
+    width: 100%;
+    background: hsl(205, 85%, 76%);
+}
+
+.ctaKnowMore:hover .arrow {
+    transform: rotate(36deg);
+    stroke: white;
+}
+
+.ctaKnowMore:active {
+    transform: scale(0.95);
+    transition: all 0.2s ease;
+}
+
+/* ==========================
+   DESKTOP & TABLET
+   ========================== */
+@media (min-width: 768px) {
+    .ctaKnowMore {
+        width: 16rem;
+        height: 3.5rem;
+        padding: 11.5px 18px;
+
+        /* Prevent wrapping → keeps "Know More" and arrow in one line */
+        white-space: nowrap;
+    }
+
+    .ctaKnowMore:before {
+        width: 45px;
+        height: 45px;
+    }
+
+    .ctaKnowMore span {
+        font-size: 15px;
+    }
+
+    .arrow {
+        margin-left: 120px;
+        color: #3881b4;
+    }
+}

@@ -2,7 +2,7 @@
 import RegisterForm from "../../component/auth/register/RegisterForm";
 import styles from "./register.module.css";
 
-export default function RegisterPage() {
+export default function Register() {
   return (
     <div className={styles.container}>
       <div className={styles.card}>

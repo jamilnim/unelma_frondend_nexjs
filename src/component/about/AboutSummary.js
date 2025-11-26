@@ -6,6 +6,7 @@ import { fetchAbout, selectAbout } from "../../lib/features/about/aboutSlice";
 import { getStrapiImage } from "../../lib/api";
 import Link from "next/link";
 import styles from "./AboutSummary.module.css";
+import KnowMoreButton from "../tools/KnowMoreButton";
 
 export default function AboutSummary() {
   const dispatch = useDispatch();
@@ -40,18 +41,27 @@ export default function AboutSummary() {
 
   return (
     <section className={styles.wrapper}>
-      <h2 className={styles.mainTitle}>{about.title}</h2>
+      <div className={styles.header}>{about.title}</div>
+      <div className={styles.subheader}>Our journey shapes our legacy</div>
 
       <div className={styles.summaryWrapper}>
         {/* LEFT IMAGE */}
         <div className={styles.left}>
           {mainImageUrl && (
             <div className={styles.imageWrapper}>
-              <img src={mainImageUrl} alt="About Image" className={styles.image} />
-              
+              <img
+                src={mainImageUrl}
+                alt="About Image"
+                className={styles.image}
+              />
+
               {/* LOGO OVERLAY */}
               {logoImageUrl && (
-                <img src={logoImageUrl} alt="Logo" className={styles.logo} />
+                <img
+                  src={logoImageUrl}
+                  alt="Logo"
+                  className={styles.logo}
+                />
               )}
             </div>
           )}
@@ -73,9 +83,11 @@ export default function AboutSummary() {
             </ul>
           )}
 
-          <Link href="/about/about" className={styles.knowMoreBtn}>
-            Know More →
+          {/* UPDATED KNOW MORE BUTTON */}
+          <Link href="/about/about" >
+          <KnowMoreButton/>
           </Link>
+          
         </div>
       </div>
     </section>

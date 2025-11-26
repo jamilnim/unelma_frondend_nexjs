@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../lib/features/auth/authSlice";
 import styles from "./loginForm.module.css";
@@ -9,6 +9,23 @@ import { useRouter } from "next/navigation";
 export default function LoginForm() {
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const [loginFromInquiry, setLoginFromInquiry] = useState(false);
+  const [loginForCart, setLoginForCart] = useState(false);
+  const [cartRedirectSlug, setCartRedirectSlug] = useState(null);
+
+  useEffect(() => {
+    const inquiryFlag = sessionStorage.getItem("loginFromInquiry") === "true";
+    const cartFlag = sessionStorage.getItem("loginForCart") === "true";
+    const redirectSlug = sessionStorage.getItem("cartRedirectSlug");
+
+    if (inquiryFlag) setLoginFromInquiry(true);
+    if (cartFlag && redirectSlug) {
+      setLoginForCart(true);
+      setCartRedirectSlug(redirectSlug);
+    }
+  }, []);
+
   const { loading, error } = useSelector((state) => state.auth);
 
   const [form, setForm] = useState({
@@ -36,12 +53,23 @@ export default function LoginForm() {
     );
 
     if (res.payload?.user) {
-      const role = res.payload.user.role?.name.toLowerCase();
+      // Handle redirects based on session flags
+      if (loginFromInquiry) {
+        sessionStorage.setItem("loginFromInquiry", "false");
+        router.push("/inquiry");
+      } else if (loginForCart && cartRedirectSlug) {
+        sessionStorage.setItem("loginForCart", "false");
+        sessionStorage.removeItem("cartRedirectSlug");
 
-      if (role === "admin" || role === "frontend admin") {
-        router.push("/admin-panel");
+        // Redirect to correct product detail page
+        router.push(`/productPage/${cartRedirectSlug}`);
       } else {
-        router.push("/dashboard");
+        const role = res.payload.user.role?.name?.toLowerCase();
+        if (role === "admin" || role === "frontend admin") {
+          router.push("/admin-panel");
+        } else {
+          router.push("/dashboard");
+        }
       }
     }
   };

@@ -92,7 +92,7 @@ export default function HeroSpot() {
           transition={{ delay: 0.7, duration: 0.8 }}
           className={styles.buttonGroup}
         >
-          <AskQuoteButton subject="Hot Store Inquiry" />
+          <AskQuoteButton subject="Quary" />
         </motion.div>
 
         <div className={styles.stats}>

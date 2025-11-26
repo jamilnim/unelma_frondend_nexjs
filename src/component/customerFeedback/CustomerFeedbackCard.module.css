@@ -1,171 +1,276 @@
-/* ============================
-   WRAPPER
-============================ */
+/* ================================
+   MOBILE-FIRST BASE STYLES
+================================ */
+
+/* HEADER AREA */
+.headerwrpper {
+  background-color: rgb(230, 240, 246);
+}
+
+.header {
+  font-size: 1.35rem;   /* 25% smaller for mobile */
+  color: #3881B4;
+  text-align: left;
+  margin-left: 2rem;
+}
+
+.subheader {
+  font-size: 2.25rem;   /* 25% smaller for mobile */
+  color: black;
+  margin-left: 2rem;
+}
+
+/* MAIN WRAPPER */
 .wrapper {
-    position: relative;
-    padding: 3rem 1rem;
-    display: flex;
+  position: relative;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(230, 240, 246);
+  overflow: hidden;
+  height: auto;
+}
+
+/* FEEDBACK SECTION */
+.feedbackContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column; /* mobile-first */
+  width: 100%;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ================================
+   CARD
+================================ */
+.card {
+  position: relative;
+  width: 95vw;          /* 95% of screen width */
+  height: 25rem;        /* mobile height */
+  padding: 4.5rem 1.5rem 1.5rem;  /* space for circle on top */
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.14);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  color: black;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+/* ================================
+   CIRCLE IMAGE — stays same position
+================================ */
+.cardImg {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 6px solid #3881B4;
+  position: absolute;
+  top: -60px;   
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 5px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+.cardImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ================================
+   CARD CONTENT
+================================ */
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+  width: 100%;
+}
+
+.textBody {
+  font-size: 1rem;
+  color: black;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.textTitle {
+  font-size: 1.1rem;
+  color: #3881B4;
+  font-weight: bold;
+}
+
+.stockholder {
+  font-size: 0.9rem;
+  color: #3881B4;
+}
+
+/* Hide old inline image */
+.cardInfo .image {
+  display: none !important;
+}
+
+/* ================================
+   NAVIGATION BUTTONS
+================================ */
+.navButton {
+  background: #f3f4f6;
+  border: none;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 1rem;
+}
+
+.navButton:hover {
+  background: #e5e7eb;
+}
+
+/* BUTTON CONTAINER BELOW CARD */
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem; /* below card */
+  gap: 1.5rem; /* space between < > buttons */
+}
+
+/* ================================
+   MOBILE-ONLY OVERRIDES
+================================ */
+@media (max-width: 900px) {
+
+  /* Card container: single column */
+  .cardContainer {
     flex-direction: column;
     align-items: center;
-    background-color: rgb(230, 240, 246);
-    overflow: hidden;
-  }
-  
-  /* ============================
-     BACKGROUND LOGO
-     50% visible from left, 90% height
-  ============================ */
-  .backgroundLogo {
-    position: absolute;
-    top: 5%;
-    left: -50%; /* half offscreen to left */
-    height: 90%;
-    width: auto;
-    z-index: 0;
-    opacity: 0.25;
-  }
-  
-  .backgroundLogo img {
-    height: 100%;
-    width: auto;
-    display: block;
-  }
-  
-  /* ============================
-     HEADING
-  ============================ */
-  .heading {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    z-index: 1;
-  }
-  
-  /* ============================
-     FEEDBACK CONTAINER
-  ============================ */
-  .feedbackContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-    max-width: 100%;
-  }
-  
-  .navButton {
-    background: #f3f4f6;
-    border: none;
-    font-size: 2rem;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    margin: 0 1rem;
-    z-index: 2;
-  }
-  
-  .navButton:hover {
-    background: #e5e7eb;
-  }
-  
-  .cardContainer {
-    display: flex;
     gap: 1.5rem;
-    z-index: 1;
   }
-  
-  /* ============================
-     CARD
-  ============================ */
+
+  /* Card width and height */
   .card {
-    position: relative;
+    width: 95vw;
+    height: 25rem;
+    padding: 4.5rem 1rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Circle avatar stays same on top */
+  .cardImg {
+    width: 120px;
+    height: 120px;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Card text adjustments */
+  .cardInfo {
+    gap: 0.5rem;
+  }
+
+  .textBody {
+    font-size: 0.95rem;
+  }
+
+  .textTitle {
+    font-size: 1rem;
+  }
+
+  .stockholder {
+    font-size: 0.85rem;
+  }
+
+  /* Show buttons below card */
+  .btnContainer {
     display: flex;
-    align-items: center;
-    background: linear-gradient(to bottom, #3881B4, #a7d1d9);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  /* Headers adjustments */
+  .header {
+    font-size: 1.35rem;
+    margin-left: 2rem;
+  }
+
+  .subheader {
+    font-size: 2.25rem;
+    margin-left: 2rem;
+  }
+
+  .wrapper {
+    padding: 2rem;
+    height: auto;
+  }
+}
+
+/* ================================
+   DESKTOP OVERRIDES (≥901px)
+================================ */
+@media (min-width: 600px) {
+  .feedbackContainer {
+    flex-direction: row;
+  }
+
+  .cardContainer {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .card {
+    width: 400px;
+    height: auto;
+  }
+}
+
+@media (min-width: 900px) {
+  .header {
+    font-size: 1.8rem;
+    margin-left: 4rem;
+  }
+
+  .subheader {
+    font-size: 3rem;
+    margin-left: 4rem;
+  }
+
+  .wrapper {
+    height: 70vh;
+    padding: 6rem;
+  }
+
+  .card {
     width: 500px;
     height: 300px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    z-index: 1;
   }
-  
-  .card:hover {
-    transform: translateY(-6px);
+
+  .btnContainer {
+    margin-top: 0;
+    justify-content: flex-start; /* buttons move to side */
   }
-  
-  /* ============================
-     CARD CONTENT
-  ============================ */
-  .left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 120px;
-    z-index: 1;
-  }
-  
-  .image {
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 0.5rem;
-    border: 3px solid #fff;
-  }
-  
-  .name {
-    font-weight: 600;
-    font-size: 1.125rem;
-    color: #262626;
-  }
-  
-  .stockholder {
-    font-size: 0.875rem;
-    color: #6b7280;
-  }
-  
-  .right {
-    flex: 1;
-    padding-left: 1rem;
-    font-style: italic;
-    color: #374151;
-    z-index: 1;
-  }
-  
-  .review {
-    font-size: 1rem;
-    line-height: 1.4em;
-  }
-  
-  /* ============================
-     RESPONSIVE
-  ============================ */
-  @media (max-width: 900px) {
-    .card {
-      width: 400px;
-      height: 180px;
-      flex-direction: column;
-      text-align: center;
-    }
-    .right {
-      padding-left: 0;
-      margin-top: 0.8rem;
-    }
-  }
-  
-  @media (max-width: 600px) {
-    .cardContainer {
-      flex-direction: column;
-    }
-    .card {
-      width: 90%;
-      height: auto;
-    }
-  }
-  
+}

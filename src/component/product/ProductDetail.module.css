@@ -1,130 +1,235 @@
+/* ===================== MOBILE FIRST (Default) ===================== */
+
 .wrapper {
-    display: flex;
-    flex-direction: column;
+  width: 95vw;
+  margin: 6rem auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Section becomes stacked on mobile */
+.topSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
+/* Image takes full width */
+.imageWrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+.image {
+  width: 100%;
+  height: auto;        /* maintains aspect ratio */
+  border-radius: 10px;
+  border: 1px solid #eee;
+  object-fit: cover;
+}
+
+/* Info section full width on mobile */
+.info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Price slightly smaller on mobile */
+.price {
+  font-size: 1.2rem;
+  color: #3881B4;
+  font-weight: 600;
+}
+
+/* Body text */
+.desc {
+  margin-top: 10px;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* ===================== Buy Row (Qty + Add to Cart) ===================== */
+
+.buyRow {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.addBtn {
+  padding: 8px 14px;
+  background: #3881B4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;              /* added */
+  align-items: center;        /* added */
+  gap: 8px;                   /* added */
+  font-size: 0.95rem;
+}
+
+.addBtn:hover {
+  background: #49ACF1;
+}
+
+.cartIcon {
+  font-size: 1.6rem;
+}
+
+/* ===================== SMALL CARDS ABOVE DESCRIPTION ===================== */
+
+.smallCardRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 15px 0;
+  gap: 10px;
+}
+
+.smallCard {
+  flex: 1;
+  padding: 8px;
+  background: #f7f7f7;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+/* ===================== Dropdown (FAQ Style) ===================== */
+
+.dropdown {
+  margin-top: 20px;
+  border-top: 8px solid #3881B4;
+  background-color: rgb(230, 240, 246);
+  padding-top: 10px;
+}
+
+.dropdownHeader {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.dropdownHeader h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-left: 2rem;
+}
+
+.icon {
+  font-size: 1.3rem;
+}
+
+.dropdownContent {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  padding-left: 5px;
+}
+
+.dropdownContent.open {
+  opacity: 1;
+  max-height: 300px;
+  margin-top: 5px;
+}
+
+/* ===================== Reviews ===================== */
+.reviewHeading{
+  font-size: 1.6rem;
+  color: #3881B4;
+}
+
+.reviewSection {
+  margin-top: 40px;
+  padding-top: 30px;
+ 
+}
+
+.reviewTitle {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.reviewFormWrapper {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.center {
+  text-align: center;
+  padding: 40px;
+}
+
+/* ===================== TABLET & DESKTOP (min-width: 768px) ===================== */
+
+@media (min-width: 768px) {
+  .wrapper {
+    width: 80%;          /* page stays at 80% width */
+    max-width: 1200px;   /* optional: keep max-width limit */
+    margin: 4rem auto;   /* center the page */
     padding: 40px;
-    max-width: 1200px;
-    margin: 8rem auto;
+    background: white;   /* optional: clean “page” */
+    border-radius: 12px; /* smooth edges */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* subtle shadow */
   }
-  
+
   .topSection {
-    display: flex;
+    flex-direction: row;
     gap: 40px;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    border-bottom: 1px solid #eee;
     padding-bottom: 40px;
   }
-  
+
   .imageWrapper {
     flex: 1 1 25%;
     max-width: 25%;
   }
-  
-  .image {
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid #eee;
-    object-fit: cover;
-  }
-  
+
   .info {
     flex: 1 1 50%;
     max-width: 50%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
   }
-  
+
   .title {
     font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 10px;
   }
-  
-  .meta {
-    font-size: 0.9rem;
-    color: #666;
-  }
-  
+
   .price {
     font-size: 1.4rem;
-    color: #1677ff;
-    font-weight: 600;
-    margin-top: 10px;
   }
-  
-  .desc {
-    margin-top: 10px;
-    color: #444;
-    line-height: 1.6;
+
+  .smallCardRow {
+    justify-content: flex-start;
+    gap: 15px;
   }
-  
-  /* Dropdown (FAQ Style) */
-  .dropdown {
-    margin-top: 20px;
-    border-top: 1px solid #eee;
-    padding-top: 10px;
+
+  .smallCard {
+    max-width: 120px;
   }
-  
-  .dropdownHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-    padding: 8px 0;
-    transition: 0.2s ease;
+
+  /* optional: align Buy Row horizontally under price */
+  .buyRow {
+    margin-top: 16px;
   }
-  
-  .dropdownHeader:hover {
-    color: #1677ff;
-  }
-  
-  .dropdownHeader h3 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 600;
-  }
-  
-  .icon {
-    font-size: 1.4rem;
-    line-height: 1;
-  }
-  
-  .dropdownContent {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: all 0.3s ease;
-    color: #555;
-    padding-left: 5px;
-  }
-  
-  .dropdownContent.open {
-    max-height: 300px;
-    opacity: 1;
-    margin-top: 5px;
-  }
-  
-  .reviewSection {
-    margin-top: 50px;
-    padding-top: 40px;
-  }
-  
-  .reviewTitle {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    font-weight: 600;
-  }
-  
-  .reviewFormWrapper {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-  }
-  
-  .center {
-    text-align: center;
-    padding: 50px;
-  }
-  
+}

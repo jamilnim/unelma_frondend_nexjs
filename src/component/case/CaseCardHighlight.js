@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCases } from "../../lib/features/cases/caseSlice";
 import styles from "./CaseCardHighlight.module.css";
 import NextButton from "../../component/tools/NextButton";
+import KnowMoreButton from "../tools/KnowMoreButton";
+import Link from "next/link";
 
 export default function CaseCardHighlight() {
   const router = useRouter();
@@ -31,8 +33,9 @@ export default function CaseCardHighlight() {
 
   return (
     <section className={styles.wrapper}>
-      <h1 className={styles.heading}>Recent Works</h1>
-
+       <div className={styles.header}>Recent Works</div>
+       <div className={styles.subheader}>Crafting excellence <br/>from idea to execution</div>
+      
       <div className={styles.carouselWrapper}>
         
         {/* LEFT BUTTON */}
@@ -78,8 +81,12 @@ export default function CaseCardHighlight() {
         <div className={styles.sideButtonRight}>
           <NextButton onClick={() => scroll("right")} />
         </div>
+ {/* UPDATED KNOW MORE BUTTON */}
 
       </div>
+      <div className={styles.knowmorebuttonpos}> <Link href="/casestudy" >
+          <KnowMoreButton/>
+          </Link></div>
     </section>
   );
 }

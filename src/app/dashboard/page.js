@@ -3,6 +3,8 @@
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import UserProfile from "../../component/userProfile/UserProfile";
+
 
 export default function Dashboard() {
   const { user } = useSelector((state) => state.auth);
@@ -19,6 +21,7 @@ export default function Dashboard() {
       <h1>User Dashboard</h1>
       <p>Welcome, {user?.username}</p>
       {/* User can see services or content added by admin */}
+      <UserProfile/>
     </div>
   );
 }

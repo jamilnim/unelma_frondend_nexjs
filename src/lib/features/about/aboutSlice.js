@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchAboutAPI } from "../../api";
+import { API } from "../../api"; // only import API
 
 // Async thunk to fetch the About page data
 export const fetchAbout = createAsyncThunk(
   "about/fetchAbout",
   async (_, { rejectWithValue }) => {
     try {
-      const data = await fetchAboutAPI(); // calls axios API
+      const res = await API.get("/api/abouts?populate=*"); // call directly here
+      const data = res.data?.data?.[0] || null;
       if (!data) return rejectWithValue("No About data found");
       return data;
     } catch (error) {
@@ -18,13 +19,11 @@ export const fetchAbout = createAsyncThunk(
 const aboutSlice = createSlice({
   name: "about",
   initialState: {
-    about: null,   // stores about data
+    about: null,
     loading: false,
     error: null,
   },
-  reducers: {
-    // You can add synchronous reducers here if needed later
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchAbout.pending, (state) => {

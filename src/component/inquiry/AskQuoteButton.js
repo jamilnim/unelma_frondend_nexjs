@@ -7,9 +7,13 @@ export default function AskQuoteButton({ subject }) {
   const router = useRouter();
 
   const handleClick = () => {
+    // Mark that login is from inquiry
+    sessionStorage.setItem("loginFromInquiry", "true");
+
     const url = subject
       ? `/inquiry?subject=${encodeURIComponent(subject)}`
       : "/inquiry";
+
     router.push(url);
   };
 
