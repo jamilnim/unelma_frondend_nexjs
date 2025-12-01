@@ -33,3 +33,24 @@
   font-weight: 600;
 }
 
+/* Hide Google Translate Top Banner */
+#goog-gt-tt,
+.goog-te-banner-frame,
+.goog-te-banner,
+.goog-te-balloon-frame,
+.goog-te-gadget {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+}
+
+body {
+  top: 0 !important;
+}
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+body {
+  top: 0 !important;
+}

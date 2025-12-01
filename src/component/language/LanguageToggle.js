@@ -39,17 +39,28 @@ export default function LanguageToggle() {
 
   const removeBanner = () => {
     if (typeof window === "undefined") return;
+
+    // Remove frames
     const bannerIframe = document.getElementById("goog-te-banner-frame");
     if (bannerIframe) bannerIframe.remove();
+
     const banner = document.querySelector(".goog-te-banner-frame");
     if (banner) banner.remove();
+
+    // Remove Google Translate toolbar divs
+    const googBar = document.querySelector(".goog-te-banner");
+    if (googBar) googBar.remove();
+
+    const skipTranslate = document.querySelector(".goog-te-gadget");
+    if (skipTranslate) skipTranslate.style.display = "none";
+
+    // Reset body shift
     const body = document.body;
     if (body) {
       body.style.top = "0px";
       body.style.position = "static";
     }
   };
-
   useEffect(() => {
     if (typeof window === "undefined") return;
 
