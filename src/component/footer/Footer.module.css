@@ -2,7 +2,7 @@
 /* FOOTER BASE STYLING */
 /* ============================= */
 .footer {
-    background: #ffffff; /* white footer */
+    background: rgb(230, 240, 246);
     color: #111;
     padding: 80px 40px 40px;
     font-family: "Inter", sans-serif;
@@ -27,7 +27,7 @@
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #111;
+    color: #3881B4;
   }
   
   .links {
@@ -41,13 +41,13 @@
   }
   
   .links a {
-    color: #333;
+    color: #3881B4;
     text-decoration: none;
     transition: color 0.3s ease;
   }
   
   .links a:hover {
-    color: #007BFF;
+    color: #49ACF1;
     text-decoration: underline;
   }
   

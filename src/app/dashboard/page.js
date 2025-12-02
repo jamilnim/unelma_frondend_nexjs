@@ -18,9 +18,6 @@ export default function Dashboard() {
 
   return (
     <div style={{ padding: "2rem" }}>
-      <h1>User Dashboard</h1>
-      <p>Welcome, {user?.username}</p>
-      {/* User can see services or content added by admin */}
       <UserProfile/>
     </div>
   );

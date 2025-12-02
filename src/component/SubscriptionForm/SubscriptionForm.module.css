@@ -1,0 +1,95 @@
+.box {
+background-image: url(../../../public/Untitled\ design\ \(2\)\ copy.png);
+    padding: 24px;
+
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    max-width: 420px;
+    height: 22rem;
+   background-image: ob;
+  }
+  
+  .title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #f5f5f5;
+    margin-bottom: 8px;
+  }
+  
+  .description {
+    color: #ffffff;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  
+  .form {
+    display: flex;
+    background: white;
+    border: 1px solid #d1d5db;
+   
+    overflow: hidden;
+    align-items: center;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    margin-top: 7rem;
+  }
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+    color: #6b7280;
+    margin-left: 12px;
+  }
+  
+  .input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    
+  }
+  
+  .button {
+    background: #3780b2;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+    display: flex;
+    align-items: center;
+  }
+  
+  .button:hover {
+    background: #2b6b95;
+  }
+  
+  .sendIcon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .terms {
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: #000000;
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+  
+  .link {
+    text-decoration: underline;
+    color: #ffffff;
+  }
+  
+  @media (max-width: 480px) {
+    .box {
+      padding: 20px;
+    }
+  
+    .title {
+      font-size: 1.2rem;
+    }
+  }
+  

@@ -60,7 +60,7 @@
   }
   
   .downloadBtn {
-    background: #16a085;
+    background: #49ACF1;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -73,6 +73,6 @@
   }
   
   .downloadBtn:hover {
-    background: #13856d;
+    background: #3881B4;
   }
   

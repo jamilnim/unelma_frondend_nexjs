@@ -12,6 +12,8 @@ import serviceReducer from "./features/service/serviceSlice";
 import appointmentsReducer from "./features/appointments/appointmentsSlice";
 import cartReducer from "./features/cart/cartSlice";
 import ordersReducer from "./features/cart/ordersSlice";
+import processReducer from "./features/process/processSlice";
+import subscriptionReducer from "./features/subscription/subscriptionSlice";
 
 export const store = configureStore({
   reducer: {
@@ -28,5 +30,7 @@ export const store = configureStore({
     appointments: appointmentsReducer,
     cart: cartReducer,
     orders: ordersReducer,
+    processSteps: processReducer,
+    subscription: subscriptionReducer,
   },
 });

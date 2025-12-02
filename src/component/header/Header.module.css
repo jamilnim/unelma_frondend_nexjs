@@ -62,6 +62,7 @@
   top: 0;
   z-index: 999;
   color: black;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
 .container {
@@ -221,6 +222,7 @@
   font-size: 14px;     /* reduced font size */
   text-decoration: none;
   white-space: nowrap; /* prevents breaking lines */
+  font-size: 1.2rem;
 }
 
 /* Remove cart icon from mobile menu */
@@ -236,12 +238,13 @@
   color: black;
   border: none;
   padding: 8px 0;
-  font-size: 14px;
   white-space: nowrap; /* Fix line break */
+  font-size: 1.2rem;
 }
 
 .mobileSubmenu {
   padding-left: 10px;
+  font-size: 1.2rem;
 }
 
 .mobileSubmenu a {
@@ -259,13 +262,16 @@
   .mobileMenu  {
     background: white;
     color: black;
+    font-size: 2rem;
   }
 
   .dropdownMenu a:hover,
   .mobileMenu a:hover,
   .mobileSubmenu a:hover {
     background: #49ACF1 !important;
+    padding: 1rem;
     color: white;
+    
   }
 
   /* Hide desktop nav */
@@ -277,6 +283,7 @@
   .hamburger {
     display: block;
     color: black;
+    margin-left: 15rem;
   }
 
   .socials i {

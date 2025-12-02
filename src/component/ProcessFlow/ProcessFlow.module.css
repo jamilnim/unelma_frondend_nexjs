@@ -1,0 +1,181 @@
+/* ========================================= */
+/* ALWAYS VISIBLE (No fade problems) */
+/* ========================================= */
+
+.animateBase {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================= */
+/* DEFAULT DESKTOP STYLE */
+/* ========================================= */
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 20px 6rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    height: 60vh;
+}
+
+.header {
+    font-size: 1.8rem;
+    color: #3881b4;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    margin-left: 4rem;
+}
+
+.subheader {
+    font-size: 2.5rem;
+    color: black;
+    text-align: left;
+    margin-bottom: 2rem;
+    margin-left: 4rem;
+}
+
+.stepWrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.stepBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+}
+
+/* ========================================= */
+/* ICON — static on load / icon on hover */
+/* ========================================= */
+
+.iconWrap {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid rgb(230, 240, 246);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.35s ease;
+}
+
+/* Layered images */
+.iconWrap img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.35s ease;
+}
+
+/* Default visible image */
+.staticIcon {
+    opacity: 1;
+    z-index: 1;
+}
+
+/* Hidden until hover */
+.hoverIcon {
+    opacity: 0;
+    z-index: 2;
+}
+
+/* Hover → show icon */
+.iconWrap:hover .hoverIcon {
+    opacity: 1;
+}
+
+/* Hover → hide static */
+.iconWrap:hover .staticIcon {
+    opacity: 0;
+}
+
+/* Hover grow */
+.iconWrap:hover {
+    width: 150px;
+    height: 150px;
+}
+
+/* ========================================= */
+
+.textWrap {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.arrowWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow {
+    width: 2rem;
+    height: 2rem;
+    stroke-width: 2;
+    color: #49acf1;
+}
+
+/* ========================================= */
+/* MOBILE */
+/* ========================================= */
+
+@media (max-width: 900px) {
+
+    .container {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1rem;
+        height: auto;
+        overflow-x: hidden;
+    }
+
+    .header {
+        font-size: 1.35rem;
+        margin-left: 1rem;
+    }
+
+    .subheader {
+        font-size: 1.875rem;
+        margin-left: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .stepWrapper {
+        flex-direction: column;
+    }
+
+    .iconWrap {
+        width: 100px;
+        height: 100px;
+    }
+
+    .iconWrap:hover {
+        width: 120px;
+        height: 120px;
+    }
+
+    .arrowWrap {
+        margin: 0.5rem 0;
+    }
+
+    .arrow {
+        width: 1.8rem;
+        height: 1.8rem;
+        transform: rotate(90deg);
+    }
+
+    .textWrap {
+        font-size: 0.85rem;
+    }
+}

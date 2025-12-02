@@ -2,6 +2,8 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./Footer.module.css";
+import SubscriptionForm from "../SubscriptionForm/SubscriptionForm";
+
 
 /**
  * Footer component with a floating subscribe pill that expands on click.
@@ -131,49 +133,7 @@ export default function Footer() {
             className={`${styles.block} ${styles.subscribeWrapperBlock}`}
             aria-label="Subscribe"
           >
-            <div className={styles.subscribeWrapper}>
-              <div className={styles.subscribeContent}>
-                <h3 className={styles.subscribeTitle}>
-                  Subscribe to our Newsletter
-                </h3>
-                <p className={styles.subscribeDesc}>
-                  Based on the GDPR rule, we will only contact you if it is
-                  essential and all personal data collected is anonymized.
-                </p>
-
-                <form
-                  className={styles.subscribeForm}
-                  onSubmit={submit}
-                  noValidate
-                >
-                  <input
-                    className={styles.subscribeInput}
-                    placeholder="your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    type="email"
-                    aria-label="Email address"
-                    required
-                  />
-                  <button
-                    className={styles.subscribeBtn}
-                    type="submit"
-                    disabled={status === "sending"}
-                  >
-                    {status === "sending" ? "Sending..." : "Subscribe"}
-                  </button>
-                </form>
-
-                <p className={styles.subscribeNote} role="status">
-                  {status === "error" && (
-                    <span style={{ color: "#ffd1d1" }}>{message}</span>
-                  )}
-                  {status === "success" && (
-                    <span style={{ color: "#d1fff0" }}>{message}</span>
-                  )}
-                </p>
-              </div>
-            </div>
+              <SubscriptionForm />
           </aside>
 
           {/* Middle: regional addresses (accordion) */}

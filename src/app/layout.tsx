@@ -2,6 +2,7 @@ import "./globals.css";
 import { StoreProvider } from "./StoreProvider";
 import Header from "../component/header/Header";
 import Footer from "../component/footer/Footer";
+import Providers from "./Providers";
 
 export const metadata = {
   title: "Case Study App",
@@ -12,9 +13,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        
-        <StoreProvider><Header />{children}<Footer /></StoreProvider>
-        
+        <StoreProvider>
+          <Header />
+          <Providers>{children}</Providers>
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );

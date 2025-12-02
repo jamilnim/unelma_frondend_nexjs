@@ -81,9 +81,7 @@ export default function UserProfile() {
       <div className={styles.userSection}>
         <h2>User Profile</h2>
         <div className={styles.userInfo}>
-          <div className={styles.avatar}>
-            <img src={user.avatar || "/avatar.png"} alt="User Avatar" />
-          </div>
+         
           <div className={styles.userDetails}>
             <p><strong>Name:</strong> {user.name || user.username}</p>
             <p><strong>Email:</strong> {user.email}</p>
