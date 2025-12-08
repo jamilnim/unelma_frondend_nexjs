@@ -1,0 +1,129 @@
+/* ===== CONTACT SECTION (CARDS + FORM) ===== */
+.contactSection {
+    margin-top: 6rem;
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    align-items: flex-start; /* align cards and form at top */
+  }
+  
+  /* CARDS LEFT SIDE */
+  .cards {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-top: 2rem; /* push cards slightly down */
+  }
+  
+  /* CARD STYLING */
+  .card {
+    background: linear-gradient(145deg, #ffffff, #f0f2f5);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border-left: 4px solid #3881B4; /* accent line */
+    min-height: 100px; /* ensure cards have some base height */
+  }
+  
+  /* FORM RIGHT SIDE */
+  .formSection {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch; /* form takes full height */
+  }
+  
+  .formSection h2 {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    color: #222;
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  /* FORM STYLING */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: #ffffff;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    height: 100%; /* full height to cover cards */
+    transition: all 0.3s ease;
+  }
+  
+  
+  .form input,
+  .form textarea {
+    padding: 1rem 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+  }
+  
+  .form input:focus,
+  .form textarea:focus {
+    border-color: #3881B4;
+    box-shadow: 0 0 10px rgba(79,172,254,0.2);
+    outline: none;
+    background-color: #fff;
+  }
+  
+  .form button {
+    padding: 1rem 1.5rem;
+    border: none;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .form button:hover {
+    background: linear-gradient(90deg, #00f2fe, #4facfe);
+    transform: translateY(-2px);
+  }
+  
+  /* MAP SECTION */
+  .mapSection {
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+  
+  .mapSection h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #222;
+  }
+  
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .contactSection {
+      flex-direction: column;
+    }
+    .formSection, .cards {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    .hero p {
+      font-size: 1rem;
+    }
+  }
+  

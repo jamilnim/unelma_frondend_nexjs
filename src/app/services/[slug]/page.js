@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import Link from "next/link";
 import { useSelector } from "react-redux";
 import styles from "./serviceDetails.module.css";
 import ServiceHeroSpot from "../../../component/serviceHeroSpot/ServiceHeroSpot";
@@ -19,36 +18,37 @@ export default function ServiceDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(
-          `http://localhost:1337/api/service-categories?filters[slug][$eq]=${slug}&populate=*`
-        );
-        const data = await res.json();
-        setService(data.data[0]);
+        const [serviceRes, allServicesRes] = await Promise.all([
+          fetch(
+            `http://localhost:1337/api/service-categories?filters[slug][$eq]=${slug}&populate=*`
+          ),
+          fetch("http://localhost:1337/api/service-categories?populate=*"),
+        ]);
 
-        const res2 = await fetch(
-          "http://localhost:1337/api/service-categories?populate=*"
-        );
-        const data2 = await res2.json();
-        setAllServices(data2.data);
+        const serviceData = await serviceRes.json();
+        setService(serviceData.data[0]);
+
+        const allServicesData = await allServicesRes.json();
+        setAllServices(allServicesData.data);
       } catch (err) {
         console.error("Error fetching services:", err);
       } finally {
         setLoading(false);
       }
     };
+
     fetchData();
   }, [slug]);
 
   if (loading) return <p className={styles.message}>Loading...</p>;
   if (!service) return <p className={styles.message}>Service not found.</p>;
 
-  const title = service.name;
-  const category = service.category;
-  const description = service.description;
-  const imageUrl =
-    service.imageIcon?.[0]?.formats?.medium?.url || service.imageIcon?.[0]?.url;
+  const { name: title, category, description, imageIcon } = service;
+  const imageUrl = imageIcon?.[0]?.formats?.medium?.url || imageIcon?.[0]?.url;
 
-  // ⭐ OrderCart Component
+  // ---------------------------------------------------------
+  // ORDER CART
+  // ---------------------------------------------------------
   const OrderCart = () => {
     const plans = [
       {
@@ -77,39 +77,46 @@ export default function ServiceDetails() {
       },
     ];
 
-    // const handleOrder = (planName) => {
-    //   if (!user) {
-    //     // Redirect to login page with redirect to order page
-    //     router.push(`/login?redirect=/order/${slug}?plan=${planName}`);
-    //   } else {
-    //     // Redirect to order page directly with plan info
-    //     router.push(`/order/${slug}?plan=${planName}`);
-    //   }
-    // };
     const handleOrder = (plan) => {
-      if (!user) {
-        router.push(`/login?redirect=/order/${slug}?plan=${plan}`);
-      } else {
-        router.push(`/order/${slug}?plan=${plan}`);
+      const orderPath = `/services/order/${slug}?plan=${
+        plan.name
+      }&serviceName=${encodeURIComponent(title)}&price=${plan.price}`;
+
+      if (user === undefined) {
+        console.log("User info loading...");
+        return;
       }
+
+      if (!user) {
+        // Not logged in → redirect to login with redirect back to order page
+        router.push(`/login?redirect=${encodeURIComponent(orderPath)}`);
+        return;
+      }
+
+      // Logged in → go directly to order page
+      router.push(orderPath);
     };
 
     return (
       <div className={styles.orderCart}>
         <h2>Order This Service</h2>
+
         <div className={styles.plans}>
           {plans.map((plan) => (
             <div key={plan.name} className={styles.planBox}>
               <h3>{plan.name}</h3>
+
               <p className={styles.price}>
                 ${plan.price} <span>/{plan.duration}</span>
               </p>
+
               <ul>
-                {plan.features.map((feat, i) => (
-                  <li key={i}>{feat}</li>
+                {plan.features.map((feat, index) => (
+                  <li key={index}>{feat}</li>
                 ))}
               </ul>
-              <button onClick={() => handleOrder(plan.name)}>Order Now</button>
+
+              <button onClick={() => handleOrder(plan)}>Order Now</button>
             </div>
           ))}
         </div>
@@ -117,11 +124,17 @@ export default function ServiceDetails() {
     );
   };
 
+  // Unique categories for sidebar
+  const uniqueCategories = [
+    ...new Map(allServices.map((s) => [s.category, s])).values(),
+  ];
+
   return (
     <div>
-      <ServiceHeroSpot serviceTitle={service.name} />
+      <ServiceHeroSpot serviceTitle={title} />
 
       <div className={styles.wrapper}>
+        {/* LEFT CONTENT */}
         <div className={styles.left}>
           {imageUrl && (
             <img
@@ -133,29 +146,25 @@ export default function ServiceDetails() {
 
           <h1 className={styles.mainTitle}>{title}</h1>
           <span className={styles.categoryTag}>{category}</span>
+
           <p className={styles.description}>{description}</p>
 
+          {/* ORDER CART */}
           <OrderCart />
         </div>
 
+        {/* RIGHT SIDEBAR */}
         <div className={styles.right}>
           <div className={styles.servicesBox}>
-            {[
-              ...new Map(
-                allServices.map((item) => [item.category, item])
-              ).values(),
-            ].map((s) => (
-              <Link
+            {uniqueCategories.map((s) => (
+              <div
                 key={s.id}
-                href={`/services/category/${(s.category || "uncategorized")
-                  .replace(/\s+/g, "-")
-                  .toLowerCase()}`}
                 className={`${styles.serviceItem} ${
-                  s.category === service.category ? styles.active : ""
+                  s.category === category ? styles.active : styles.disabled
                 }`}
               >
                 {s.category}
-              </Link>
+              </div>
             ))}
           </div>
         </div>

@@ -1,0 +1,171 @@
+/* ===== HERO ===== */
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 6rem 2rem;
+    background: url('/hero-pattern.svg') no-repeat center/cover;
+    background-size: cover;
+    border-radius: 20px;
+    color: white;
+    margin-bottom: 6rem;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Overlay content */
+  .heroContent {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hero h1 {
+    font-size: 3.2rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* ===== CONTACT SECTION ===== */
+  .contactSectionWrapper {
+    max-width: 1200px; /* container width */
+    margin: 0 auto; /* center container */
+    padding: 0 2rem; /* left/right spacing */
+  }
+  
+  .contactSection {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+    
+  }
+  
+  /* CARDS LEFT SIDE */
+  .cards {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .card {
+    background: #c5c9cf;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  }
+  
+  .card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #222;
+  }
+  
+  .card p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* FORM RIGHT SIDE */
+  .formSection {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .formSection h2 {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    color: #222;
+  
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  }
+  
+  .form input,
+  .form textarea {
+    padding: 0.85rem 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .form input:focus,
+  .form textarea:focus {
+    border-color: #4facfe;
+    box-shadow: 0 0 10px rgba(79,172,254,0.3);
+    outline: none;
+  }
+  
+  .form button {
+    padding: 0.85rem 1.2rem;
+    border: none;
+    background: #4facfe;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .form button:hover {
+    background: #00f2fe;
+    color: #222;
+    transform: translateY(-2px);
+  }
+  
+  /* ===== MAP ===== */
+  .mapSection {
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+  
+  .mapSection h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #222;
+  }
+  
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .contactSection {
+      flex-direction: column;
+    }
+    .formSection, .cards {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    .hero p {
+      font-size: 1rem;
+    }
+  }
+  

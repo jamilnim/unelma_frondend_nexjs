@@ -14,6 +14,8 @@ import serviceHeroSpotReducer from "./features/serviceHeroSpot/serviceHeroSpotSl
 import userReducer from "./features/order/userSlice";
 import dashboardHeroReducer from "./features/dashboardHero/dashboardHeroSlice";
 import appointmentHeroReducer from "./features/appointmentHerospot/appointmentHeroSlice";
+import contactReducer from "./features/contact/contactFormSlice";
+import contactHeroReducer from "./features/contactHero/contactHeroSlice";
 
 export const store = configureStore({
   reducer: {
@@ -32,5 +34,7 @@ export const store = configureStore({
     user: userReducer,
     dashboardHero: dashboardHeroReducer,
     appointmentHero: appointmentHeroReducer,
+    contact: contactReducer,
+    contactHero: contactHeroReducer,
   },
 });

@@ -3,14 +3,11 @@
 import AppointmentHerospot from "../../../component/appointmentHerospot/AppointmentHerospot";
 import AppointmentForm from "../../../component/appointment/AppointmentForm";
 
-export default function AppointmentPage() {
+export default function IntroductionMeetingPage() {
   return (
     <>
-      <AppointmentHerospot 
-        title="Schedule Your Consultation" 
-        subtitle="Choose a convenient date and time for your meeting with us." 
-      />
-      <AppointmentForm />
+      <AppointmentHerospot type="introduction-meeting" />
+      <AppointmentForm type="introduction-meeting" />
     </>
   );
 }

@@ -1,136 +1,210 @@
-    .wrapper {
-      display: flex;
-      gap: 40px;
-      padding: 40px;
-    
-    }
+/* =============================
+   GLOBAL PAGE LAYOUT
+============================= */
+.wrapper {
+  width: 90%;
+  max-width: 1300px;
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 40px;
+}
 
-    .left {
-      flex: 2;
-    }
+.message {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #777;
+}
 
-    .mainImage {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
+/* =============================
+   LEFT CONTENT
+============================= */
+.left {
+  padding-right: 20px;
+}
 
-    .mainTitle {
-      font-size: 28px;
-      margin-top: 20px;
-      font-weight: 700;
-    
-    }
+.mainImage {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  margin-bottom: 25px;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
 
-    .categoryTag {
-      display: inline-block;
-      margin-top: 10px;
-      background: #e0e7ff;
-      padding: 6px 12px;
-      border-radius: 6px;
-      color: #15151f;
-      font-weight: 600;
-    }
+.mainTitle {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #111;
+}
 
-    .description {
-      margin-top: 20px;
-      line-height: 1.7;
-      font-size: 16px;
-    }
+.categoryTag {
+  display: inline-block;
+  background: #e0f7fa;
+  color: #3881B4;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 13px;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
 
-    .right {
-      flex: 1;
-    }
+.description {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  max-width: 800px;
+}
 
-    .servicesBox {
-      background: #f8fafc;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    
-    }
+/* =============================
+   ORDER CART
+============================= */
+.orderCart {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #eee;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+}
 
-    .serviceItem {
-      display: block;
-      padding: 12px;
-      border-bottom: 1px solid #e5e7eb;
-      cursor: pointer;
-      color: #374151;
-      text-decoration: none;
-    }
+.orderCart h2 {
+  font-size: 24px;
+  margin-bottom: 25px;
+  color: #111;
+}
 
-    .serviceItem:hover {
-      background: #eef2ff;
-    }
+.plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
 
-    .active {
-      background: #e0e7ff;
-      border-left: 4px solid #4338ca;
-    }
+.planBox {
+  background: #fdfdfd;
+  padding: 25px;
+  border-radius: 16px;
+  border: 1px solid #eee;
+  transition: 0.3s ease;
+}
 
-   
+.planBox:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
 
-   
-    .orderCart {
-      border: 1px solid #ddd;
-      padding: 1.5rem;
-      margin-top: 2rem;
-      border-radius: 8px;
-      background: #f9f9f9;
-    }
+.planBox h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #333;
+}
 
-    .orderCart h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
+.price {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #3881B4;
+}
 
-    .plans {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
+.price span {
+  font-size: 14px;
+  color: #777;
+}
 
-    .planBox {
-      border: 1px solid #ccc;
-      padding: 1rem;
-      border-radius: 6px;
-      flex: 1 1 250px;
-      background: #fff;
-    }
+.planBox ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
 
-    .planBox h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
+.planBox li {
+  margin-bottom: 10px;
+  color: #555;
+  font-size: 15px;
+  position: relative;
+  padding-left: 20px;
+}
 
-    .price {
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
+.planBox li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #3881B4;
+  font-size: 14px;
+  top: 2px;
+}
 
-    .price span {
-      font-weight: normal;
-      font-size: 1rem;
-    }
+.planBox button {
+  width: 100%;
+  padding: 12px 0;
+  background: #3881B4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.25s ease;
+  font-weight: 600;
+}
 
-    .planBox ul {
-      list-style: disc;
-      padding-left: 1.2rem;
-      margin-bottom: 1rem;
-    }
+.planBox button:hover {
+  background: #004d40;
+}
 
-    .planBox button {
-      background: #ff7f50;
-      color: white;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+/* =============================
+   SIDEBAR (CATEGORIES)
+============================= */
+.right {
+  border-left: 1px solid #f1f1f1;
+  padding-left: 30px;
+}
 
-    .planBox button:hover {
-      background: #f26e3e;;
-    }
+.servicesBox {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
+.serviceItem {
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: #f8f8f8;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: default; /* not clickable */
+  transition: 0.3s ease;
+}
+
+.serviceItem:hover {
+  background: #eaeaea;
+}
+
+.active {
+  background: #00796b !important;
+  color: #fff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.disabled {
+  cursor: default;
+  opacity: 0.8;
+}
+
+/* =============================
+   RESPONSIVE
+============================= */
+@media (max-width: 900px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .right {
+    border-left: none;
+    padding-left: 0;
+    margin-top: 30px;
+  }
+}
