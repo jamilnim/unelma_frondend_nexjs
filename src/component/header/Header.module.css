@@ -99,7 +99,8 @@
   display: flex;
   align-items: center;
   gap: 1px; /* Requested – reduce spacing */
-  margin-right: 3px; /* Move nav 3px left from cart */
+  margin-right: 1px; /* Move nav 3px left from cart */
+
 }
 
 .navItem {
@@ -108,7 +109,7 @@
 
 .btn {
   padding: 6px 10px !important;   /* compact */
-  font-size: 14px;
+  font-size: 16px;
   color: rgb(0, 0, 0);
   text-decoration: none;
   background: transparent;

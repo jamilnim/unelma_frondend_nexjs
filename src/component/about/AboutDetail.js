@@ -25,45 +25,65 @@ export default function AboutDetail() {
 
   return (
     <section id="details" className={styles.aboutDetailSection}>
-      {/* Image */}
+
+      {/* IMAGE */}
       {imageUrl && (
-        <div className={styles.imageWrapper}>
+        <div className={`${styles.imageWrapper} ${styles.animateItem} ${styles.delay1}`}>
           <img src={imageUrl} alt="About Image" className={styles.aboutImage} />
         </div>
       )}
 
-      {/* Title */}
-      <h1 className={styles.title}>{about.title}</h1>
+      {/* TITLE */}
+      <h1 className={`${styles.title} ${styles.animateItem} ${styles.delay2}`}>
+        {about.title}
+      </h1>
 
-      {/* Story + Mission & Vision side by side */}
+      {/* STORY + CARDS */}
       <div className={styles.storyAndCards}>
-        {/* LEFT: Detail Text */}
-        <div className={styles.story}>
+        
+        {/* STORY */}
+        <div className={`${styles.story} ${styles.animateItem} ${styles.delay3}`}>
           {about.detailStory?.map((block, i) => (
-            <p key={i}>{block.children?.[0]?.text}</p>
+            <p
+              key={i}
+              className={`${styles.animateItem} ${styles[`delay${4 + i}`]}`}
+            >
+              {block.children?.[0]?.text}
+            </p>
           ))}
         </div>
 
-        {/* RIGHT: Mission & Vision */}
+        {/* CARDS */}
         <div className={styles.cardsColumn}>
-          <div className={styles.missionCard}>
+          <div
+            className={`${styles.missionCard} ${styles.animateItem} ${styles.delay4} ${styles.fadeOutOnHover}`}
+          >
             <h2>Mission</h2>
             <p>{about.mission}</p>
           </div>
-          <div className={styles.visionCard}>
+
+          <div
+            className={`${styles.visionCard} ${styles.animateItem} ${styles.delay5} ${styles.fadeOutOnHover}`}
+          >
             <h2>Vision</h2>
             <p>{about.vision}</p>
           </div>
         </div>
+
       </div>
 
       {/* GRAPHS */}
       <div className={styles.graphsRow}>
-        <div className={styles.graphWrapper}>
+        <div
+          className={`${styles.graphWrapper} ${styles.animateItem} ${styles.delay6} ${styles.fadeOutOnHover}`}
+        >
           <h3>Our Strength</h3>
           <StrengthBarChart data={about.ourStrength} />
         </div>
-        <div className={styles.graphWrapper}>
+
+        <div
+          className={`${styles.graphWrapper} ${styles.animateItem} ${styles.delay7} ${styles.fadeOutOnHover}`}
+        >
           <h3>Our Growth</h3>
           <GrowthLineChart data={about.users} />
         </div>

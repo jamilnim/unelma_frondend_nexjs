@@ -105,10 +105,12 @@ export default function FancyServiceCarousel() {
             );
           })}
         </div>
+        <div className={styles.buttons}>
          {/* UPDATED KNOW MORE BUTTON */}
          <Link href="/services" >
           <KnowMoreButton/>
           </Link>
+          </div>
       </div>
     </>
   );

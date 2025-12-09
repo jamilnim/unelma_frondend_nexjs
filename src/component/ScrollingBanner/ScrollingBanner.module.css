@@ -1,0 +1,31 @@
+.wrapper {
+    width: 100%;
+    overflow: hidden;
+    background-color: white; /* Dark background */
+    padding: 10px 0;
+  }
+  
+  .scroller {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: scroll 20s linear infinite;
+  }
+  
+  .item {
+    display: inline-block;
+    margin-right: 3rem;
+    font-size: 1.7rem;
+    color: #3881B4;
+    font-weight: 500;
+  }
+  
+  /* Keyframes for smooth infinite scroll */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  

@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../lib/features/cart/cartSlice";
@@ -7,7 +6,8 @@ import styles from "./ProductDetail.module.css";
 import { useRouter } from "next/navigation";
 import ReviewList from "./ReviewList";
 import ReviewForm from "./ReviewForm";
-import { FaShoppingCart } from "react-icons/fa";   // <-- ADDED
+import { FaShoppingCart } from "react-icons/fa";
+import AllProductCart from "./AllProductCart";
 
 export default function ProductDetail({ slug }) {
   const dispatch = useDispatch();
@@ -17,6 +17,7 @@ export default function ProductDetail({ slug }) {
   const [product, setProduct] = useState(null);
   const [qty, setQty] = useState(1);
   const [openSection, setOpenSection] = useState(null);
+  const [animate, setAnimate] = useState(false); // <-- mount animation flag
 
   useEffect(() => {
     async function fetchProduct() {
@@ -25,6 +26,7 @@ export default function ProductDetail({ slug }) {
           `http://localhost:1337/api/products?filters[slug][$eq]=${slug}&populate=*`
         );
         const data = await res.json();
+
         if (data?.data?.length > 0) {
           const p = data.data[0];
           setProduct({
@@ -48,6 +50,11 @@ export default function ProductDetail({ slug }) {
     }
     fetchProduct();
   }, [slug]);
+
+  // Trigger animation on mount
+  useEffect(() => {
+    setAnimate(true);
+  }, []);
 
   if (!product) return <p className={styles.center}>Product not found.</p>;
 
@@ -76,83 +83,147 @@ export default function ProductDetail({ slug }) {
         quantity: Number(qty),
       })
     );
+
+    // Trigger button pulse animation
+    const btn = document.querySelector(`.${styles.addBtn}`);
+    if (btn) {
+      btn.classList.remove(styles.addPulse);
+      void btn.offsetWidth;
+      btn.classList.add(styles.addPulse);
+    }
+
+    // Optional: body pulse/confetti
+    document.body.classList.add(styles.cartConfetti);
+    setTimeout(() => {
+      document.body.classList.remove(styles.cartConfetti);
+    }, 1400);
   };
 
   const toggleSection = (section) =>
     setOpenSection((prev) => (prev === section ? null : section));
 
   const renderBlocks = (blocks) =>
-    blocks?.map((b, idx) => <p key={idx}>{b.children?.map((c) => c.text).join(" ")}</p>);
+    blocks?.map((b, idx) => (
+      <p key={idx}>{b.children?.map((c) => c.text).join(" ")}</p>
+    ));
 
   return (
-    <div className={styles.wrapper}>
-  
-      <div className={styles.topSection}>
-        <div className={styles.imageWrapper}>
-          <img
-            src={`http://localhost:1337${imgUrl}`}
-            alt={product.name}
-            className={styles.image}
-          />
-        </div>
-        <div className={styles.info}>
-          <h1 className={styles.title}>{product.name}</h1>
-          <p className={styles.meta}><strong>SKU:</strong> {product.sku}</p>
-          <p className={styles.meta}><strong>Category:</strong> {product.category}</p>
-          <p className={styles.meta}><strong>In Stock:</strong> {product.quantity_in_stock}</p>
-          <p className={styles.price}>€{Number(product.price).toFixed(2)}</p>
-          <p className={styles.desc}>{product.description}</p>
-
-          <div className={styles.buyRow}>
-            <label>
-              Qty:
-              <input
-                type="number"
-                min="1"
-                value={qty}
-                onChange={(e) => setQty(Math.max(1, Number(e.target.value)))}
-                style={{ width: 64, marginLeft: 8 }}
-              />
-            </label>
-
-            {/* ================= ADD CART BUTTON WITH ICON ================= */}
-            <button className={styles.addBtn} onClick={handleAddToCart}>
-              <FaShoppingCart className={styles.cartIcon} />
-              Add to Cart
-            </button>
+    <>
+      <div
+        className={`${styles.wrapper} ${
+          animate ? styles.animateWrapper : ""
+        }`}
+      >
+        <div className={styles.topSection}>
+          <div className={styles.imageWrapper}>
+            <img
+              src={`http://localhost:1337${imgUrl}`}
+              alt={product.name}
+              className={styles.image}
+            />
           </div>
 
-          {product.detail && (
-            <div className={styles.dropdown}>
-              <div className={styles.dropdownHeader} onClick={() => toggleSection("detail")}>
-                <h3>Details</h3>
-                <span>{openSection === "detail" ? "−" : "+"}</span>
-              </div>
-              <div className={`${styles.dropdownContent} ${openSection === "detail" ? styles.open : ""}`}>
-                {renderBlocks(product.detail)}
-              </div>
-            </div>
-          )}
+          <div className={styles.info}>
+            <h1 className={styles.title}>{product.name}</h1>
+            <p className={styles.meta}>
+              <strong>SKU:</strong> {product.sku}
+            </p>
+            <p className={styles.meta}>
+              <strong>Category:</strong> {product.category}
+            </p>
+            <p className={styles.meta}>
+              <strong>In Stock:</strong> {product.quantity_in_stock}
+            </p>
 
-          {product.additional && (
-            <div className={styles.dropdown}>
-              <div className={styles.dropdownHeader} onClick={() => toggleSection("additional")}>
-                <h3>Additional Info</h3>
-                <span>{openSection === "additional" ? "−" : "+"}</span>
-              </div>
-              <div className={`${styles.dropdownContent} ${openSection === "additional" ? styles.open : ""}`}>
-                {renderBlocks(product.additional)}
-              </div>
+            <p className={styles.price}>€{Number(product.price).toFixed(2)}</p>
+
+            <p className={styles.desc}>{product.description}</p>
+
+            <div className={styles.buyRow}>
+              <label>
+                Qty:
+                <input
+                  type="number"
+                  min="1"
+                  value={qty}
+                  onChange={(e) => setQty(Math.max(1, Number(e.target.value)))}
+                  style={{ width: 64, marginLeft: 8 }}
+                />
+              </label>
+
+              <button className={styles.addBtn} onClick={handleAddToCart}>
+                <FaShoppingCart className={styles.cartIcon} />
+                Add to Cart
+              </button>
             </div>
-          )}
+
+            {product.detail && (
+              <div className={`${styles.dropdown} ${styles.dropdownInline}`}>
+                <div
+                  className={styles.dropdownHeader}
+                  onClick={() => toggleSection("detail")}
+                >
+                  <h3>Details</h3>
+                  <i
+                    className={
+                      openSection === "detail"
+                        ? "bi bi-dash-lg"
+                        : "bi bi-plus-lg"
+                    }
+                    aria-hidden="true"
+                  />
+                </div>
+
+                <div
+                  className={`${styles.dropdownContent} ${
+                    openSection === "detail" ? styles.open : ""
+                  }`}
+                >
+                  {renderBlocks(product.detail)}
+                </div>
+              </div>
+            )}
+
+            {product.additional && (
+              <div className={`${styles.dropdown} ${styles.dropdownInline}`}>
+                <div
+                  className={styles.dropdownHeader}
+                  onClick={() => toggleSection("additional")}
+                >
+                  <h3>Additional Info</h3>
+                  <i
+                    className={
+                      openSection === "additional"
+                        ? "bi bi-dash-lg"
+                        : "bi bi-plus-lg"
+                    }
+                    aria-hidden="true"
+                  />
+                </div>
+
+                <div
+                  className={`${styles.dropdownContent} ${
+                    openSection === "additional" ? styles.open : ""
+                  }`}
+                >
+                  {renderBlocks(product.additional)}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className={styles.reviewSection}>
+          <div className={styles.reviewHeading}>Review</div>
+          <ReviewList productId={product.id} />
+          <ReviewForm productId={product.id} />
         </div>
       </div>
 
-      <div className={styles.reviewSection}>
-      <div className={styles.reviewHeading}>Review</div>
-        <ReviewList productId={product.id} />
-        <ReviewForm productId={product.id} />
+      <div className={styles.otherProductsWrapper}>
+        <h2 className={styles.otherProductsTitle}>Other Products</h2>
+        <AllProductCart excludeSlug={product.slug} />
       </div>
-    </div>
+    </>
   );
 }

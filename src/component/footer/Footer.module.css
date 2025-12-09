@@ -2,7 +2,7 @@
 /* FOOTER BASE STYLING */
 /* ============================= */
 .footer {
-    background: rgb(230, 240, 246);
+    background: var(--contentBackground1);
     color: #111;
     padding: 80px 40px 40px;
     font-family: "Inter", sans-serif;
@@ -182,7 +182,8 @@
   }
   
   .contactRow a:hover {
-    color: #0056b3;
+    color: #0056b3
+;
   }
   
   /* ============================= */
@@ -190,12 +191,30 @@
   /* ============================= */
   .bottom {
     margin-top: 50px;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(0, 0, 0, 0.50);
     padding-top: 20px;
     text-align: center;
     font-size: 0.9rem;
     color: #555;
   }
+
+  /* Images Column */
+  .imagesColumn {
+    display: flex;
+    flex-direction: row; /* horizontal row */
+    gap: 0.8rem;
+    margin-top: 1rem;
+    padding: 0.5rem; /* optional: add some padding inside */
+    border-radius: 6px; /* optional: rounded corners */
+  }
+
+.footerImage {
+  width: 18rem;
+  height: fit-content;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
   
   /* ============================= */
   /* RESPONSIVE DESIGN */

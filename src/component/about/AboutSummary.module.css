@@ -39,11 +39,15 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
+ border-radius: 50px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
+  height: 70vh;
 }
 
 /* LEFT IMAGE */
 .left {
   width: 100%;
+
 }
 
 /* IMAGE WRAPPER */
@@ -55,8 +59,9 @@
 /* MAIN IMAGE */
 .image {
   width: 100%;
-  height: auto;
-  border-radius: 14px;
+  height: 70vh;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
   object-fit: cover;
   box-shadow: 0px 3px 18px rgba(0, 0, 0, 0.12);
 }

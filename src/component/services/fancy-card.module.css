@@ -8,6 +8,7 @@
   color: #3881B4;
   text-align: left;
   margin-left: 1rem;
+ 
 }
 
 .subheader {
@@ -25,7 +26,8 @@
   margin: 1.5rem 0;
   padding: 2rem;
   width: 100%;
-  background-color: rgb(230, 240, 246);
+  background-color: var(--contentBackground1);
+  border-radius: 50px;
 }
 
 /* Cards → MOBILE column layout */
@@ -127,22 +129,10 @@
 /* Buttons */
 .buttons {
   display: flex;
-  justify-content: center;
+  justify-content: right;
   gap: 1.5rem;
 }
 
-.buttons button {
-  padding: 0.4rem 1rem;
-  border-radius: 6px;
-  border: none;
-  background: #4338ca;
-  color: white;
-  cursor: pointer;
-}
-
-.buttons button:hover {
-  background: #6366f1;
-}
 
 /* Disable ALL fixed corner classes in mobile */
 .cornerTL,

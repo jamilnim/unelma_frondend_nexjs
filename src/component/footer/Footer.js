@@ -5,6 +5,7 @@ import styles from "./Footer.module.css";
 import SubscriptionForm from "../SubscriptionForm/SubscriptionForm";
 
 
+
 /**
  * Footer component with a floating subscribe pill that expands on click.
  * Uses single-open accordion behavior for addresses (click one, others close).
@@ -104,15 +105,25 @@ export default function Footer() {
               <li>
                 <a href="/feedback">Feedback</a>
               </li>
+
+              <li>
+                <a href="/about">About</a>
+              </li>
               <li>
                 <a href="/clients">Clients Feedback</a>
               </li>
               <li>
-                <a href="/support">Support Ticket</a>
+                <a href="/blogs">Blogs</a>
               </li>
               <li>
-                <a href="/careers">Career With Us</a>
+                <a href="/support">Support Ticket</a>
               </li>
+              </ul>
+              </nav>
+              <nav className={styles.block} aria-label="Useful links">
+              <ul className={styles.links}>
+             
+              <h3 className={styles.blockTitle}>Grow With Us</h3>
               <li>
                 <a href="/internship">Internship</a>
               </li>
@@ -125,6 +136,21 @@ export default function Footer() {
               <li>
                 <a href="/office-management">Office Management</a>
               </li>
+            </ul>
+          </nav>
+
+       
+              <nav className={styles.block} aria-label="Useful links">
+              <ul className={styles.links}>
+             
+              <h3 className={styles.blockTitle}>Product and Service</h3>
+              <li>
+                <a href="/internship">service</a>
+              </li>
+              <li>
+                <a href="/jobs/ui-ux">Product</a>
+              </li>
+             
             </ul>
           </nav>
 
@@ -257,7 +283,16 @@ export default function Footer() {
                 </div>
               </details>
             </div>
+           
           </section>
+          <div className={styles.imagesColumn}>
+            
+            <img src="/partners/bf-logo1691091552.png" alt="Image 1" className={styles.footerImage} />
+            <img src="/partners/association-member-individual-badge-small-11689329252.png" alt="Image 2" className={styles.footerImage} />
+            <img src="/partners/badge-stamp-pink-light-xl.svg" alt="Image 3" className={styles.footerImage} />
+            <img src="/partners/grid-award-webguruoftheday16887352111704918973 (2).png" alt="Image 3" className={styles.footerImage} />
+            <img src="/partners/e-residency-logo-w1691090434 (1).png" alt="Image 3" className={styles.footerImage} />
+                    </div>
         </div>
 
         {/* bottom copyright */}
@@ -265,6 +300,7 @@ export default function Footer() {
           <div className={styles.bottomInner}>
             <p>© 2025 All rights reserved by Unelma Platforms.</p>
           </div>
+     
         </div>
       </footer>
     </>

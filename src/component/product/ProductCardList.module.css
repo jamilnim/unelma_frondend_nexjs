@@ -115,7 +115,7 @@
 
 .detailBtn {
   padding: 4px 10px;
-  background: #1677ff;
+  background: #3881B4;
   color: white;
   border: none;
   border-radius: 4px;
@@ -124,12 +124,245 @@
 }
 
 .detailBtn:hover {
-  background: #125fcc;
+  background: #49ACF1;
 }
 
 /* Decorative right box hidden on mobile */
 .rightBox {
-  display: none;
+  display: none;/* ===================== MOBILE FIRST ===================== */
+
+  .wrapper {
+    width: 95vw;
+    margin: 6rem auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  
+  .topSection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+  }
+  
+  .imageWrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    object-fit: cover;
+  }
+  
+  .info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .title {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  
+  .meta {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .price {
+    font-size: 1.2rem;
+    color: #3881B4;
+    font-weight: 600;
+  }
+  
+  .desc {
+    margin-top: 10px;
+    color: #444;
+    line-height: 1.5;
+  }
+  
+  .buyRow {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 12px;
+  }
+  
+  .addBtn {
+    padding: 8px 14px;
+    background: #3881B4;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .addBtn:hover {
+    background: #49ACF1;
+  }
+  
+  .cartIcon {
+    font-size: 1.6rem;
+  }
+  
+  /* ===================== DROPDOWN FIXED ===================== */
+  
+  .dropdown {
+    margin-top: 20px;
+    border-top: 8px solid #3881B4;
+    background-color: rgb(230, 240, 246);
+    padding-top: 10px;
+    padding-bottom: 12px;
+    border-radius: 6px;
+  }
+  
+  /* Mobile full width */
+  .dropdownInline {
+    width: 100%;
+  }
+  
+  /* Desktop – 60% of full screen width */
+  @media (min-width: 768px) {
+    .dropdownInline {
+      width: 60vw;
+    }
+  }
+  
+  .dropdownHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 12px;
+  }
+  
+  .dropdownHeader h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  /* Chevron icon */
+  .dropdownHeader i {
+    font-size: 1.25rem;
+    color: #234b67;
+    transition: transform 0.25s ease;
+  }
+  
+  /* Rotate when opened */
+  .rotate {
+    transform: rotate(180deg);
+  }
+  
+  .dropdownContent {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    padding: 0 12px;
+    background: white; /* FIXED */
+    border-radius: 0 0 6px 6px;
+  }
+  
+  .dropdownContent.open {
+    opacity: 1;
+    max-height: 600px;
+    margin-top: 8px;
+    padding: 12px;
+  }
+  
+  .dropdownContent p {
+    margin: 8px 0;
+    color: #23303a;
+    line-height: 1.6;
+  }
+  
+  /* ===================== REVIEWS ===================== */
+  
+  .reviewHeading {
+    font-size: 1.6rem;
+    color: #3881B4;
+  }
+  
+  .reviewSection {
+    margin-top: 40px;
+    padding-top: 30px;
+  }
+  
+  .center {
+    text-align: center;
+    padding: 40px;
+  }
+  
+  /* ===================== OTHER PRODUCTS ===================== */
+  
+  .otherProductsWrapper {
+    width: 95vw;
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  
+  .otherProductsTitle {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #3881B4;
+    margin-bottom: 20px;
+  }
+  
+  /* ===================== DESKTOP LAYOUT ===================== */
+  
+  @media (min-width: 768px) {
+    .wrapper {
+      width: 80%;
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 40px;
+    }
+  
+    .topSection {
+      flex-direction: row;
+      gap: 40px;
+      padding-bottom: 40px;
+    }
+  
+    .imageWrapper {
+      flex: 1 1 25%;
+      max-width: 25%;
+    }
+  
+    .info {
+      flex: 1 1 50%;
+      max-width: 50%;
+    }
+  
+    .title {
+      font-size: 1.8rem;
+    }
+  
+    .price {
+      font-size: 1.4rem;
+    }
+  }
+  
 }
 
 /* Slide Animation */
@@ -205,4 +438,16 @@
     position: relative;               /* safe container */
     overflow: visible;
   }
+}
+
+/* ===================== ADD TO CART PULSE ANIMATION ===================== */
+
+@keyframes addToCartPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.addToCartPulse {
+  animation: addToCartPulse 0.4s ease-in-out;
 }

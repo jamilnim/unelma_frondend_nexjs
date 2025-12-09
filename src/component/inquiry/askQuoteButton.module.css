@@ -17,8 +17,8 @@
 .cta:before {
   content: "";
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2px;
+  right: 2px;
   display: block;
   border-radius: 50px;
   background: white;
@@ -52,7 +52,7 @@
 }
 
 .cta:hover:before {
-  width: 100%;
+  width: 98%;
   background: hsl(205, 85%, 76%);
 }
 

@@ -11,11 +11,15 @@ import CaseCardHighlight from "../component/case/CaseCardHighlight";
 import ProductCardList from "../component/product/ProductCardList";
 import CustomerFeedbackCard from "../component/customerFeedback/CustomerFeedbackCard";
 import BlogSection from "../component/blog/BlogSection";
+import ScrollingBanner from "../component/ScrollingBanner/ScrollingBanner";
 
 export default function Home() {
   return (
     <PageTransition>
+      
       <HeroSpot />
+      <ScrollingBanner/>
+    
 
       <FadeInSection>
         <AboutSummary />

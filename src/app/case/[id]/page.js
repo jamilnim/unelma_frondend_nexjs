@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import CaseDetail from '../../../component/case/CaseDetail';
 
+
 export default function CaseDetailPage() {
   const { id } = useParams(); // case_id
   const router = useRouter();

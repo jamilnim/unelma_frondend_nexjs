@@ -3,15 +3,23 @@
 import { useRouter } from "next/navigation";
 import styles from "./knowMoreButton.module.css";
 
-export default function SeeallBlogs({ detailPage }) {
+export default function KnowMoreButton({ detailPage }) {
   const router = useRouter();
 
-
+  const handleClick = () => {
+    const url = detailPage ? `/details/${detailPage}` : "/details";
+    router.push(url);
+  };
 
   return (
-    <button  className={styles.ctaKnowMore}>
-      <span>See All&nbsp;</span>
-      <svg viewBox="0 0 13 10" height="10px" width="15px" className={styles.arrow}>
+    <button onClick={handleClick} className={styles.ctaKnowMore}>
+      <span className={styles.hoverUnderline}>See All</span>
+      <svg
+        viewBox="0 0 13 10"
+        height="10px"
+        width="15px"
+        className={styles.arrow}
+      >
         <path d="M1,5 L11,5"></path>
         <polyline points="8 1 12 5 8 9"></polyline>
       </svg>

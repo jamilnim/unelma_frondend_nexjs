@@ -34,8 +34,10 @@ export default function HeroSpot() {
     const lastTwo = text.slice(-2);
     return (
       <>
+    
         {main}
         <span className={styles.titleHighlight}>{lastTwo}</span>
+        
       </>
     );
   };
@@ -59,14 +61,20 @@ export default function HeroSpot() {
     { value: 3000000, label: "App & Platform Downloads Worldwide" },
     { value: "#1", label: "Rated Digital Wallet Platform in Nepal" },
   ];
+  
 
   return (
     <section
       className={styles.hero}
       style={{ backgroundImage: bgUrl ? `url(${bgUrl})` : "none" }}
     >
+      {/* Gradient Overlay */}
       <div className={styles.gradientOverlay}></div>
 
+      {/* Animated Blob Overlay */}
+      <div className={styles.blobContainer}></div>
+
+      {/* Main Content */}
       <div className={styles.overlay}>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -116,7 +124,9 @@ export default function HeroSpot() {
               <p>{stat.label}</p>
             </motion.div>
           ))}
+          
         </div>
+        
 
         <div className={styles.scrollIndicator}>
           <span></span>

@@ -14,6 +14,7 @@ import cartReducer from "./features/cart/cartSlice";
 import ordersReducer from "./features/cart/ordersSlice";
 import processReducer from "./features/process/processSlice";
 import subscriptionReducer from "./features/subscription/subscriptionSlice";
+import scrollingTextReducer from "./features/scrollingText/scrollingTextSlice";
 
 export const store = configureStore({
   reducer: {
@@ -32,5 +33,6 @@ export const store = configureStore({
     orders: ordersReducer,
     processSteps: processReducer,
     subscription: subscriptionReducer,
+    scrollingText: scrollingTextReducer,
   },
 });

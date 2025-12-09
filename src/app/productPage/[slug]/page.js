@@ -8,4 +8,6 @@ export default function ProductPage({ params: rawParams }) {
   const { slug } = params;
 
   return <ProductDetail slug={slug} />;
+ 
 }
+

@@ -6,9 +6,12 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
-/* Top Section becomes stacked on mobile */
+/* Top Section stacked on mobile */
 .topSection {
   display: flex;
   flex-direction: column;
@@ -18,7 +21,7 @@
   padding-bottom: 20px;
 }
 
-/* Image takes full width */
+/* Image full width */
 .imageWrapper {
   width: 100%;
   max-width: 100%;
@@ -26,13 +29,13 @@
 
 .image {
   width: 100%;
-  height: auto;        /* maintains aspect ratio */
+  height: auto;
   border-radius: 10px;
   border: 1px solid #eee;
   object-fit: cover;
 }
 
-/* Info section full width on mobile */
+/* Product information */
 .info {
   width: 100%;
   display: flex;
@@ -50,14 +53,12 @@
   color: #666;
 }
 
-/* Price slightly smaller on mobile */
 .price {
   font-size: 1.2rem;
   color: #3881B4;
   font-weight: 600;
 }
 
-/* Body text */
 .desc {
   margin-top: 10px;
   color: #444;
@@ -80,9 +81,9 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  display: flex;              /* added */
-  align-items: center;        /* added */
-  gap: 8px;                   /* added */
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.95rem;
 }
 
@@ -94,67 +95,98 @@
   font-size: 1.6rem;
 }
 
-/* ===================== SMALL CARDS ABOVE DESCRIPTION ===================== */
-
-.smallCardRow {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin: 15px 0;
-  gap: 10px;
-}
-
-.smallCard {
-  flex: 1;
-  padding: 8px;
-  background: #f7f7f7;
-  border-radius: 8px;
-  text-align: center;
-  font-size: 0.8rem;
-}
-
-/* ===================== Dropdown (FAQ Style) ===================== */
+/* ===================== Dropdown ===================== */
 
 .dropdown {
   margin-top: 20px;
   border-top: 8px solid #3881B4;
   background-color: rgb(230, 240, 246);
   padding-top: 10px;
+  padding-bottom: 12px;
+  border-radius: 6px;
+}
+
+.dropdownInline {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .dropdownInline {
+    width: 140%;
+  }
 }
 
 .dropdownHeader {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   cursor: pointer;
-  padding: 4px 0;
+  padding: 8px 12px;
 }
 
 .dropdownHeader h3 {
   font-size: 1rem;
   font-weight: 600;
-  margin-left: 2rem;
+  margin: 0;
 }
 
-.icon {
-  font-size: 1.3rem;
+.dropdownHeader i {
+  font-size: 1.25rem;
+  line-height: 1;
+  margin-left: 8px;
+  color: #234b67;
+  transition: transform 0.25s ease;
+}
+
+.rotate {
+  transform: rotate(180deg);
 }
 
 .dropdownContent {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: all 0.3s ease;
-  padding-left: 5px;
+  transition: all 0.32s cubic-bezier(.2,.8,.2,1);
+  padding: 0 12px;
 }
 
 .dropdownContent.open {
   opacity: 1;
   max-height: 300px;
-  margin-top: 5px;
+  overflow-y: auto;
+  padding-bottom: 12px;
+  margin-top: 8px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.dropdownContent p {
+  margin: 8px 0;
+  color: #23303a;
+  line-height: 1.6;
+  background-color: white;
+}
+
+.dropdownContent.open::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdownContent.open::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.dropdownContent.open::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scrollbarWidth {
+  scrollbar-width: thin;
 }
 
 /* ===================== Reviews ===================== */
-.reviewHeading{
+
+.reviewHeading {
   font-size: 1.6rem;
   color: #3881B4;
 }
@@ -162,7 +194,6 @@
 .reviewSection {
   margin-top: 40px;
   padding-top: 30px;
- 
 }
 
 .reviewTitle {
@@ -182,17 +213,33 @@
   padding: 40px;
 }
 
-/* ===================== TABLET & DESKTOP (min-width: 768px) ===================== */
+/* ===================== Other Products Section ===================== */
+
+.otherProductsWrapper {
+  width: 95vw;
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.otherProductsTitle {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #3881B4;
+  margin-bottom: 20px;
+}
+
+/* ===================== TABLET & DESKTOP ===================== */
 
 @media (min-width: 768px) {
   .wrapper {
-    width: 80%;          /* page stays at 80% width */
-    max-width: 1200px;   /* optional: keep max-width limit */
-    margin: 4rem auto;   /* center the page */
+    width: 80%;
+    max-width: 1200px;
+    margin: 4rem auto;
     padding: 40px;
-    background: white;   /* optional: clean “page” */
-    border-radius: 12px; /* smooth edges */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* subtle shadow */
   }
 
   .topSection {
@@ -219,17 +266,51 @@
     font-size: 1.4rem;
   }
 
-  .smallCardRow {
-    justify-content: flex-start;
-    gap: 15px;
-  }
-
-  .smallCard {
-    max-width: 120px;
-  }
-
-  /* optional: align Buy Row horizontally under price */
   .buyRow {
     margin-top: 16px;
   }
+}
+
+/* ===================== ANIMATIONS ===================== */
+
+/* Wrapper mount animation */
+.animateWrapper {
+  animation: fadeSlideIn 0.8s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button pulse animation */
+.addPulse {
+  animation: addPulseAnim 0.6s ease forwards;
+}
+
+@keyframes addPulseAnim {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(56,129,180,0.6); }
+  50% { transform: scale(1.1); box-shadow: 0 0 12px rgba(56,129,180,0.8); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(56,129,180,0); }
+}
+
+/* Body pulse/confetti */
+.cartConfetti {
+  animation: confettiPulse 0.8s ease;
+}
+
+@keyframes confettiPulse {
+  0% { background: rgba(56,129,180,0.05); }
+  50% { background: rgba(56,129,180,0.12); }
+  100% { background: rgba(56,129,180,0); }
 }

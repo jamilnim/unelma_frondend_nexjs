@@ -72,6 +72,7 @@ export default function CustomerFeedbackCard() {
                     src={getImageUrl(feedback)}
                     alt={feedback.Name}
                   />
+               
                 </div>
 
                 {/* CARD TEXT */}
