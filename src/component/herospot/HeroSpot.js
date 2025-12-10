@@ -65,7 +65,7 @@ export default function HeroSpot() {
 
   return (
     <section
-      className={styles.hero}
+      className={styles.hero} 
       style={{ backgroundImage: bgUrl ? `url(${bgUrl})` : "none" }}
     >
       {/* Gradient Overlay */}

@@ -1,0 +1,133 @@
+/* HEADER IMAGE */
+.header {
+  background-image: url(../../../public/backimage/side-view-hands-holding-map.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  height: 18rem;
+  position: relative;
+  clip-path: ellipse(70% 75% at 40% 20%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header h1 {
+  color: white;
+  font-size: 2.6rem;
+  font-weight: 700;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+
+/* MAIN WRAPPER */
+.pageWrapper {
+  width: 85vw;
+  margin: 0 auto;
+  padding: 4rem 0;
+  font-family: Arial, sans-serif;
+  color: #222;
+  position: relative;
+}
+
+
+/* LEFT + RIGHT container */
+.container {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 4rem;
+
+  /* Move inside header by 40% */
+  margin-top: -7.2rem;
+  position: relative;
+  z-index: 3;
+}
+
+
+/* LEFT CARD (DECORATIVE) */
+.leftCard {
+  flex: 0 0 35%;
+  padding: 2rem;
+  background: #E6F0F6;
+  border: 1px solid hsl(0, 0%, 94%);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  margin-left: 7rem;
+  margin-right: 0;
+  
+}
+
+.leftCard h2 {
+  margin-bottom: 2rem;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #222;
+  text-align: left;
+}
+
+
+/* Decorative rows */
+.infoRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.icon {
+  font-size: 1.8rem;
+  color: #3881B4;
+  min-width: 32px;
+}
+
+.infoRow strong {
+  font-size: 1rem;
+  color: #222;
+}
+
+.infoRow p {
+  margin: 0.2rem 0 0 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+
+/* RIGHT FORM */
+/* .rightForm1 {
+  flex: 1;
+  background: #ffffff;
+  padding: 2rem;
+
+} */
+
+
+
+
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .leftCard,
+  .rightForm1 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .leftCard h2,
+  .rightForm1 h2 {
+    font-size: 1.7rem;
+  }
+
+  .infoRow p {
+    font-size: 0.9rem;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,172 @@
+/* =========================================================
+   CONTACT PAGE GLOBAL WRAPPER
+========================================================= */
+
+.header {
+  width: 100%;
+  text-align: center;
+  padding: 3rem 0;
+  background: linear-gradient(90deg, #3881B4, #49ACF1);
+  color: white;
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  font-size: 2.8rem;
+  font-weight: 600;
+}
+
+/* Page Wrapper */
+.pageWrapper {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+/* =========================================================
+   TOP CONTAINER (LEFT CARD + RIGHT FORM)
+========================================================= */
+
+.container {
+  display: flex;
+  gap:12rem;
+  width: 100%;
+  align-items: stretch;
+}
+
+/* LEFT ADDRESS CARD */
+.leftCard {
+  width: 35%;
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.leftCard h2 {
+  font-size: 1.9rem;
+  margin-bottom: 1.4rem;
+  color: #222;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+  font-size: 1.1rem;
+}
+
+.infoIcon {
+  font-size: 1.5rem;
+  color: #3881B4;
+}
+
+/* =========================================================
+   RIGHT FORM BOX
+========================================================= */
+
+.rightForm {
+  width: 65%;
+}
+
+.form {
+  width: 30rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  background: #ffffff;
+  padding: 2.5rem;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.05);
+  padding-top: 10rem;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.form input,
+.form textarea {
+  padding: 1rem 1.2rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: #fff;
+  transition: 0.3s ease;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border-color: #3881B4;
+  box-shadow: 0 0 10px rgba(79,172,254,0.2);
+  outline: none;
+}
+
+.form button {
+  padding: 1rem 1.5rem;
+  border: none;
+  background: #3881B4;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.form button:hover {
+  background: linear-gradient(90deg, #3881B4, #49ACF1);
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   MAP SECTION
+========================================================= */
+
+.mapWrapper {
+  width: 100%;
+  background: white;
+  border-radius: 50px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.05);
+  margin-left: 0;
+
+}
+
+.mapWrapper h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+/* MAP WRAPPER */
+.mapBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+
+/* MAP ITSELF */
+.map {
+  height: 400px;
+  width: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .leftCard,
+  .rightForm {
+    width: 100%;
+  }
+}

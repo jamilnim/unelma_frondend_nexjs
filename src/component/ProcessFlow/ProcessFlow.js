@@ -24,7 +24,7 @@ export default function ProcessFlow() {
   const sortedItems = [...items].sort((a, b) => a.processno - b.processno);
 
   return (
-    <>
+    <div className={styles.processFlowBackground}>
       <div className={styles.animateBase} ref={sectionRef}>
         <div className={styles.header}>Journey</div>
         <div className={styles.subheader}>Path to Success</div>
@@ -42,8 +42,16 @@ export default function ProcessFlow() {
               <div key={step.id} className={styles.stepWrapper}>
                 <div className={styles.stepBox}>
                   <div className={styles.iconWrap}>
-                    <img src={staticUrl} alt="static" className={styles.staticIcon} />
-                    <img src={iconUrl} alt={stepName} className={styles.hoverIcon} />
+                    <img
+                      src={staticUrl}
+                      alt="static"
+                      className={styles.staticIcon}
+                    />
+                    <img
+                      src={iconUrl}
+                      alt={stepName}
+                      className={styles.hoverIcon}
+                    />
                   </div>
 
                   <div className={styles.textWrap}>{stepName}</div>
@@ -59,6 +67,6 @@ export default function ProcessFlow() {
           })}
         </div>
       </div>
-    </>
+    </div>
   );
 }

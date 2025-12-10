@@ -26,9 +26,9 @@ export default function AboutDetail() {
   return (
     <section id="details" className={styles.aboutDetailSection}>
 
-      {/* IMAGE */}
+      {/* IMAGE WITH CURVED TOP */}
       {imageUrl && (
-        <div className={`${styles.imageWrapper} ${styles.animateItem} ${styles.delay1}`}>
+        <div className={`${styles.imageWrapper} ${styles.curveTop} ${styles.animateItem} ${styles.delay1}`}>
           <img src={imageUrl} alt="About Image" className={styles.aboutImage} />
         </div>
       )}

@@ -12,9 +12,21 @@
   text-align: justify;
 }
 
+/* IMAGE WITH CURVED TOP */
 .imageWrapper {
   width: 100%;
+  position: relative;
+  overflow: hidden; /* Needed for clip-path */
 }
+
+.curveTop {
+  
+   clip-path: ellipse(70% 75% at 40% 20%);
+
+}
+ 
+
+
 
 .aboutImage {
   width: 100%;
@@ -23,13 +35,14 @@
   display: block;
 }
 
+/* TITLE */
 .title {
   font-size: 36px;
   font-weight: 700;
   margin: 0;
 }
 
-/* Flex Layout: Story + Cards */
+/* STORY + CARDS */
 .storyAndCards {
   display: flex;
   gap: 30px;
@@ -46,7 +59,6 @@
   line-height: 1.6;
 }
 
-/* Mission / Vision column */
 .cardsColumn {
   flex: 1;
   display: flex;
@@ -79,7 +91,7 @@
   font-style: italic;
 }
 
-/* Graphs */
+/* GRAPHS */
 .graphsRow {
   display: flex;
   gap: 20px;
@@ -100,10 +112,7 @@
   margin-bottom: 15px;
 }
 
-/* -------------------------------------------------
-   FADE + SLIDE IN ANIMATION
--------------------------------------------------- */
-
+/* FADE + SLIDE IN ANIMATION */
 @keyframes fadeSlideUp {
   0% {
     opacity: 0;
@@ -120,7 +129,6 @@
   animation: fadeSlideUp 0.8s ease-out forwards;
 }
 
-/* Staggered delay sequence */
 .delay1 { animation-delay: 0.1s; }
 .delay2 { animation-delay: 0.2s; }
 .delay3 { animation-delay: 0.3s; }
@@ -130,9 +138,7 @@
 .delay7 { animation-delay: 0.7s; }
 .delay8 { animation-delay: 0.8s; }
 
-/* -------------------------------------------------
-   FADE OUT ON HOVER
--------------------------------------------------- */
+/* FADE OUT ON HOVER */
 .fadeOutOnHover {
   transition: opacity 0.5s ease;
 }

@@ -15,6 +15,8 @@ import ordersReducer from "./features/cart/ordersSlice";
 import processReducer from "./features/process/processSlice";
 import subscriptionReducer from "./features/subscription/subscriptionSlice";
 import scrollingTextReducer from "./features/scrollingText/scrollingTextSlice";
+import contactReducer from "./features/contact/contactFormSlice";
+import contactHeroReducer from "./features/contactHero/contactHeroSlice";
 
 export const store = configureStore({
   reducer: {
@@ -34,5 +36,7 @@ export const store = configureStore({
     processSteps: processReducer,
     subscription: subscriptionReducer,
     scrollingText: scrollingTextReducer,
+    contact: contactReducer,
+    contactHero: contactHeroReducer,
   },
 });
