@@ -1,4 +1,6 @@
-import { sampleJobs } from "@/lib/jobs/data";
+// src/app/api/jobs/[id]/route.js
+import { sampleJobs } from "../../../lib/jobs/data";
+
 export const dynamic = "force-dynamic";
 export async function GET(_req, { params }) {
   const job = sampleJobs.find((j) => j.id === params.id);

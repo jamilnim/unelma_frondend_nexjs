@@ -1,8 +1,8 @@
-import { sampleJobs } from "@/lib/jobs/data.js";
-
-
-export const dynamic = "force-dynamic";
+// src/app/api/jobs/route.js
+import { NextResponse } from "next/server";
+import { sampleJobs } from "../../../lib/jobs/data";
 
 export async function GET() {
-  return Response.json([{ id: "test", title: "Hello from API" }]);
+  // Return the full array as JSON
+  return NextResponse.json(sampleJobs);
 }

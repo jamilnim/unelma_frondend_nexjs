@@ -1,13 +1,13 @@
-// src/component/career/CareerIntro.jsx
 "use client";
 
+import React from "react";
 import { Briefcase, Clock, Globe, Sparkles } from "lucide-react";
 
 export default function CareerIntro({ total = 0, counts = {}, onSelect }) {
   const { internship = 0, full = 0, part = 0, remote = 0 } = counts;
 
   return (
-    <section className="bg-white">
+    <section id="jobs-section" className="bg-white">
       <div className="mx-auto max-w-7xl px-4 py-8 md:py-10">
         <div className="rounded-2xl border border-gray-200/70 bg-gradient-to-br from-gray-50 to-white p-6 md:p-8 shadow-sm">
           {/* Header */}
@@ -29,20 +29,7 @@ export default function CareerIntro({ total = 0, counts = {}, onSelect }) {
             </div>
 
             {/* Quick actions */}
-            <div className="mt-2 flex flex-wrap gap-2 md:mt-0">
-              <button
-                onClick={() => onSelect?.("Internship")}
-                className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-900 hover:bg-gray-50"
-              >
-                See internships
-              </button>
-              <button
-                onClick={() => onSelect?.("Remote")}
-                className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-900 hover:bg-gray-50"
-              >
-                Remote roles
-              </button>
-            </div>
+            
           </div>
 
           {/* Stats */}
@@ -54,13 +41,7 @@ export default function CareerIntro({ total = 0, counts = {}, onSelect }) {
           </div>
 
           {/* Sub CTA strip (mobile-friendly) */}
-          <div className="mt-6 flex flex-wrap gap-2">
-            <Badge onClick={() => onSelect?.("All")}>All</Badge>
-            <Badge onClick={() => onSelect?.("Internship")}>Internship</Badge>
-            <Badge onClick={() => onSelect?.("Full time")}>Full time</Badge>
-            <Badge onClick={() => onSelect?.("Part time")}>Part time</Badge>
-            <Badge onClick={() => onSelect?.("Remote")}>Remote</Badge>
-          </div>
+          
         </div>
       </div>
     </section>
