@@ -8,14 +8,14 @@
 }
 
 .header {
-  font-size: 1.35rem;   /* 25% smaller for mobile */
-  color: #3881B4;
+  font-size: 1.35rem; /* 25% smaller for mobile */
+  color: #3881b4;
   text-align: left;
   margin-left: 2rem;
 }
 
 .subheader {
-  font-size: 2.25rem;   /* 25% smaller for mobile */
+  font-size: 2.25rem; /* 25% smaller for mobile */
   color: black;
   margin-left: 2rem;
 }
@@ -54,12 +54,12 @@
 ================================ */
 .card {
   position: relative;
-  width: 95vw;          /* 95% of screen width */
-  height: 25rem;        /* mobile height */
-  padding: 4.5rem 1.5rem 1.5rem;  /* space for circle on top */
+  width: 95vw; /* 95% of screen width */
+  height: 25rem; /* mobile height */
+  padding: 4.5rem 1.5rem 1.5rem; /* space for circle on top */
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.14);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,15 +79,15 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 6px solid #3881B4;
+  border: 6px solid #3881b4;
   position: absolute;
-  top: -60px;   
+  top: -60px;
   left: 50%;
   transform: translateX(-50%);
   background: white;
   padding: 5px;
   overflow: hidden;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   z-index: 10;
 }
 
@@ -118,13 +118,13 @@
 
 .textTitle {
   font-size: 1.1rem;
-  color: #3881B4;
+  color: #3881b4;
   font-weight: bold;
 }
 
 .stockholder {
   font-size: 0.9rem;
-  color: #3881B4;
+  color: #3881b4;
 }
 
 /* Hide old inline image */
@@ -163,7 +163,6 @@
    MOBILE-ONLY OVERRIDES
 ================================ */
 @media (max-width: 900px) {
-
   /* Card container: single column */
   .cardContainer {
     flex-direction: column;

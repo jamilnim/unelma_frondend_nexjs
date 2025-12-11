@@ -45,59 +45,78 @@ export default function BlogSection() {
 
   return (
     <section className={styles.section}>
-           <div className={styles.header}>Blogs</div>
-           <div className={styles.subheader}>Insights, Stories & Updates from Our Team</div>
-           <Link href="/about/blogs" >
-          <SeeallBlogs/>
+      <div className={styles.inner}>
+        <div className={styles.topRow}>
+          <div className={styles.copy}>
+            <p className={styles.kicker}>Latest from Unelma</p>
+            <h2 className={styles.title}>Blogs</h2>
+            <p className={styles.subheader}>
+              Insights, stories, and platform updates from the team.
+            </p>
+          </div>
+          <Link href="/about/blogs" className={styles.ctaLink}>
+            <SeeallBlogs />
           </Link>
-     
-      <div className={styles.grid}>
-        {posts.map((post) => {
-          const item = post.attributes || post;
-          const coverUrl = getStrapiMedia(item.cover);
+        </div>
 
-          const excerpt =
-            item.excerpt && item.excerpt.trim().length
-              ? item.excerpt
-              : (extractPlainText(item.content || "") || "").slice(0, 160) +
-                "...";
+        <div className={styles.grid}>
+          {posts.map((post) => {
+            const item = post.attributes || post;
+            const coverUrl = getStrapiMedia(item.cover);
 
-          return (
-            <article key={post.id} className={styles.card}>
-              <Link href={`/about/blogs/${item.slug}`} className={styles.cardLink}>
-                {/* Blog Card Image */}
-                <div className={styles.mediaWrap}>
-                  {coverUrl ? (
-                    <Image
-                      src={coverUrl}
-                      alt={item.title || "cover"}
-                      width={800}
-                      height={450}
-                      className={styles.cover}
-                      unoptimized // important for localhost images
-                    />
-                  ) : (
-                    <div className={styles.coverPlaceholder} />
-                  )}
-                </div>
+            const excerpt =
+              item.excerpt && item.excerpt.trim().length
+                ? item.excerpt
+                : (extractPlainText(item.content || "") || "").slice(0, 160) +
+                  "...";
 
-                {/* Blog Card Content */}
-                <div className={styles.cardBody}>
-                  <h3 className={styles.cardTitle}>{item.title}</h3>
-                  <p className={styles.cardExcerpt}>{excerpt}</p>
-                  <div className={styles.metaRow}>
-                    <time className={styles.time}>
-                      {item.publishedAt
-                        ? new Date(item.publishedAt).toLocaleDateString()
-                        : ""}
-                    </time>
-                    <span className={styles.readMore}>Read →</span>
+            return (
+              <article key={post.id} className={styles.card}>
+                <Link
+                  href={`/about/blogs/${item.slug}`}
+                  className={styles.cardLink}
+                >
+                  {/* Blog Card Image */}
+                  <div className={styles.mediaWrap}>
+                    {coverUrl ? (
+                      <Image
+                        src={coverUrl}
+                        alt={item.title || "cover"}
+                        width={800}
+                        height={450}
+                        className={styles.cover}
+                        unoptimized // important for localhost images
+                      />
+                    ) : (
+                      <div className={styles.coverPlaceholder} />
+                    )}
+                    <div className={styles.mediaOverlay} />
                   </div>
-                </div>
-              </Link>
-            </article>
-          );
-        })}
+
+                  {/* Blog Card Content */}
+                  <div className={styles.cardBody}>
+                    <div className={styles.metaTop}>
+                      <span className={styles.badge}>Editorial</span>
+                      <time className={styles.time}>
+                        {item.publishedAt
+                          ? new Date(item.publishedAt).toLocaleDateString()
+                          : ""}
+                      </time>
+                    </div>
+                    <h3 className={styles.cardTitle}>{item.title}</h3>
+                    <p className={styles.cardExcerpt}>{excerpt}</p>
+                    <div className={styles.metaRow}>
+                      <span className={styles.readMore}>
+                        Read article
+                        <span aria-hidden> →</span>
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

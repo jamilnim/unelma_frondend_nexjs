@@ -35,9 +35,7 @@ export default function CustomerFeedbackCard() {
 
   if (loading) return <p className="text-center mt-10">Loading feedback...</p>;
   if (error)
-    return (
-      <p className="text-center mt-10 text-red-500">Error: {error}</p>
-    );
+    return <p className="text-center mt-10 text-red-500">Error: {error}</p>;
   if (!items.length)
     return <p className="text-center mt-10">No feedback yet.</p>;
 
@@ -65,14 +63,9 @@ export default function CustomerFeedbackCard() {
           <div className={styles.cardContainer}>
             {[firstCard, secondCard].map((feedback) => (
               <div key={feedback.id} className={styles.card}>
-                
                 {/* ⭐ NEW: Top Circular Image */}
                 <div className={styles.cardImg}>
-                  <img
-                    src={getImageUrl(feedback)}
-                    alt={feedback.Name}
-                  />
-               
+                  <img src={getImageUrl(feedback)} alt={feedback.Name} />
                 </div>
 
                 {/* CARD TEXT */}

@@ -97,7 +97,9 @@ export default function Header() {
           {/* Desktop Nav */}
           <nav className={styles.navContainer}>
             <div className={styles.navItem}>
-              <Link href="/" className={styles.btn}>Home</Link>
+              <Link href="/" className={styles.btn}>
+                Home
+              </Link>
             </div>
             <div className={styles.navItem}>
               <button className={styles.btn}>About ▾</button>
@@ -109,7 +111,9 @@ export default function Header() {
             <div className={styles.navItem}>
               <button className={styles.btn}>Appointment ▾</button>
               <div className={styles.dropdownMenu}>
-                <Link href="/appointment/introduction-meeting">Intro Meeting</Link>
+                <Link href="/appointment/introduction-meeting">
+                  Intro Meeting
+                </Link>
                 <Link href="/appointment/job-interview">Job Interview</Link>
               </div>
             </div>
@@ -117,21 +121,27 @@ export default function Header() {
               <button className={styles.btn}>Service ▾</button>
               <div className={styles.dropdownMenu}>
                 <Link href="/services">All Services</Link>
-                <Link href="/services/startup-development">Startup Development</Link>
+                <Link href="/services/startup-development">
+                  Startup Development
+                </Link>
               </div>
             </div>
             <div className={styles.navItem}>
-              <Link href="/casestudy" className={styles.btn}>Case Study</Link>
+              <Link href="/casestudy" className={styles.btn}>
+                Case Study
+              </Link>
             </div>
             <div className={styles.navItem}>
               <button className={styles.btn}>Career ▾</button>
               <div className={styles.dropdownMenu}>
-                <Link href="/career/jobs">Jobs</Link>
+                <Link href="/careers">Jobs</Link>
                 <Link href="/career/internship">Internship</Link>
               </div>
             </div>
             <div className={styles.navItem}>
-              <Link href="/contact" className={styles.btn}>Contact</Link>
+              <Link href="/contact" className={styles.btn}>
+                Contact
+              </Link>
             </div>
           </nav>
 
@@ -155,9 +165,11 @@ export default function Header() {
         >
           ✕
         </button>
-        <br/>
+        <br />
 
-        <Link href="/" onClick={() => setMobileOpen(false)}>Home</Link>
+        <Link href="/" onClick={() => setMobileOpen(false)}>
+          Home
+        </Link>
 
         <Link
           href="/cart"
@@ -175,9 +187,13 @@ export default function Header() {
           </button>
           {mobileSubmenu["about"] && (
             <div className={styles.mobileSubmenu}>
-              <Link href="/about/about" onClick={() => setMobileOpen(false)}>About</Link>
-              <br/>
-              <Link href="/about/blogs" onClick={() => setMobileOpen(false)}>Blog</Link>
+              <Link href="/about/about" onClick={() => setMobileOpen(false)}>
+                About
+              </Link>
+              <br />
+              <Link href="/about/blogs" onClick={() => setMobileOpen(false)}>
+                Blog
+              </Link>
             </div>
           )}
         </div>
@@ -188,8 +204,19 @@ export default function Header() {
           </button>
           {mobileSubmenu["appointment"] && (
             <div className={styles.mobileSubmenu}>
-              <Link href="/appointment/introduction-meeting" onClick={() => setMobileOpen(false)}>Intro Meeting</Link><br/>
-              <Link href="/appointment/job-interview" onClick={() => setMobileOpen(false)}>Job Interview</Link>
+              <Link
+                href="/appointment/introduction-meeting"
+                onClick={() => setMobileOpen(false)}
+              >
+                Intro Meeting
+              </Link>
+              <br />
+              <Link
+                href="/appointment/job-interview"
+                onClick={() => setMobileOpen(false)}
+              >
+                Job Interview
+              </Link>
             </div>
           )}
         </div>
@@ -200,14 +227,23 @@ export default function Header() {
           </button>
           {mobileSubmenu["service"] && (
             <div className={styles.mobileSubmenu}>
-              <Link href="/services" onClick={() => setMobileOpen(false)}>All Services</Link>
-              <br/>
-              <Link href="/services/startup-development" onClick={() => setMobileOpen(false)}>Startup Dev</Link>
+              <Link href="/services" onClick={() => setMobileOpen(false)}>
+                All Services
+              </Link>
+              <br />
+              <Link
+                href="/services/startup-development"
+                onClick={() => setMobileOpen(false)}
+              >
+                Startup Dev
+              </Link>
             </div>
           )}
         </div>
 
-        <Link href="/casestudy" onClick={() => setMobileOpen(false)}>Case Study</Link>
+        <Link href="/casestudy" onClick={() => setMobileOpen(false)}>
+          Case Study
+        </Link>
 
         <div className={styles.mobileItem}>
           <button onClick={() => toggleSubmenu("career")}>
@@ -215,13 +251,23 @@ export default function Header() {
           </button>
           {mobileSubmenu["career"] && (
             <div className={styles.mobileSubmenu}>
-              <Link href="/career/jobs" onClick={() => setMobileOpen(false)}>Jobs</Link><br/>
-              <Link href="/career/internship" onClick={() => setMobileOpen(false)}>Internship</Link>
+              <Link href="/careers" onClick={() => setMobileOpen(false)}>
+                Jobs
+              </Link>
+              <br />
+              <Link
+                href="/career/internship"
+                onClick={() => setMobileOpen(false)}
+              >
+                Internship
+              </Link>
             </div>
           )}
         </div>
 
-        <Link href="/contact" onClick={() => setMobileOpen(false)}>Contact</Link>
+        <Link href="/contact" onClick={() => setMobileOpen(false)}>
+          Contact
+        </Link>
       </div>
     </>
   );

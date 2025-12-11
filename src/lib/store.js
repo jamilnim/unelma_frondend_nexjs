@@ -17,6 +17,7 @@ import subscriptionReducer from "./features/subscription/subscriptionSlice";
 import scrollingTextReducer from "./features/scrollingText/scrollingTextSlice";
 import contactReducer from "./features/contact/contactFormSlice";
 import contactHeroReducer from "./features/contactHero/contactHeroSlice";
+import jobsReducer from "./features/jobs/jobsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -38,5 +39,6 @@ export const store = configureStore({
     scrollingText: scrollingTextReducer,
     contact: contactReducer,
     contactHero: contactHeroReducer,
+    jobs: jobsReducer,
   },
 });
