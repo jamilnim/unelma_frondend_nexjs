@@ -1,38 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* MAIN SECTION */
 .aboutDetailSection {
   width: 80%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
+  background: #f5f5f5;
   display: flex;
   flex-direction: column;
   gap: 30px;
-  background: #f5f5f5;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  text-align: justify;
-}
-
-/* IMAGE WITH CURVED TOP */
-.imageWrapper {
-  width: 100%;
   position: relative;
-  overflow: hidden; /* Needed for clip-path */
 }
 
-.curveTop {
-  
-   clip-path: ellipse(70% 75% at 40% 20%);
-
+/* IMAGE WITH BOTTOM WAVE CUT AND GRADIENT OVERLAY */
+.waveClip {
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 0% 20% 30% 100%;
 }
- 
 
-
+/* Gradient overlay */
+.waveClip::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #3881B4 0%, rgba(56, 129, 180, 0) 100%);
+  pointer-events: none; /* allow clicks through overlay */
+  z-index: 5;
+}
 
 .aboutImage {
   width: 100%;
-  border-radius: 16px;
+  height: 100%;
   object-fit: cover;
   display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* FLOATING BUTTON */
+.anyQueriesWrapper {
+  position: absolute;
+  left: 40px;
+  top: 300px;
+  z-index: 10;
+}
+
+.anyQueriesWrapper button {
+  width: 80px;
+  height: 80px;
 }
 
 /* TITLE */
@@ -42,107 +64,156 @@
   margin: 0;
 }
 
-/* STORY + CARDS */
-.storyAndCards {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-
-.story {
-  flex: 2;
-  min-width: 300px;
-}
-
-.story p {
-  margin-bottom: 15px;
-  line-height: 1.6;
-}
-
-.cardsColumn {
-  flex: 1;
+/* STORY COLUMN */
+.storyColumn {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.missionCard,
-.visionCard {
-  background-color: #3881B4;
-  color: #fff;
-  border-radius: 12px;
+.storyColumn p {
+  line-height: 1.6;
+  margin: 0;
+  font-size: 18px;
+}
+
+/* SPLIT CARDS (Mission & Vision) */
+.splitCard {
+  display: flex;
+  flex-wrap: wrap;
+  background: #E6F0F6;
+  color: black;
+  margin: 20px 0;
+  border-radius: 30% 3% 30% 3%;
+  overflow: hidden;
+}
+
+.splitCard .splitText,
+.splitCard .splitImage {
+  width: 50%;
   padding: 20px;
-  font-style: normal;
-  font-weight: 600;
-  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
-.missionCard h2,
-.visionCard h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
+.splitCard .splitText h2 {
+  font-size: 35px;
+  margin-bottom: 12px;
+  font-family: "Roboto", sans-serif;
 }
 
-.missionCard p,
-.visionCard p {
-  font-size: 20px;
-  font-weight: 300;
-  text-align: left;
+.splitCard .splitText p {
+  font-size: 30px;
+  font-family: "Orbitron", sans-serif;
   font-style: italic;
+  margin: 0;
 }
 
-/* GRAPHS */
+.splitCard .splitImage img {
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+  display: block;
+  overflow: hidden;
+  border-radius: 40% 3% 40% 3%;
+}
+
+/* Vision card: image left, text right */
+.visionSplit {
+  flex-direction: row;
+}
+
+/* GRAPHS CONTAINER */
 .graphsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* STRENGTH & GROWTH SECTIONS */
+.graphWrapperSplit {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  color: black;
 }
 
-.graphWrapper {
+/* TEXT SIDE */
+.graphText {
+  flex: 1;
+  min-width: 300px;
+  background: #f0f8ff;
+  color: black;
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 20px;
+  line-height: 1.6;
+  padding-top: 5rem;
+}
+
+/* GRAPH SIDE */
+.graphComponent {
   flex: 1;
   min-width: 300px;
   background: #fff;
+  color: black;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.graphWrapper h3 {
-  margin-top: 0;
-  margin-bottom: 15px;
-}
-
-/* FADE + SLIDE IN ANIMATION */
-@keyframes fadeSlideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .splitCard,
+  .visionSplit {
+    flex-direction: column;
   }
 }
 
-.animateItem {
-  opacity: 0;
-  animation: fadeSlideUp 0.8s ease-out forwards;
+@media (max-width: 768px) {
+  /* Stack graphs vertically */
+  .graphWrapperSplit {
+    flex-direction: column;
+  }
+
+  .graphText,
+  .graphComponent {
+    min-width: 100%;
+  }
+
+  /* Floating button adjustment */
+  .anyQueriesWrapper {
+    position: static;
+    margin-bottom: 20px;
+  }
+
+  /* Mission & Vision cards stacked vertically with image first */
+  .splitCard {
+    flex-direction: column !important; /* force vertical stacking */
+    align-items: center;
+    border-radius: 12px; /* smoother corners for mobile */
+  }
+
+  .splitCard .splitImage {
+    width: 98% !important; /* almost full width */
+    padding: 0;
+    margin-bottom: 15px;
+  }
+
+  .splitCard .splitImage img {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 12px; /* rounded corners on mobile */
+    object-fit: cover;
+  }
+
+  .splitCard .splitText {
+    width: 98% !important;
+    padding: 10px 0;
+    text-align: center;
+  }
 }
 
-.delay1 { animation-delay: 0.1s; }
-.delay2 { animation-delay: 0.2s; }
-.delay3 { animation-delay: 0.3s; }
-.delay4 { animation-delay: 0.4s; }
-.delay5 { animation-delay: 0.5s; }
-.delay6 { animation-delay: 0.6s; }
-.delay7 { animation-delay: 0.7s; }
-.delay8 { animation-delay: 0.8s; }
 
-/* FADE OUT ON HOVER */
-.fadeOutOnHover {
-  transition: opacity 0.5s ease;
-}
-
-.fadeOutOnHover:hover {
-  opacity: 0.3;
-}

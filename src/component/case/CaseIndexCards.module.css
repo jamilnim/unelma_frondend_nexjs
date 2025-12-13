@@ -1,0 +1,84 @@
+/* MAIN WRAPPER */
+.container {
+    width: 80%;
+    padding-left: 10%;
+   padding-right: 10%;
+
+    
+  }
+  
+  /* CATEGORY BAR (TOP) */
+  .categoryBar {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+  .categoryBtn {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  
+  .categoryBtn:hover {
+    background: #eaeaea;
+  }
+  
+  .active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+  
+  /* GRID — wraps cards to next row */
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  
+  /* CARD — FLEX ROW (image left, text right) */
+  .card {
+    display: flex;
+    flex-direction: row; /* ✅ REQUIRED */
+    align-items: center;
+    gap: 0.6rem;
+  
+    width: 260px; /* controls how many cards per row */
+    padding: 0.5rem;
+  
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .card:hover {
+    background: #f5f5f5;
+  }
+  
+  /* IMAGE — 3rem x 3rem */
+  .card img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  
+  /* TEXT RIGHT SIDE */
+  .info h5 {
+    margin: 0;
+    font-size: 0.85rem;
+  }
+  
+  .info p {
+    margin: 0;
+    font-size: 0.72rem;
+    color: #666;
+  }
+  

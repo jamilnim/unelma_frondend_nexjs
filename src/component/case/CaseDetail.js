@@ -1,7 +1,7 @@
 "use client";
 import styles from "./CaseDetail.module.css";
 import AskQuoteButton from "../inquiry/AskQuoteButton";
-import CaseCardHighlight from "./CaseCardHighlight";
+import CaseIndexCards from "./CaseIndexCards";
 
 export default function CaseDetail({ item }) {
   if (!item) return <p>Case details not available.</p>;
@@ -111,8 +111,9 @@ export default function CaseDetail({ item }) {
       </div>
 
       {/* HIGHLIGHT CARD BELOW MAIN CARD */}
+      <div className={styles.highlightCardWrapper}>Other Cases</div>
       <div className={styles.highlightCardWrapper}>
-        <CaseCardHighlight />
+        <CaseIndexCards />
       </div>
     </div>
   );

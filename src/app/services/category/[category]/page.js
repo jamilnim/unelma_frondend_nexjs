@@ -19,9 +19,12 @@ export default function CategoryServicesPage() {
           `http://localhost:1337/api/service-categories?filters[category][$eq]=${formattedCategory}&populate=*`
         );
         const data = await res.json();
-        setServices(data.data);
+
+        // ✅ FIX: Always set an array, never null
+        setServices(Array.isArray(data.data) ? data.data : []);
       } catch (err) {
         console.error(err);
+        setServices([]); // fallback
       } finally {
         setLoading(false);
       }
@@ -36,28 +39,32 @@ export default function CategoryServicesPage() {
     <div className={styles.container}>
       <h1 className={styles.categoryTitle}>{formattedCategory}</h1>
 
-      {services.map((service) => {
-        const imageUrl =
-          service.imageIcon?.[0]?.formats?.medium?.url ||
-          service.imageIcon?.[0]?.url;
+      {services.length === 0 ? (
+        <p>No services found in this category.</p> // Optional graceful fallback
+      ) : (
+        services.map((service) => {
+          const imageUrl =
+            service.imageIcon?.[0]?.formats?.medium?.url ||
+            service.imageIcon?.[0]?.url;
 
-        return (
-          <Link
-            key={service.id}
-            href={`/services/${service.slug}`}
-            className={styles.card}
-          >
-            {imageUrl && (
-              <img
-                src={`http://localhost:1337${imageUrl}`}
-                className={styles.image}
-                alt={service.name}
-              />
-            )}
-            <h3>{service.name}</h3>{" "}
-          </Link>
-        );
-      })}
+          return (
+            <Link
+              key={service.id}
+              href={`/services/${service.slug}`}
+              className={styles.card}
+            >
+              {imageUrl && (
+                <img
+                  src={`http://localhost:1337${imageUrl}`}
+                  className={styles.image}
+                  alt={service.name}
+                />
+              )}
+              <h3>{service.name}</h3>
+            </Link>
+          );
+        })
+      )}
     </div>
   );
 }

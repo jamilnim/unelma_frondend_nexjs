@@ -1,40 +1,37 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 import styles from "./serviceDetails.module.css";
+import ServiceHeroSpot from "../../../component/serviceHeroSpot/ServiceHeroSpot";
+import PageTransition from "../../../component/animation/PageTransition";
+import FadeInSection from "../../../component/animation/FadeInSection";
 
 export default function ServiceDetails() {
   const { slug } = useParams();
+  const router = useRouter();
+  const user = useSelector((state) => state.user.user);
 
   const [service, setService] = useState(null);
   const [allServices, setAllServices] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-
-  const [submitted, setSubmitted] = useState(false);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(
-          `http://localhost:1337/api/service-categories?filters[slug][$eq]=${slug}&populate=*`
-        );
-        const data = await res.json();
-        setService(data.data[0]);
+        const [serviceRes, allServicesRes] = await Promise.all([
+          fetch(
+            `http://localhost:1337/api/service-categories?filters[slug][$eq]=${slug}&populate=*`
+          ),
+          fetch("http://localhost:1337/api/service-categories?populate=*"),
+        ]);
 
-        const res2 = await fetch(
-          "http://localhost:1337/api/service-categories?populate=*"
-        );
-        const data2 = await res2.json();
-        setAllServices(data2.data);
+        const serviceData = await serviceRes.json();
+        setService(serviceData.data[0]);
+
+        const allServicesData = await allServicesRes.json();
+        setAllServices(allServicesData.data);
       } catch (err) {
         console.error("Error fetching services:", err);
       } finally {
@@ -45,143 +42,139 @@ export default function ServiceDetails() {
     fetchData();
   }, [slug]);
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const payload = {
-        data: {
-          name: form.name,
-          email: form.email,
-          phone: parseInt(form.phone, 10),
-          message: [
-            {
-              type: "paragraph",
-              children: [{ text: form.message }],
-            },
-          ],
-        },
-      };
-
-      const res = await fetch("http://localhost:1337/api/queries", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await res.json();
-      if (!res.ok) {
-        console.error("❌ Strapi error:", data);
-        alert("Failed to send query. Please check your data or permissions.");
-        return;
-      }
-
-      setSubmitted(true);
-      setForm({ name: "", email: "", phone: "", message: "" });
-    } catch (err) {
-      console.error("Network error:", err);
-      alert("Something went wrong while sending your query.");
-    }
-  };
-
   if (loading) return <p className={styles.message}>Loading...</p>;
   if (!service) return <p className={styles.message}>Service not found.</p>;
 
-  const title = service.name;
-  const category = service.category;
-  const description = service.description;
+  const { name: title, category, description, imageIcon } = service;
+  const imageUrl = imageIcon?.[0]?.formats?.medium?.url || imageIcon?.[0]?.url;
 
-  const imageUrl =
-    service.imageIcon?.[0]?.formats?.medium?.url || service.imageIcon?.[0]?.url;
+ 
 
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.left}>
-        {imageUrl && (
-          <img
-            src={`http://localhost:1337${imageUrl}`}
-            alt={title}
-            className={styles.mainImage}
-          />
-        )}
+  // ---------------------------------------------------------
+  // ORDER CART
+  // ---------------------------------------------------------
+  const OrderCart = () => {
+    const plans = [
+      {
+        name: "Business",
+        price: 99,
+        duration: "Yr",
+        features: [
+          "Unlimited Pages",
+          "All Team Members",
+          "Unlimited Leads",
+          "Unlimited Page Views",
+          "Export in HTML/CSS",
+        ],
+      },
+      {
+        name: "Professional",
+        price: 199,
+        duration: "Mo",
+        features: [
+          "Unlimited Pages",
+          "All Team Members",
+          "Unlimited Leads",
+          "Unlimited Page Views",
+          "Export in HTML/CSS",
+        ],
+      },
+    ];
 
-        <h1 className={styles.mainTitle}>{title}</h1>
-        <span className={styles.categoryTag}>{category}</span>
+    const handleOrder = (plan) => {
+      const orderPath = `/services/order/${slug}?plan=${
+        plan.name
+      }&serviceName=${encodeURIComponent(title)}&price=${plan.price}`;
 
-        <p className={styles.description}>{description}</p>
-      </div>
+      if (user === undefined) {
+        console.log("User info loading...");
+        return;
+      }
 
-      <div className={styles.right}>
-        {/* Sidebar Services */}
-        <div className={styles.servicesBox}>
-          {[
-            ...new Map(
-              allServices.map((item) => [item.category, item])
-            ).values(),
-          ].map((s) => (
-            <Link
-              key={s.id}
-              href={`/services/category/${s.category
-                .replace(/\s+/g, "-")
-                .toLowerCase()}`}
-              className={`${styles.serviceItem} ${
-                s.category === service.category ? styles.active : ""
-              }`}
-            >
-              {s.category}
-            </Link>
+      if (!user) {
+        // Not logged in → redirect to login with redirect back to order page
+        router.push(`/login?redirect=${encodeURIComponent(orderPath)}`);
+        return;
+      }
+
+      // Logged in → go directly to order page
+      router.push(orderPath);
+    };
+
+    return (
+      <PageTransition>
+        <FadeInSection>
+      <div className={styles.orderCart}>
+        <h2>Order This Service</h2>
+
+        <div className={styles.plans}>
+          {plans.map((plan) => (
+            <div key={plan.name} className={styles.planBox}>
+              <h3>{plan.name}</h3>
+
+              <p className={styles.price}>
+                ${plan.price} <span>/{plan.duration}</span>
+              </p>
+
+              <ul>
+                {plan.features.map((feat, index) => (
+                  <li key={index}>{feat}</li>
+                ))}
+              </ul>
+
+              <button onClick={() => handleOrder(plan)}>Order Now</button>
+            </div>
           ))}
         </div>
+      </div>
+      </FadeInSection>
+      </PageTransition>
+    );
+  };
 
-        {/* ✅ FIXED QUERY FORM */}
-        <div className={styles.queryBox}>
-          <h2>Have a Query?</h2>
+  // Unique categories for sidebar
+  const uniqueCategories = [
+    ...new Map(allServices.map((s) => [s.category, s])).values(),
+  ];
 
-          {submitted ? (
-            <p>Thank you! We received your message.</p>
-          ) : (
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
+  return (
+    <div>
+      <ServiceHeroSpot serviceTitle={title} />
 
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
-
-              <input
-                type="text"
-                name="phone"
-                placeholder="Your Phone"
-                value={form.phone}
-                onChange={handleChange}
-                required
-              />
-
-              <textarea
-                name="message"
-                placeholder="Your Message"
-                value={form.message}
-                onChange={handleChange}
-                required
-              ></textarea>
-
-              <button type="submit">Send</button>
-            </form>
+      <div className={styles.wrapper}>
+        {/* LEFT CONTENT */}
+        <div className={styles.left}>
+          {imageUrl && (
+            <img
+              src={`http://localhost:1337${imageUrl}`}
+              alt={title}
+              className={styles.mainImage}
+            />
           )}
+
+          <h1 className={styles.mainTitle}>{title}</h1>
+          <span className={styles.categoryTag}>{category}</span>
+
+          <p className={styles.description}>{description}</p>
+
+          {/* ORDER CART */}
+          <OrderCart />
+        </div>
+
+        {/* RIGHT SIDEBAR */}
+        <div className={styles.right}>
+          <div className={styles.servicesBox}>
+            {uniqueCategories.map((s) => (
+              <div
+                key={s.id}
+                className={`${styles.serviceItem} ${
+                  s.category === category ? styles.active : styles.disabled
+                }`}
+              >
+                {s.category}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
