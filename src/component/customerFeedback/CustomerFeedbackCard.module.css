@@ -4,19 +4,19 @@
 
 /* HEADER AREA */
 .headerwrpper {
-  background-color: rgb(230, 240, 246);
+  background-color: var( --contentBackground1);
 }
 
 .header {
   font-size: 1.35rem; /* 25% smaller for mobile */
-  color: #3881b4;
+  color: var( --brandcolor);
   text-align: left;
   margin-left: 2rem;
 }
 
 .subheader {
   font-size: 2.25rem; /* 25% smaller for mobile */
-  color: black;
+  color: var(--text);
   margin-left: 2rem;
 }
 
@@ -27,7 +27,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(230, 240, 246);
+  background-color:var( --contentBackground1);
   overflow: hidden;
   height: auto;
 }
@@ -57,15 +57,15 @@
   width: 95vw; /* 95% of screen width */
   height: 25rem; /* mobile height */
   padding: 4.5rem 1.5rem 1.5rem; /* space for circle on top */
-  background: white;
+  background: var(--background);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 4px 12px var(--bordershadow);
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
   transition: transform 0.3s ease;
-  color: black;
+  color: var( --text);
 }
 
 .card:hover {
@@ -111,7 +111,7 @@
 
 .textBody {
   font-size: 1rem;
-  color: black;
+  color:var(--text);
   font-style: italic;
   line-height: 1.4;
 }
@@ -136,18 +136,20 @@
    NAVIGATION BUTTONS
 ================================ */
 .navButton {
-  background: #f3f4f6;
+  background: var(--background);
   border: none;
   font-size: 2rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  border-radius: 0.5rem;
+  border-radius: 50%;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 1rem;
+  margin: 0 2rem;
+  color: var(  --text);
+  font-weight: 800;
 }
 
 .navButton:hover {
-  background: #e5e7eb;
+  background:var(--contentBackground1)
 }
 
 /* BUTTON CONTAINER BELOW CARD */

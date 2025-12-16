@@ -16,7 +16,6 @@ export default function StrengthBarChart({ data }) {
     <div className={styles.chartWrapper}>
       <ResponsiveContainer>
         <BarChart
-          className={styles.barChart}
           data={data}
           layout="vertical"
           margin={{ top: 20, right: 20, left: 20, bottom: 20 }}
@@ -24,12 +23,13 @@ export default function StrengthBarChart({ data }) {
           <XAxis type="number" domain={[0, 100]} hide />
           <YAxis type="category" dataKey="label" width={150} />
           <Tooltip />
+
           <Bar
             dataKey="percentage"
             radius={[10, 10, 10, 10]}
-            background={{ fill: "#eee" }}
+            background={{ fill: "var(--contentBackground1)" }}
           >
-            {data.map((entry, index) => (
+            {data.map((_, index) => (
               <Cell
                 key={`cell-${index}`}
                 className={

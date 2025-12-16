@@ -1,9 +1,13 @@
 "use client";
 
 import React from "react";
-import ContactForm from "../../component/contact/ContactForm";
-import ContactMap from "../../component/contact/ContactMap";
-import { AiOutlineMail, AiOutlinePhone, AiOutlineClockCircle } from "react-icons/ai";
+import ContactForm from "./ContactForm";
+import ContactMap from "./ContactMap";
+import {
+  AiOutlineMail,
+  AiOutlinePhone,
+  AiOutlineClockCircle,
+} from "react-icons/ai";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import styles from "./contact.module.css";
 
@@ -15,10 +19,8 @@ export default function ContactPageRedesign() {
       </div>
 
       <div className={styles.pageWrapper}>
-        
         {/* TOP SECTION: LEFT CARD + RIGHT FORM */}
         <div className={styles.container}>
-          
           {/* LEFT ADDRESS CARD */}
           <div className={styles.leftCard}>
             <h2>Contact Information</h2>
@@ -64,7 +66,6 @@ export default function ContactPageRedesign() {
         <div className={styles.mapWrapper}>
           <ContactMap />
         </div>
-
       </div>
     </>
   );

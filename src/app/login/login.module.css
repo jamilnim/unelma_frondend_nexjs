@@ -3,19 +3,18 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background:white;
+    background:var(  --background);
   }
   
   .card {
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
   }
   .title {
     font-size: 1.8rem;
     font-weight: 600;
-    color: white;
+    color: var(  --text);
     margin-bottom: 1.5rem;
   }
   

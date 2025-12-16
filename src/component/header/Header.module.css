@@ -1,10 +1,25 @@
+:root {
+  --background: #ffffff;
+  --text: #000000;
+  --brandcolor: #3881b4;
+  --brandcolorhover: #49acf1;
+  --bordershadow: 0 0 4px rgba(0,0,0,0.08);
+}
+
+html.dark {
+  --background: #1f1f1f;
+  --text: #ffffff;
+  --brandcolor: #49acf1;
+  --brandcolorhover: #3881b4;
+  --bordershadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
 /* ---------------------- */
 /* TOP BAR                */
 /* ---------------------- */
-
 .topBar {
-  background: #000;
-  color: white;
+  background: var(--text);
+  color: var(--background);
   padding: 6px 0;
   width: 100%;
 }
@@ -14,13 +29,16 @@
   margin: auto;
   padding: 0 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
 .socials i {
   margin-right: 12px;
   cursor: pointer;
+}
+
+.themeToggleWrapper {
+  margin-left: auto;
 }
 
 .topRight {
@@ -31,38 +49,45 @@
 
 .language {
   background: transparent;
-  color: white;
+  color: var(--background);
   border: 1px solid #555;
   padding: 4px 6px;
 }
 
 .quoteBtn {
   padding: 6px 10px;
-  background: #49ACF1;
+  background: var(--brandcolor);
   color: white;
   border-radius: 4px;
   text-decoration: none;
 }
 
-/* Profile Icon */
 .profileIcon {
   font-size: 20px;
-  color: #e6e6e6;
+  color: var(--background);
   margin-left: 10px;
 }
 
-/* ---------------------- */
-/* MAIN HEADER            */
-/* ---------------------- */
+.logoutBtn {
+  background: var(--brandcolor);
+  border: none;
+  padding: 4px 8px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
+/* ---------------------- */
+/* HEADER NAV             */
+/* ---------------------- */
 .header {
-  background: #ffffff;
+  background: var(--background);
+  color: var(--text);
   padding: 10px 0;
   position: sticky;
   top: 0;
   z-index: 999;
-  color: black;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  box-shadow: var(--bordershadow);
 }
 
 .container {
@@ -86,21 +111,15 @@
 }
 
 .logoTitle {
-  color: rgb(0, 0, 0);
+  color: var(--text);
   font-size: 20px;
   font-weight: 600;
 }
 
-/* ---------------------- */
-/* NAVIGATION (DESKTOP)   */
-/* ---------------------- */
-
 .navContainer {
   display: flex;
   align-items: center;
-  gap: 1px; /* Requested – reduce spacing */
-  margin-right: 1px; /* Move nav 3px left from cart */
-
+  gap: 1px;
 }
 
 .navItem {
@@ -108,27 +127,25 @@
 }
 
 .btn {
-  padding: 6px 10px !important;   /* compact */
+  padding: 6px 10px;
   font-size: 16px;
-  color: rgb(0, 0, 0);
-  text-decoration: none;
+  color: var(--text);
   background: transparent;
   border: none;
   cursor: pointer;
 }
 
 .btn:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(0,0,0,0.05);
   border-radius: 3px;
 }
 
-/* Dropdown */
 .dropdownMenu {
   display: none;
   position: absolute;
   top: 35px;
   left: 0;
-  background: #3881B4;
+  background: var(--brandcolor);
   min-width: 160px;
   border-radius: 6px;
   padding: 8px 0;
@@ -147,27 +164,26 @@
 }
 
 .dropdownMenu a:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--brandcolorhover);
 }
 
 /* ---------------------- */
-/* CART (DESKTOP)         */
+/* CART ICON              */
 /* ---------------------- */
-
 .cartWrapper {
   position: relative;
 }
 
 .cartIcon {
-  color: #3881B4;
+  color: var(--brandcolor);
   font-size: 20px;
   position: relative;
   margin-left: 10px;
 }
 
 .cartCount {
-  background: #49ACF1;
-  color: rgb(0, 0, 0);
+  background: var(--brandcolorhover);
+  color: black;
   font-size: 10px;
   padding: 2px 6px;
   border-radius: 20px;
@@ -177,25 +193,19 @@
 }
 
 /* ---------------------- */
-/* HAMBURGER (MOBILE)     */
+/* MOBILE NAV             */
 /* ---------------------- */
-
 .hamburger {
   display: none;
-  color:black;
+  color: black;
   font-size: 26px;
   background: none;
   border: none;
-  margin-right: 2px;  /* Requested – place 2px left from cart */
 }
-
-/* ---------------------- */
-/* MOBILE MENU            */
-/* ---------------------- */
 
 .mobileMenu {
   position: fixed;
-  background: white;
+  background: var(--background);
   top: 0;
   right: -100%;
   width: 260px;
@@ -203,7 +213,7 @@
   padding: 20px;
   transition: 0.3s ease;
   z-index: 9999;
-  color: black;
+  color: var(--text);
 }
 
 .mobileMenu.open {
@@ -213,104 +223,26 @@
 .closeBtn {
   background: none;
   border: none;
-  color: rgb(0, 0, 0);
+  color: var(--text);
   font-size: 26px;
 }
 
-.mobileMenu a {
-  color: black;
-  padding: 8px 0;      /* reduced for no line break */
-  font-size: 14px;     /* reduced font size */
-  text-decoration: none;
-  white-space: nowrap; /* prevents breaking lines */
-  font-size: 1.2rem;
-}
-
-/* Remove cart icon from mobile menu */
-.mobileCart {
-  display: none !important;
-}
-
-/* Submenu */
-.mobileItem button {
-  width: 100%;
-  text-align: left;
-  background: none;
-  color: black;
-  border: none;
-  padding: 8px 0;
-  white-space: nowrap; /* Fix line break */
-  font-size: 1.2rem;
-}
-
-.mobileSubmenu {
-  padding-left: 10px;
-  font-size: 1.2rem;
-}
-
-.mobileSubmenu a {
-  padding: 6px 0 !important;
-  font-size: 13px;
-}
-
 /* ---------------------- */
-/* Mobile Hover Color     */
+/* MEDIA QUERIES          */
 /* ---------------------- */
-
 @media (max-width: 991px) {
-
-  .dropdownMenu a,
-  .mobileMenu  {
-    background: white;
-    color: black;
-    font-size: 2rem;
-  }
-
-  .dropdownMenu a:hover,
-  .mobileMenu a:hover,
-  .mobileSubmenu a:hover {
-    background: #49ACF1 !important;
-    padding: 1rem;
-    color: white;
-    
-  }
-
-  /* Hide desktop nav */
   .navContainer {
     display: none;
   }
 
-  /* Show hamburger */
   .hamburger {
     display: block;
-    color: black;
-    margin-left: 15rem;
   }
 
-  .socials i {
-    margin-right: 9px;
-    cursor: pointer;
-    size: .5px;
+  .themeToggleWrapper {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
   }
-
-  .logo {
-    height: 30px;
-  }
-  .language {
-    background: transparent;
-    color: white;
-    border: 1px solid #555;
-    padding: 4px 6px;
-    font-size: .5em;
-  }
-
-  .quoteBtn {
-    padding: 6px 10px;
-    background: #3881B4;
-    color: white;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: .5em;
-  }
-  
 }

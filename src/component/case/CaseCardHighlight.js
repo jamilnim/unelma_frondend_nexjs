@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCases } from "../../lib/features/cases/caseSlice";
 import styles from "./CaseCardHighlight.module.css";
-import NextButton from "../../component/tools/NextButton";
+import NextButton from "../tools/NextButton";
 import KnowMoreButton from "../tools/KnowMoreButton";
 import Link from "next/link";
 
@@ -33,11 +33,13 @@ export default function CaseCardHighlight() {
 
   return (
     <section className={styles.wrapper}>
-       <div className={styles.header}>Recent Works</div>
-       <div className={styles.subheader}>Crafting excellence <br/>from idea to execution</div>
-      
+      <div className={styles.header}>Recent Works</div>
+      <div className={styles.subheader}>
+        Crafting excellence <br />
+        from idea to execution
+      </div>
+
       <div className={styles.carouselWrapper}>
-        
         {/* LEFT BUTTON */}
         <div className={styles.sideButtonLeft}>
           <NextButton onClick={() => scroll("left")} flip />
@@ -81,12 +83,14 @@ export default function CaseCardHighlight() {
         <div className={styles.sideButtonRight}>
           <NextButton onClick={() => scroll("right")} />
         </div>
- {/* UPDATED KNOW MORE BUTTON */}
-
+        {/* UPDATED KNOW MORE BUTTON */}
       </div>
-      <div className={styles.knowmorebuttonpos}> <Link href="/casestudy" >
-          <KnowMoreButton/>
-          </Link></div>
+      <div className={styles.knowmorebuttonpos}>
+        {" "}
+        <Link href="/casestudy">
+          <KnowMoreButton />
+        </Link>
+      </div>
     </section>
   );
 }

@@ -1,0 +1,100 @@
+.button {
+    cursor: pointer;
+    border: none;
+    background: #2aabee;
+    color: #fff;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    display: grid;
+    place-content: center;
+    transition: background 300ms, transform 200ms;
+    font-weight: 600;
+    padding: 0;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  }
+  
+  /* Rotating text */
+  .text {
+    position: absolute;
+    inset: 0;
+    animation: textRotate 8s linear infinite;
+    font-size: 0.55rem;
+    pointer-events: none;
+  }
+  
+  .text span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: inline-block;
+    transform-origin: center;
+    transform: rotate(calc(15deg * var(--index)));
+    inset: 7px;
+    line-height: 1;
+    user-select: none;
+  }
+  
+  /* Center circle with arrow */
+  .circle {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    background: #212121;
+    color: #2aabee;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+  
+  /* Arrow icon */
+  .icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    color: currentColor;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .copy {
+    position: absolute;
+    transform: translate(-150%, 150%);
+    transition: transform 0.3s ease-in-out 0.1s;
+  }
+  
+  /* Hover effects */
+  .button:hover {
+    background: #000;
+    transform: scale(1.05);
+  }
+  
+  .button:hover .icon:first-child {
+    transform: translate(150%, -150%);
+  }
+  
+  .button:hover .copy {
+    transform: translate(0);
+  }
+  
+  .button:hover .icon {
+    color: #fff;
+  }
+  
+  .button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Text rotation */
+  @keyframes textRotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  

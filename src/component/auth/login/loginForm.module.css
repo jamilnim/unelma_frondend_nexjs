@@ -1,19 +1,32 @@
+/* =========================
+   General Card
+   ========================= */
+
 .card {
   max-width: 420px;
   margin: 40px auto;
   padding: 30px;
-  background: #ffffff;
+  background: var(--background);
   border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  color: black;
+  box-shadow: var(--bordershadow);
+  color: var(--text);
 }
+
+/* =========================
+     Titles
+     ========================= */
 
 .title {
   text-align: center;
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 20px;
+  color: var(--text);
 }
+
+/* =========================
+     Forms
+     ========================= */
 
 .form {
   display: flex;
@@ -24,17 +37,21 @@
 .form input {
   padding: 12px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--linecolor);
   font-size: 1rem;
-  color: black;
+  color: var(--text);
+  background: var(--contentBackground2);
 }
 
 .form input::placeholder {
-  color: #000;
+  color: var(--text);
   opacity: 0.6;
 }
 
-/* ✅ Remember + Forgot */
+/* =========================
+     Remember + Forgot Row
+     ========================= */
+
 .row {
   display: flex;
   justify-content: space-between;
@@ -47,11 +64,12 @@
   gap: 6px;
   font-size: 14px;
   cursor: pointer;
+  color: var(--text);
 }
 
 .forgot {
   font-size: 14px;
-  color: #2563eb;
+  color: var(--brandcolor);
   text-decoration: none;
 }
 
@@ -59,21 +77,28 @@
   text-decoration: underline;
 }
 
-/* ✅ Login Button (module-safe) */
+/* =========================
+     Login Button
+     ========================= */
+
 .loginBtn {
   padding: 12px;
   border-radius: 6px;
   border: none;
-  background-color: #2563eb;
-  color: #fff;
+  background-color: var(--brandcolor);
+  color: white;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .loginBtn:hover {
-  background-color: #1e40af;
+  background-color: var(--brandcolorhuver);
 }
+
+/* =========================
+     Error Text
+     ========================= */
 
 .error {
   color: red;
@@ -82,14 +107,17 @@
   margin-top: 10px;
 }
 
+/* =========================
+     Register Text
+     ========================= */
+
 .registerText {
   text-align: center;
   margin-top: 15px;
 }
 
 .registerText a {
-  color: #2563eb;
+  color: var(--brandcolor);
   text-decoration: none;
   font-weight: 600;
 }
-  

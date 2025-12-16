@@ -1,12 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  font-family: "Roboto", sans-serif;
-  --contentBackground1:#E6F0F6;
-  
+  --background: white;
+  --text: black;
+  --font-family: "Roboto", sans-serif;
+  --contentBackground1: #e6f0f6;
+  --contentBackground2: white;
+  --brandcolor: #3881b4;
+  --brandcolorhuver: #49acf1;
+  --bordershadow: 0 1px 2px rgba(0,0,0,0.05), 0 -1px 2px rgba(0,0,0,0.05), 1px 0 2px rgba(0,0,0,0.05), -1px 0 2px rgba(0,0,0,0.05);
+  --linecolor: #f1f1f1;
+  --herotitle:white;
+
+}
+
+html.dark {
+  --background: black;
+  --text: white;
+  --contentBackground1: rgb(39, 37, 37);
+  --contentBackground2: rgb(39, 37, 37);
+  --brandcolor: #49acf1;
+  --brandcolorhuver: #3881b4;
+  --bordershadow:0 1px 4px rgba(255,255,255,0.2),0-1px 4px rgba(255,255,255,0.2),
+    1px 0 4px rgba(255,255,255,0.2),
+    -1px 0 4px rgba(255,255,255,0.2);
+
+  --linecolor: rgb(45, 44, 44);
+  --herotitle:white;
 }
 
 @theme inline {
@@ -26,5 +47,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: (--font-family);
 }

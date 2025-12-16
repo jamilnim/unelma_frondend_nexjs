@@ -149,7 +149,7 @@
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 12px;
-    background: rgba(0, 0, 0, 0.03);
+    background: var( --background);
     transition: background 0.3s ease;
   }
   
@@ -164,26 +164,26 @@
     justify-content: space-between;
     font-weight: 600;
     font-size: 1rem;
-    color: #111;
+    color: var(--text);
   }
   
   .regionBody {
     padding: 0.8rem 1rem;
     font-size: 0.9rem;
-    color: #333;
+    color: var( --brandcolor);
   }
   
   .contactRow a {
     display: inline-block;
     margin-right: 12px;
-    color: #007BFF;
+    color: var(--brandcolorhuver);
     text-decoration: none;
     transition: color 0.2s ease;
   }
   
   .contactRow a:hover {
-    color: #0056b3
-;
+    color: var(--brandcolor);
+
   }
   
   /* ============================= */

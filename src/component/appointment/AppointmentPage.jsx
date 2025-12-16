@@ -3,11 +3,9 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-
 import { setSelectedSlot, updateForm, resetForm, setStatus, setError } from "../../lib/features/appointments/appointmentsSlice";
 import Calendar from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 import styles from "./appointment.module.css";
 import Feedback from "./Feedback";
 
@@ -19,38 +17,69 @@ export default function AppointmentPage() {
   const { selectedSlot, form, status, error } = useSelector((s) => s.appointments);
 
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [bookings, setBookings] = useState([]);
+  const [showHistory, setShowHistory] = useState(false);
+  const [confirmation, setConfirmation] = useState(null);
 
-  // Redirect to login if not authenticated
+  // Redirect if not authenticated
   useEffect(() => {
     if (!user) router.push("/login");
   }, [user, router]);
 
-  // Prefill user info
+  // Prefill user info and default appointment type
   useEffect(() => {
     if (user) {
       dispatch(updateForm({
         name: user.username || "",
         email: user.email || "",
         phone: user.phone || "",
-        message: ""
+        message: "",
+        category: "Introduction Meeting", // default type after login
       }));
     }
   }, [user, dispatch]);
 
-  // Generate time slots 9AM-4PM
+  // Fetch booking history from backend
+  const fetchBookings = async () => {
+    if (!user || !jwt) return;
+    try {
+      const res = await fetch(
+        `http://localhost:1337/api/appointments?filters[users_permissions_user][id][$eq]=${user.id}&sort=appointment_slot:asc`,
+        { headers: { Authorization: `Bearer ${jwt}` } }
+      );
+      if (!res.ok) throw new Error("Failed to fetch bookings");
+      const data = await res.json();
+      setBookings(data.data || []);
+    } catch (err) {
+      console.error("Error fetching bookings:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchBookings();
+  }, [user, jwt]);
+
+  // Generate 9AM-4PM time slots
   const generateTimeSlots = (date) => {
     const slots = [];
+    const now = new Date();
     for (let hour = 9; hour < 16; hour++) {
       const slotDate = new Date(date);
       slotDate.setHours(hour, 0, 0, 0);
-      slots.push({ id: hour, date: slotDate.toISOString(), booked: false });
+      slots.push({
+        id: hour,
+        date: slotDate.toISOString(),
+        isPast: slotDate < now,
+      });
     }
     return slots;
   };
 
   const timeSlots = generateTimeSlots(selectedDate);
 
-  const selectSlot = (slot) => dispatch(setSelectedSlot(slot));
+  const selectSlot = (slot) => {
+    if (!slot.isPast) dispatch(setSelectedSlot(slot));
+  };
 
   const handleChange = (e) => dispatch(updateForm({ [e.target.name]: e.target.value }));
 
@@ -69,8 +98,9 @@ export default function AppointmentPage() {
           email: form.email,
           phone: form.phone,
           message: form.message,
-          appointment_slot: selectedSlot.id,        // Correct key for Strapi
-          users_permissions_user: user.id           // Correct key for Strapi
+          appointment_slot: selectedSlot.id,
+          users_permissions_user: user.id,
+          category: form.category || "General",
         },
       };
 
@@ -88,14 +118,22 @@ export default function AppointmentPage() {
         throw new Error(errBody?.error?.message || "Failed to create appointment");
       }
 
+      await res.json();
+
       dispatch(setStatus("success"));
       dispatch(resetForm());
       dispatch(updateForm({
         name: user.username || "",
         email: user.email || "",
         phone: user.phone || "",
-        message: ""
+        message: "",
+        category: form.category || "Introduction Meeting",
       }));
+
+      await fetchBookings(); // refresh history
+
+      // Show confirmation message
+      setConfirmation(`✔ Your appointment is booked for ${new Date(selectedSlot.date).toLocaleString()}`);
     } catch (err) {
       console.error(err);
       dispatch(setStatus("error"));
@@ -103,44 +141,92 @@ export default function AppointmentPage() {
     }
   };
 
+  // Auto-hide confirmation message after 5 seconds
+  useEffect(() => {
+    if (!confirmation) return;
+    const timer = setTimeout(() => setConfirmation(null), 5000);
+    return () => clearTimeout(timer);
+  }, [confirmation]);
+
+  const handleDateChange = (date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (date < today) return;
+    setSelectedDate(date);
+  };
+
+  const toggleHistory = () => setShowHistory((prev) => !prev);
+
+  const handleCancel = async (appointmentId) => {
+    if (!jwt) return alert("Not authorized");
+    if (!confirm("Are you sure you want to cancel this appointment?")) return;
+
+    try {
+      const res = await fetch(`http://localhost:1337/api/appointments/${appointmentId}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${jwt}` },
+      });
+      if (!res.ok) throw new Error("Failed to cancel appointment");
+
+      await fetchBookings(); // refresh history
+      alert("Appointment cancelled successfully");
+    } catch (err) {
+      console.error(err);
+      alert("Error cancelling appointment: " + err.message);
+    }
+  };
+
   return (
+    <>
+    <div className={styles.header}></div>
     <div className={styles.wrapper}>
+      {/* Left: Calendar & Slots */}
       <div className={styles.left}>
         <h1>Select Date & Time</h1>
-        <div className={styles.calendarBox}>
-          <Calendar
-            selected={selectedDate}
-            onChange={setSelectedDate}
-            dateFormat="MMMM d, yyyy"
-            minDate={new Date()}
-          />
-          <div className={styles.slotsBox}>
-            {timeSlots.map((slot) => {
-              const display = new Date(slot.date).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-              return (
-                <button
-                  key={slot.id}
-                  className={`${styles.slotButton} ${selectedSlot?.id === slot.id ? styles.selected : ""}`}
-                  onClick={() => selectSlot(slot)}
-                >
-                  {display}
-                </button>
-              );
-            })}
-          </div>
+        <Calendar
+          selected={selectedDate}
+          onChange={handleDateChange}
+          dateFormat="MMMM d, yyyy"
+          minDate={new Date()}
+        />
+        <div className={styles.slotsBox}>
+          {timeSlots.map((slot) => {
+            const slotDateObj = new Date(slot.date);
+            const display = slotDateObj.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+            return (
+              <button
+                key={slot.id}
+                className={`${styles.slotButton} ${selectedSlot?.id === slot.id ? styles.selected : ""} ${slot.isPast ? styles.disabled : ""}`}
+                onClick={() => selectSlot(slot)}
+                disabled={slot.isPast}
+              >
+                {display}
+              </button>
+            );
+          })}
         </div>
       </div>
 
+      {/* Middle: Form */}
       <div className={styles.middle}>
         <h2>Your Request</h2>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <label>Name<input name="name" value={form.name || ""} onChange={handleChange} required /></label>
-          <label>Email<input type="email" name="email" value={form.email || ""} onChange={handleChange} required /></label>
-          <label>Phone<input name="phone" value={form.phone || ""} onChange={handleChange} required /></label>
-          <label>Message<textarea name="message" value={form.message || ""} onChange={handleChange} rows={4} /></label>
+          <label>Name
+            <input name="name" value={form.name || ""} onChange={handleChange} required />
+          </label>
+          <label>Email
+            <input type="email" name="email" value={form.email || ""} onChange={handleChange} required />
+          </label>
+          <label>Phone
+            <input name="phone" value={form.phone || ""} onChange={handleChange} required />
+          </label>
+          <label>Message
+            <textarea name="message" value={form.message || ""} onChange={handleChange} rows={4} />
+          </label>
 
           {error && <p className={styles.error}>{error}</p>}
           {status === "success" && <p className={styles.success}>Appointment successfully booked!</p>}
+          {confirmation && <p className={styles.confirmation}>{confirmation}</p>}
 
           <button type="submit" disabled={status === "submitting"}>
             {status === "submitting" ? "Submitting…" : "Book Appointment"}
@@ -150,22 +236,40 @@ export default function AppointmentPage() {
         {user && <Feedback userId={user.id} token={jwt} />}
       </div>
 
+      {/* Right: History */}
       <div className={styles.right}>
         <h3>Selected Slot</h3>
-        {selectedSlot ? (
-          <p>{new Date(selectedSlot.date).toLocaleString()}</p>
-        ) : <p>No slot selected</p>}
+        <p>{selectedSlot ? new Date(selectedSlot.date).toLocaleString() : "No slot selected"}</p>
 
-        <div className={styles.infoBox}>
-          <h4>How it works</h4>
-          <ol>
-            <li>Choose a date.</li>
-            <li>Select a time slot.</li>
-            <li>Fill your contact details (pre-filled).</li>
-            <li>We’ll confirm by email.</li>
-          </ol>
-        </div>
+        <button onClick={toggleHistory} className={styles.formButton}>
+          {showHistory ? "Hide Appointment History" : "Show Appointment History"}
+        </button>
+
+        {showHistory && (
+          <div className={styles.bookingHistory}>
+            <h4>Your Appointments</h4>
+            {bookings.length === 0 ? <p>No appointments yet.</p> : (
+              <ul>
+                {bookings.map((b) => {
+                  const slotDate = new Date(b.attributes.appointment_slot);
+                  const isPast = slotDate < new Date();
+                  return (
+                    <li key={b.id} style={{ color: isPast ? "red" : "green" }}>
+                      {slotDate.toLocaleString()} - {b.attributes.category || "No Type"}
+                      {!isPast && (
+                        <button onClick={() => handleCancel(b.id)} style={{ marginLeft: "10px", backgroundColor: "#ff4d4f", color: "#fff", border: "none", borderRadius: "4px", padding: "2px 6px", cursor: "pointer" }}>
+                          Cancel
+                        </button>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+        )}
       </div>
     </div>
+    </>
   );
 }

@@ -1,37 +1,62 @@
-// src/lib/features/appointments/appointmentsSlice.js
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const initialState = {
-  selectedSlot: null,
-  form: {},
-  status: "",
-  error: null, // for setError
-};
+// Base API URL
+const API_URL = "http://localhost:1337/api/appointments";
+
+// Create Appointment thunk
+export const createAppointment = createAsyncThunk(
+  "appointments/create",
+  async (appointmentData, thunkAPI) => {
+    try {
+      // Strapi v4 requires "data" wrapper
+      const response = await axios.post(API_URL, {
+        data: appointmentData,
+      });
+
+      return response.data;
+    } catch (error) {
+      // Handle Strapi errors
+      const message =
+        error.response?.data?.error?.message ||
+        error.message ||
+        "Failed to create appointment";
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 const appointmentsSlice = createSlice({
   name: "appointments",
-  initialState,
+  initialState: {
+    loading: false,
+    success: false,
+    error: null,
+  },
   reducers: {
-    setSelectedSlot: (state, action) => {
-      state.selectedSlot = action.payload;
+    reset: (state) => {
+      state.loading = false;
+      state.success = false;
+      state.error = null;
     },
-    updateForm: (state, action) => {
-      state.form = { ...state.form, ...action.payload };
-    },
-    resetForm: (state) => {
-      state.form = {};
-    },
-    setStatus: (state, action) => {
-      state.status = action.payload;
-    },
-    setError: (state, action) => {
-      state.error = action.payload;
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(createAppointment.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(createAppointment.fulfilled, (state) => {
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(createAppointment.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Failed to create appointment";
+      });
   },
 });
 
-// Export all actions including setError
-export const { setSelectedSlot, updateForm, resetForm, setStatus, setError } =
-  appointmentsSlice.actions;
-
+export const { reset } = appointmentsSlice.actions;
 export default appointmentsSlice.reducer;

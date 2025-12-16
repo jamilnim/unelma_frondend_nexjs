@@ -1,14 +1,14 @@
 /* Wrapper */
 .header {
   font-size: 1.8rem;
-  color: #3881b4;
+  color:   var(--brandcolor);
   text-align: left;
   margin-left: 2rem;
 }
 
 .subheader {
   font-size: 3rem;
-  color: black;
+  color: var( --text);
   text-align: left;
   margin-left: 2rem;
 }

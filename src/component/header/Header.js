@@ -7,6 +7,7 @@ import { logoutUser } from "../../lib/features/auth/authSlice";
 import { fetchHero } from "../../lib/features/hero/heroSlice";
 import styles from "./Header.module.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import ThemeToggle from "../../component/Theme/ThemeToggle";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -44,12 +45,15 @@ export default function Header() {
             <i className="bi bi-linkedin" />
           </div>
 
+          <div className={styles.themeToggleWrapper}>
+            <ThemeToggle />
+          </div>
+
           <div className={styles.topRight}>
             {mounted && user ? (
               <>
                 <span>Hi, {user.name || user.username}</span>
 
-                {/* Profile Icon */}
                 <Link href="/dashboard" className={styles.profileIcon}>
                   <i className="bi bi-person-circle"></i>
                 </Link>
@@ -165,7 +169,6 @@ export default function Header() {
         >
           ✕
         </button>
-        <br />
 
         <Link href="/" onClick={() => setMobileOpen(false)}>
           Home
@@ -190,7 +193,6 @@ export default function Header() {
               <Link href="/about/about" onClick={() => setMobileOpen(false)}>
                 About
               </Link>
-              <br />
               <Link href="/about/blogs" onClick={() => setMobileOpen(false)}>
                 Blog
               </Link>
@@ -210,7 +212,6 @@ export default function Header() {
               >
                 Intro Meeting
               </Link>
-              <br />
               <Link
                 href="/appointment/job-interview"
                 onClick={() => setMobileOpen(false)}
@@ -230,7 +231,6 @@ export default function Header() {
               <Link href="/services" onClick={() => setMobileOpen(false)}>
                 All Services
               </Link>
-              <br />
               <Link
                 href="/services/startup-development"
                 onClick={() => setMobileOpen(false)}
@@ -254,7 +254,6 @@ export default function Header() {
               <Link href="/careers" onClick={() => setMobileOpen(false)}>
                 Jobs
               </Link>
-              <br />
               <Link
                 href="/career/internship"
                 onClick={() => setMobileOpen(false)}

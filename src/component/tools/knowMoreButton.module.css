@@ -1,95 +1,88 @@
 .ctaKnowMore {
-    position: relative;
-    margin: auto;
-    padding: 9px 14px;
-    border: 2px solid white;
-    border-radius: 50px;
-    background: #3881b4;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    width: 13.5rem;
-    height: 3rem;
-    box-shadow: 0 4px 8px rgba(128, 128, 128, 0.5);
-    transition: all 0.3s ease;
+  position: relative;
+  margin: auto;
+  padding: 9px 14px;
+  border: 2px solid white;
+  border-radius: 50px;
+  background: var(--brandcolor);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 13.5rem;
+  height: 3rem;
+  box-shadow: 0 4px 8px rgba(128, 128, 128, 0.5);
+  transition: all 0.3s ease;
 }
 
 .ctaKnowMore:hover {
-
-    background: #49ACF1;
-
-   
+  background: var(--brandcolorhuver);
 }
 
 .ctaKnowMore span {
-    position: relative;
-    font-family: "Montserrat", sans-serif;
-    font-size: 12px;
-    color: #fff;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    z-index: 2;
-    padding-bottom: 4px;
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  z-index: 2;
+  padding-bottom: 4px;
 }
-
-
 
 /* Hover underline effect */
 .hoverUnderline::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #fff;
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
 }
 
 .ctaKnowMore:hover .hoverUnderline::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-   
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 /* Arrow styling */
 .arrow {
-    margin-left: 10px;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke: #fff;
-    stroke-width: 2;
-    transform: translateX(-5px);
-    transition: all 0.3s ease;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #fff;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
 }
 
 .ctaKnowMore:hover .arrow {
-    transform: translateX(0);
-   
+  transform: translateX(0);
 }
 
 .ctaKnowMore:active {
-    transform: scale(0.95);
+  transform: scale(0.95);
 }
 
 /* Desktop & tablet adjustments */
 @media (min-width: 768px) {
-    .ctaKnowMore {
-        width: 16rem;
-        height: 3.5rem;
-        padding: 11.5px 18px;
-    }
+  .ctaKnowMore {
+    width: 16rem;
+    height: 3.5rem;
+    padding: 11.5px 18px;
+  }
 
-    .ctaKnowMore span {
-        font-size: 15px;
-    }
+  .ctaKnowMore span {
+    font-size: 15px;
+  }
 
-    .arrow {
-        margin-left: 15px;
-    }
+  .arrow {
+    margin-left: 15px;
+  }
 }

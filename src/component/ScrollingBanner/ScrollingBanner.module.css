@@ -1,7 +1,7 @@
 .wrapper {
     width: 100%;
     overflow: hidden;
-    background-color: white; /* Dark background */
+    background-color: var(--background); /* Dark background */
     padding: 10px 0;
   }
   
@@ -15,7 +15,7 @@
     display: inline-block;
     margin-right: 3rem;
     font-size: 1.7rem;
-    color: #3881B4;
+    color: var( --brandcolor);
     font-weight: 500;
   }
   

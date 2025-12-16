@@ -1,0 +1,92 @@
+/* MAIN WRAPPER */
+.container {
+  width: 80%;
+  padding-left: 10%;
+  padding-right: 10%;
+  background: var(--background);
+  color: var(--text);
+}
+
+/* CATEGORY BAR (TOP) */
+.categoryBar {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+  justify-content: center;
+  flex-direction: row;
+}
+
+/* CATEGORY BUTTON */
+.categoryBtn {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  border: 1px solid var(--linecolor);
+  background: var(--contentBackground2);
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.categoryBtn:hover {
+  background: var(--contentBackground1);
+}
+
+/* ACTIVE CATEGORY */
+.active {
+  background: var(--brandcolor);
+  color: white;
+  border-color: var(--brandcolor);
+}
+
+/* GRID — wraps cards to next row */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+/* CARD — FLEX ROW (image left, text right) */
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+
+  width: 260px;
+  padding: 0.5rem;
+
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--contentBackground2);
+  box-shadow: var(--bordershadow);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  background: var(--contentBackground1);
+  transform: translateY(-2px);
+}
+
+/* IMAGE */
+.card img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+/* TEXT RIGHT SIDE */
+.info h5 {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.info p {
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--text);
+  opacity: 0.7;
+}

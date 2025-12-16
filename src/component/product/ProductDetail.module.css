@@ -6,9 +6,10 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  background: #ffffff;
+  background: var( --background);
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: var(--bordershadow);
+  color: var(--text);
 }
 
 /* Top Section stacked on mobile */
@@ -17,7 +18,7 @@
   flex-direction: column;
   gap: 20px;
   align-items: flex-start;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--linecolor);
   padding-bottom: 20px;
 }
 
@@ -31,7 +32,7 @@
   width: 100%;
   height: auto;
   border-radius: 10px;
-  border: 1px solid #eee;
+  border: 1px solid var(--linecolor);
   object-fit: cover;
 }
 
@@ -46,22 +47,25 @@
 .title {
   font-size: 1.4rem;
   font-weight: 600;
+  color: var(--text);
 }
 
 .meta {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text);
+  opacity: 0.7;
 }
 
 .price {
   font-size: 1.2rem;
-  color: #3881B4;
+  color: var(--brandcolor);
   font-weight: 600;
 }
 
 .desc {
   margin-top: 10px;
-  color: #444;
+  color: var(--text);
+  opacity: 0.85;
   line-height: 1.5;
 }
 
@@ -76,7 +80,7 @@
 
 .addBtn {
   padding: 8px 14px;
-  background: #3881B4;
+  background: var(--brandcolor);
   color: white;
   border: none;
   border-radius: 6px;
@@ -85,10 +89,11 @@
   align-items: center;
   gap: 8px;
   font-size: 0.95rem;
+  transition: background 0.3s ease;
 }
 
 .addBtn:hover {
-  background: #49ACF1;
+  background: var(--brandcolorhuver);
 }
 
 .cartIcon {
@@ -99,8 +104,8 @@
 
 .dropdown {
   margin-top: 20px;
-  border-top: 8px solid #3881B4;
-  background-color: rgb(230, 240, 246);
+  border-top: 8px solid var(--brandcolor);
+  background-color: var(--contentBackground1);
   padding-top: 10px;
   padding-bottom: 12px;
   border-radius: 6px;
@@ -128,13 +133,14 @@
   font-size: 1rem;
   font-weight: 600;
   margin: 0;
+  color: var(--text);
 }
 
 .dropdownHeader i {
   font-size: 1.25rem;
   line-height: 1;
   margin-left: 8px;
-  color: #234b67;
+  color: var(--brandcolor);
   transition: transform 0.25s ease;
 }
 
@@ -156,15 +162,16 @@
   overflow-y: auto;
   padding-bottom: 12px;
   margin-top: 8px;
-  background-color: white;
+  background-color: var(--contentBackground2);
   border-radius: 4px;
+  color: var(--text);
 }
 
 .dropdownContent p {
   margin: 8px 0;
-  color: #23303a;
+  color: var(--text);
   line-height: 1.6;
-  background-color: white;
+  background-color: var(--contentBackground2);
 }
 
 .dropdownContent.open::-webkit-scrollbar {
@@ -172,12 +179,12 @@
 }
 
 .dropdownContent.open::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: var(--linecolor);
   border-radius: 10px;
 }
 
 .dropdownContent.open::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--contentBackground1);
 }
 
 .scrollbarWidth {
@@ -188,7 +195,7 @@
 
 .reviewHeading {
   font-size: 1.6rem;
-  color: #3881B4;
+  color: var(--brandcolor);
 }
 
 .reviewSection {
@@ -200,12 +207,13 @@
   font-size: 1.3rem;
   margin-bottom: 15px;
   font-weight: 600;
+  color: var(--text);
 }
 
 .reviewFormWrapper {
   margin-top: 20px;
   padding-top: 20px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--linecolor);
 }
 
 .center {
@@ -220,15 +228,16 @@
   max-width: 1200px;
   margin: 4rem auto;
   padding: 30px;
-  background: #ffffff;
+  background: var(--contentBackground2);
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: var(--bordershadow);
+  color: var(--text);
 }
 
 .otherProductsTitle {
   font-size: 1.6rem;
   font-weight: 600;
-  color: #3881B4;
+  color: var(--brandcolor);
   margin-bottom: 20px;
 }
 
@@ -273,7 +282,6 @@
 
 /* ===================== ANIMATIONS ===================== */
 
-/* Wrapper mount animation */
 .animateWrapper {
   animation: fadeSlideIn 0.8s ease forwards;
 }
@@ -293,7 +301,6 @@
   }
 }
 
-/* Button pulse animation */
 .addPulse {
   animation: addPulseAnim 0.6s ease forwards;
 }
@@ -304,7 +311,6 @@
   100% { transform: scale(1); box-shadow: 0 0 0 rgba(56,129,180,0); }
 }
 
-/* Body pulse/confetti */
 .cartConfetti {
   animation: confettiPulse 0.8s ease;
 }

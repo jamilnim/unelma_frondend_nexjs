@@ -3,8 +3,10 @@
   margin: 40px auto;
   padding: 20px;
   font-family: Arial, sans-serif;
+  color: var(--text);
 }
 
+/* TITLE */
 .cartTitle {
   font-size: 32px;
   font-weight: bold;
@@ -12,26 +14,29 @@
   text-align: center;
 }
 
+/* EMPTY STATE */
 .emptyState {
   text-align: center;
   font-size: 20px;
   margin-top: 40px;
+  color: var(--text);
 }
 
 /* ITEMS LIST */
 .itemsList {
-  border: 1px solid #ddd;
+  border: 1px solid var(--linecolor);
   border-radius: 12px;
   padding: 20px;
-  background: #fafafa;
+  background: var(--contentBackground2);
   margin-bottom: 20px;
+  box-shadow: var(--bordershadow);
 }
 
 .itemRow {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--linecolor);
   padding: 15px 0;
   gap: 15px;
 }
@@ -55,11 +60,13 @@
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 5px;
+  color: var(--text);
 }
 
 .itemPrice {
   font-size: 16px;
   margin-bottom: 10px;
+  color: var(--brandcolor);
 }
 
 .qtyWrap {
@@ -68,19 +75,20 @@
   gap: 10px;
 }
 
-/* SMALLER QUANTITY INPUT */
 .qtyInput {
   width: 50px;
   padding: 4px 8px;
-  border: 1px solid #888;
+  border: 1px solid var(--linecolor);
   border-radius: 6px;
   font-size: 14px;
+  background: var(--contentBackground2);
+  color: var(--text);
 }
 
 /* REMOVE BUTTON */
 .removeBtn {
-  background: #ff3b3b;
-  color: white;
+  background:  var(--brandcolor);
+  color: var( --text);
   padding: 4px 10px;
   font-size: 14px;
   border-radius: 6px;
@@ -97,16 +105,19 @@
   font-weight: bold;
   min-width: 80px;
   text-align: right;
+  color: var(--text);
 }
 
 /* TOTALS */
 .totals {
   padding: 20px;
   border-radius: 12px;
-  border: 1px solid #ccc;
-  background: #fff;
+  border: 1px solid var(--linecolor);
+  background: var(--contentBackground2);
   font-size: 18px;
   margin-bottom: 20px;
+  box-shadow: var(--bordershadow);
+  color: var(--text);
 }
 
 .totals div {
@@ -122,11 +133,12 @@
 .detailsCard {
   display: flex;
   gap: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--linecolor);
   border-radius: 12px;
   padding: 20px;
-  background: #fff;
+  background: var( --background);
   flex-wrap: wrap;
+  box-shadow: var(--bordershadow);
 }
 
 .detailsColumn {
@@ -135,31 +147,37 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  color: var(--text);
 }
 
 .sectionTitle {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
+  color: var(--text);
 }
 
 /* INPUT & TEXTAREA */
 .inputField {
   padding: 10px 14px;
   border-radius: 8px;
-  border: 1px solid #666;
+  border: 1px solid var(--linecolor);
   font-size: 14px;
   width: 100%;
+  background: var(--contentBackground1);
+  color: var(--text);
 }
 
 .textareaField {
   padding: 10px 14px;
   border-radius: 8px;
-  border: 1px solid #666;
+  border: 1px solid var(--linecolor);
   font-size: 14px;
   width: 100%;
   min-height: 100px;
   resize: vertical;
+  background: var(--contentBackground2);
+  color: var(--text);
 }
 
 /* SMALLER BUTTONS */
@@ -179,7 +197,7 @@
 }
 
 .smallBtn:first-child {
-  background: #007bff;
+  background: var(--brandcolor);
   color: white;
 }
 
@@ -227,7 +245,6 @@
     flex: 1;
   }
 
-  /* Make quantity + remove fit nicely side by side */
   .qtyWrap {
     display: flex;
     justify-content: flex-start;

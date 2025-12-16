@@ -1,78 +1,100 @@
 .profileFace {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: sans-serif;
-  }
-  
-  .userSection, .ordersSection {
-    margin-bottom: 30px;
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 8px;
-  }
-  
-  .userInfo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .avatar img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-right: 15px;
-  }
-  
-  .userDetails p {
-    margin: 5px 0;
-  }
-  
-  .orderCard {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-  }
-  
-  .orderHeader {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .itemsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 10px;
-  }
-  
-  .orderItem {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    margin-bottom: 10px;
-  }
-  
-  .orderItem img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-  
-  .downloadBtn {
-    background: #49ACF1;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.9rem;
-  }
-  
-  .downloadBtn:hover {
-    background: #3881B4;
-  }
-  
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: sans-serif;
+  color: var(--text);
+}
+
+/* USER & ORDERS SECTIONS */
+.userSection,
+.ordersSection {
+  margin-bottom: 30px;
+  border: 1px solid var(--linecolor);
+  padding: 15px;
+  border-radius: 8px;
+  background: var(--background);
+  box-shadow: var(--bordershadow);
+}
+
+/* USER INFO */
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+/* AVATAR */
+.avatar img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 1px solid var(--linecolor);
+  box-shadow: var(--bordershadow);
+}
+
+/* USER DETAILS */
+.userDetails p {
+  margin: 5px 0;
+  color: var(--text);
+}
+
+/* ORDERS */
+.orderCard {
+  border: 1px solid var(--linecolor);
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  background: var(--contentBackground1);
+  box-shadow: var(--bordershadow);
+}
+
+/* ORDER HEADER */
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text);
+}
+
+/* ITEMS CONTAINER */
+.itemsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* ORDER ITEM */
+.orderItem {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+.orderItem img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--linecolor);
+  box-shadow: var(--bordershadow);
+}
+
+/* DOWNLOAD BUTTON */
+.downloadBtn {
+  background: var(--brandcolor);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  transition: 0.25s ease;
+}
+
+.downloadBtn:hover {
+  background: var(--brandcolorhuver);
+}

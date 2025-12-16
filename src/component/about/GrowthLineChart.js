@@ -4,6 +4,7 @@ import {
   LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer
 } from "recharts";
 
+
 export default function GrowthLineChart({ data }) {
   return (
     <div style={{ width: "100%", height: 300 }}>

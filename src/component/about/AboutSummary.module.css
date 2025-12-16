@@ -5,14 +5,14 @@
 /* WRAPPER */
 .header {
   font-size: 1.4rem;
-  color: #3881b4;
+  color: var( --brandcolor);
   text-align: left;
   margin-left: 1rem;
 }
 
 .subheader {
   font-size: 2.25rem; /* 25% smaller than 3rem */
-  color: black;
+  color: var(--text);
   text-align: left;
   margin-left: 1rem;
   margin-bottom: 1.5rem;
@@ -30,7 +30,7 @@
   font-size: 32px;
   font-weight: 800;
   margin-bottom: 30px;
-  color: #111;
+  
 }
 
 /* CONTENT COLUMN (STACKED MOBILE) */
@@ -42,6 +42,7 @@
  border-radius: 50px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
   height: 70vh;
+  
 }
 
 /* LEFT IMAGE */
@@ -91,7 +92,7 @@
   line-height: 1.8;
   margin-bottom: 20px;
   margin-left: 10px;
-  color: #444;
+  color:var(--text);
   text-align: justify; /* ⭐ TEXT JUSTIFIED */
 }
 
@@ -110,7 +111,7 @@
   align-items: center;
   gap: 12px;
   font-size: 16px;
-  color: #222;
+  color:var(--text);
 }
 
 .tickIcon {
@@ -119,8 +120,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ffffff;
-  color: black;
+  color: var(--text);
   border-radius: 50%;
   font-size: 14px;
   font-weight: bold;

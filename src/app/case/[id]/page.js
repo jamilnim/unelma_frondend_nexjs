@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import CaseDetail from '../../../component/case/CaseDetail';
+import PageTransition from "../../../component/animation/PageTransition";
+import FadeInSection from "../../../component/animation/FadeInSection";
 
 
 export default function CaseDetailPage() {
@@ -37,8 +39,13 @@ export default function CaseDetailPage() {
 
   return (
     <div style={{ padding: '2rem' }}>
+       <PageTransition>
+       <FadeInSection>
 
       <CaseDetail item={item} />
+
+</FadeInSection>
+      </PageTransition>
     </div>
   );
 }

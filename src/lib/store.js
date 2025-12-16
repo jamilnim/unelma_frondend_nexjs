@@ -17,7 +17,11 @@ import subscriptionReducer from "./features/subscription/subscriptionSlice";
 import scrollingTextReducer from "./features/scrollingText/scrollingTextSlice";
 import contactReducer from "./features/contact/contactFormSlice";
 import contactHeroReducer from "./features/contactHero/contactHeroSlice";
+import serviceHeroSpotReducer from "./features/serviceHeroSpot/serviceHeroSpotSlice";
 import jobsReducer from "./features/jobs/jobsSlice";
+import appointmentHeroReducer from "./features/appointmentHerospot/appointmentHeroSlice";
+import userReducer from "./features/order/userSlice";
+import themeReducer from "./features/theme/themeSlice";
 
 export const store = configureStore({
   reducer: {
@@ -39,6 +43,10 @@ export const store = configureStore({
     scrollingText: scrollingTextReducer,
     contact: contactReducer,
     contactHero: contactHeroReducer,
+    serviceHeroSpot: serviceHeroSpotReducer,
+    appointmentHero: appointmentHeroReducer,
     jobs: jobsReducer,
+    user: userReducer,
+    theme: themeReducer,
   },
 });
