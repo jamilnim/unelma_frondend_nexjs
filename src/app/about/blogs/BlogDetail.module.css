@@ -11,13 +11,10 @@
 
 /* Container */
 .detailPage {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 4rem auto;
-  padding: 2rem 1.5rem;
+  padding: 0 1.25rem 3rem;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
   color: var(--text-color);
 }
 
@@ -26,21 +23,93 @@
   text-align: center;
   margin-bottom: 3rem;
 }
-.title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 800;
-  background: linear-gradient(
-    90deg,
-    var(--primary-color),
-    var(--primary-light)
+.heroHeader {
+  background: linear-gradient(135deg, #0f172a, #1f3c60 55%, #2b6cb0);
+  color: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 26px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+.heroHeader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 20% 20%,
+    rgba(255, 255, 255, 0.08),
+    transparent 35%
   );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  pointer-events: none;
+}
+.breadcrumbRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.backLink {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+.backLink:hover {
+  color: #fff;
+}
+.metaChip {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.kicker {
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #cbd5e1;
+  margin: 0 0 0.35rem;
+}
+.title {
+  font-size: clamp(2.3rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  margin: 0.25rem 0 0.75rem;
+  line-height: 1.2;
 }
 .meta {
   color: var(--secondary-text);
   font-size: 0.95rem;
   margin-top: 0.5rem;
+}
+.metaRow {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: #e2e8f0;
+}
+.metaItem {
+  display: grid;
+  gap: 0.15rem;
+  text-align: left;
+}
+.metaLabel {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 700;
+}
+.metaValue {
+  font-weight: 800;
+  font-size: 1rem;
 }
 
 /* Cover Image */
@@ -62,20 +131,81 @@
 }
 
 /* Content */
+.contentShell {
+  margin-top: 2.5rem;
+  background: #fff;
+  border: 1px solid #e4e9f1;
+  border-radius: 20px;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.12);
+  padding: 2.25rem;
+}
 .content {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   line-height: 1.8;
+}
+.excerptCard {
+  background: linear-gradient(135deg, #f3f7ff, #fdfbff);
+  border: 1px solid #e4e9f8;
+  border-radius: 16px;
+  padding: 1.25rem 1.35rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 .excerpt {
   font-style: italic;
   color: var(--secondary-text);
   border-left: 4px solid var(--primary-light);
   padding-left: 1rem;
-  margin-bottom: 2rem;
+  margin: 0;
 }
 .richText p {
   margin-bottom: 1.5rem;
   font-size: 1.05rem;
+}
+.richText h2,
+.richText h3,
+.richText h4 {
+  margin: 1.8rem 0 0.8rem;
+  color: #0f172a;
+  font-weight: 800;
+  line-height: 1.3;
+}
+.richText h2 {
+  font-size: 1.6rem;
+}
+.richText h3 {
+  font-size: 1.35rem;
+}
+.richText ul,
+.richText ol {
+  margin: 1rem 0 1.5rem;
+  padding-left: 1.35rem;
+  color: var(--secondary-text);
+}
+.richText li {
+  margin-bottom: 0.6rem;
+  line-height: 1.7;
+}
+.richText blockquote {
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 16px;
+  border-left: 5px solid var(--primary-light);
+  background: #f7fbff;
+  color: #1f2937;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+.richText code {
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.95rem;
+  border: 1px solid #e2e8f0;
+}
+.richText img {
+  width: 100%;
+  border-radius: 16px;
+  margin: 1.5rem 0;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
 }
 
 /* Tags */
@@ -95,7 +225,7 @@
 
 /* Footer */
 .footer {
-  margin-top: 4rem;
+  margin-top: 3rem;
   text-align: center;
 }
 .backToBlog {
@@ -129,10 +259,21 @@
 /* Responsive */
 @media (max-width: 768px) {
   .detailPage {
-    padding: 1.5rem 1rem;
+    padding: 0 0.85rem 2.5rem;
     margin: 2rem auto;
+  }
+  .heroHeader {
+    text-align: left;
+    padding: 2rem 1.5rem;
+  }
+  .breadcrumbRow {
+    flex-direction: column;
+    align-items: flex-start;
   }
   .title {
     font-size: 2.2rem;
+  }
+  .contentShell {
+    padding: 1.5rem;
   }
 }

@@ -22,12 +22,13 @@ export default function FadeInSection({ children }) {
       initial="hidden"
       animate={controls}
       variants={{
-        hidden: { opacity: 0, y: 120, scale: 0.95 },
-        visible: { 
-          opacity: 1, 
-          y: 0, 
+        hidden: { opacity: 0, y: 90, scale: 0.96, filter: "blur(8px)" },
+        visible: {
+          opacity: 1,
+          y: 0,
           scale: 1,
-          transition: { duration: 0.8, ease: "easeOut" } 
+          filter: "blur(0px)",
+          transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
         },
       }}
     >

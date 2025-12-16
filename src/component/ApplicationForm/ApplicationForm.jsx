@@ -100,7 +100,11 @@ export default function ApplicationForm({ jobId }) {
       <h2 className={styles.heading}>Apply Now</h2>
       <p className={styles.lead}>We carefully review every application.</p>
 
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className={styles.form}
+      >
         <div className={styles.row}>
           <label className={styles.field}>
             <span>Full Name *</span>
@@ -113,30 +117,36 @@ export default function ApplicationForm({ jobId }) {
           </label>
         </div>
 
-        <label className={styles.field}>
-          <span>Resume (PDF/DOC) *</span>
-          <input
-            type="file"
-            name="resume"
-            accept=".pdf,.doc,.docx"
-            required
-            onChange={(e) => {
-              const msg = validateFile(e.target.files[0]);
-              setFileError(msg || "");
-            }}
-            className={fileError ? styles.inputError : ""}
-          />
-          {fileError && <span className={styles.fieldError}>{fileError}</span>}
-        </label>
+        <div className={styles.row}>
+          <label className={`${styles.field} ${styles.fileField}`}>
+            <span>Resume (PDF/DOC) *</span>
+            <input
+              type="file"
+              name="resume"
+              accept=".pdf,.doc,.docx"
+              required
+              onChange={(e) => {
+                const msg = validateFile(e.target.files[0]);
+                setFileError(msg || "");
+              }}
+              className={fileError ? styles.inputError : ""}
+            />
+            {fileError && (
+              <span className={styles.fieldError}>{fileError}</span>
+            )}
+          </label>
 
-        <label className={styles.field}>
-          <span>Cover Letter (Optional)</span>
-          <textarea name="coverLetter" rows={5} />
-        </label>
+          <label className={`${styles.field} ${styles.coverField}`}>
+            <span>Cover Letter (Optional)</span>
+            <textarea name="coverLetter" rows={4} />
+          </label>
+        </div>
 
-        <button className={styles.submit} disabled={status === "loading"}>
-          {status === "loading" ? "Submitting..." : "Submit Application"}
-        </button>
+        <div className={styles.formActions}>
+          <button className={styles.submit} disabled={status === "loading"}>
+            {status === "loading" ? "Submitting..." : "Submit Application"}
+          </button>
+        </div>
       </form>
     </div>
   );

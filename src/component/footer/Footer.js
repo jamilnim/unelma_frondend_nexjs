@@ -4,8 +4,6 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./Footer.module.css";
 import SubscriptionForm from "../SubscriptionForm/SubscriptionForm";
 
-
-
 /**
  * Footer component with a floating subscribe pill that expands on click.
  * Uses single-open accordion behavior for addresses (click one, others close).
@@ -118,11 +116,10 @@ export default function Footer() {
               <li>
                 <a href="/support">Support Ticket</a>
               </li>
-              </ul>
-              </nav>
-              <nav className={styles.block} aria-label="Useful links">
-              <ul className={styles.links}>
-             
+            </ul>
+          </nav>
+          <nav className={styles.block} aria-label="Useful links">
+            <ul className={styles.links}>
               <h3 className={styles.blockTitle}>Grow With Us</h3>
               <li>
                 <a href="/internship">Internship</a>
@@ -139,10 +136,8 @@ export default function Footer() {
             </ul>
           </nav>
 
-       
-              <nav className={styles.block} aria-label="Useful links">
-              <ul className={styles.links}>
-             
+          <nav className={styles.block} aria-label="Useful links">
+            <ul className={styles.links}>
               <h3 className={styles.blockTitle}>Product and Service</h3>
               <li>
                 <a href="/internship">service</a>
@@ -150,7 +145,6 @@ export default function Footer() {
               <li>
                 <a href="/jobs/ui-ux">Product</a>
               </li>
-             
             </ul>
           </nav>
 
@@ -159,7 +153,7 @@ export default function Footer() {
             className={`${styles.block} ${styles.subscribeWrapperBlock}`}
             aria-label="Subscribe"
           >
-              <SubscriptionForm />
+            <SubscriptionForm />
           </aside>
 
           {/* Middle: regional addresses (accordion) */}
@@ -283,16 +277,34 @@ export default function Footer() {
                 </div>
               </details>
             </div>
-           
           </section>
           <div className={styles.imagesColumn}>
-            
-            <img src="/partners/bf-logo1691091552.png" alt="Image 1" className={styles.footerImage} />
-            <img src="/partners/association-member-individual-badge-small-11689329252.png" alt="Image 2" className={styles.footerImage} />
-            <img src="/partners/badge-stamp-pink-light-xl.svg" alt="Image 3" className={styles.footerImage} />
-            <img src="/partners/grid-award-webguruoftheday16887352111704918973 (2).png" alt="Image 3" className={styles.footerImage} />
-            <img src="/partners/e-residency-logo-w1691090434 (1).png" alt="Image 3" className={styles.footerImage} />
-                    </div>
+            <img
+              src="/partners/bf-logo1691091552.png"
+              alt="Image 1"
+              className={styles.footerImage}
+            />
+            <img
+              src="/partners/association-member-individual-badge-small-11689329252.png"
+              alt="Image 2"
+              className={styles.footerImage}
+            />
+            <img
+              src="/partners/badge-stamp-pink-light-xl.svg"
+              alt="Image 3"
+              className={styles.footerImage}
+            />
+            <img
+              src="/partners/grid-award-webguruoftheday16887352111704918973 (2).png"
+              alt="Image 3"
+              className={styles.footerImage}
+            />
+            <img
+              src="/partners/e-residency-logo-w1691090434 (1).png"
+              alt="Image 3"
+              className={styles.footerImage}
+            />
+          </div>
         </div>
 
         {/* bottom copyright */}
@@ -300,7 +312,6 @@ export default function Footer() {
           <div className={styles.bottomInner}>
             <p>© 2025 All rights reserved by Unelma Platforms.</p>
           </div>
-     
         </div>
       </footer>
     </>

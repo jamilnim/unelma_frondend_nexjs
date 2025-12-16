@@ -113,10 +113,32 @@ export default async function Page({ params }) {
 
   return (
     <article className={styles.detailPage}>
-      <header className={`${styles.header} ${styles.fadeInUp}`}>
+      <header
+        className={`${styles.header} ${styles.heroHeader} ${styles.fadeInUp}`}
+      >
+        <div className={styles.breadcrumbRow}>
+          <Link href="/about/blogs" className={styles.backLink}>
+            ← Back to all posts
+          </Link>
+          <span className={styles.metaChip}>Premium read</span>
+        </div>
+        <p className={styles.kicker}>Unelma Platform · Insight</p>
         <h1 className={styles.title}>{item.title}</h1>
-        <div className={styles.meta}>
-          <time>{publishedDate}</time>
+        <div className={styles.metaRow}>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>Published</span>
+            <time className={styles.metaValue}>{publishedDate}</time>
+          </div>
+          {Array.isArray(tags) && tags.length > 0 && (
+            <div className={styles.metaItem}>
+              <span className={styles.metaLabel}>Category</span>
+              <span className={styles.metaValue}>
+                {typeof tags[0] === "string"
+                  ? tags[0]
+                  : JSON.stringify(tags[0])}
+              </span>
+            </div>
+          )}
         </div>
         {coverUrl && (
           <div className={`${styles.coverWrapper} ${styles.fadeInUp}`}>
@@ -132,27 +154,31 @@ export default async function Page({ params }) {
         )}
       </header>
 
-      <section className={styles.content}>
+      <section className={styles.contentShell}>
         {item.excerpt && (
-          <p className={`${styles.excerpt} ${styles.fadeInUp}`}>
-            {item.excerpt}
-          </p>
-        )}
-        <div className={styles.richText}>{renderRichText(content)}</div>
-
-        {Array.isArray(tags) && tags.length > 0 && (
-          <div className={`${styles.tags} ${styles.fadeInUp}`}>
-            {tags.map((t, i) => (
-              <span key={i} className={styles.tag}>
-                {typeof t === "string" ? t : JSON.stringify(t)}
-              </span>
-            ))}
+          <div className={`${styles.excerptCard} ${styles.fadeInUp}`}>
+            <p className={styles.excerpt}>{item.excerpt}</p>
           </div>
         )}
+        <div className={styles.content}>
+          <div className={`${styles.richText} ${styles.fadeInUp}`}>
+            {renderRichText(content)}
+          </div>
+
+          {Array.isArray(tags) && tags.length > 0 && (
+            <div className={`${styles.tags} ${styles.fadeInUp}`}>
+              {tags.map((t, i) => (
+                <span key={i} className={styles.tag}>
+                  {typeof t === "string" ? t : JSON.stringify(t)}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
       </section>
 
       <footer className={`${styles.footer} ${styles.fadeInUp}`}>
-        <Link href="/blogs" className={styles.backToBlog}>
+        <Link href="/about/blogs" className={styles.backToBlog}>
           ← Back to All Blog Posts
         </Link>
       </footer>

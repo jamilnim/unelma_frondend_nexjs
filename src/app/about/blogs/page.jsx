@@ -110,35 +110,67 @@ export default function BlogPage() {
       {/* Hero / Info Section */}
       <header className={styles.hero}>
         <div className={styles.heroInner}>
-          <h1 className={styles.title}>Tech Talks by Unelma Platform</h1>
-          <p className={styles.lead}>
-            Dive into our collection of articles, tutorials, and insights on
-            software development, technology trends, and best practices.
-          </p>
+          <div className={styles.heroContent}>
+            <div className={styles.heroPills}>
+              <span className={styles.pill}>Insights</span>
+              <span className={styles.pillSecondary}>Unelma Platform</span>
+            </div>
+            <h1 className={styles.title}>Tech Talks by Unelma Platform</h1>
+            <p className={styles.lead}>
+              Dive into our collection of articles, tutorials, and insights on
+              software development, technology trends, and best practices.
+            </p>
 
-          {/* Subscribe Section */}
-          <div className={styles.subscribeWrapper}>
-            <div className={styles.subscribeContent}>
-              <h3 className={styles.subscribeTitle}>Join Our Tech Insights</h3>
-              <p className={styles.subscribeDesc}>
-                Subscribe to receive exclusive articles, tutorials, and updates
-                from Unelma Platforms directly in your inbox.
-              </p>
-              <form className={styles.subscribeForm} onSubmit={handleSubscribe}>
-                <input
-                  className={styles.subscribeInput}
-                  placeholder="Enter your email..."
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <button className={styles.subscribeBtn} type="submit">
-                  Subscribe Now
-                </button>
-              </form>
-              <p className={styles.subscribeNote}>
-                No spam. Just pure insights from our experts.
-              </p>
+            <div className={styles.heroMetaRow}>
+              <div className={styles.metaChip}>Weekly drops</div>
+              <div className={styles.metaChip}>UI/UX · AI · Dev</div>
+              <div className={styles.metaChip}>Trusted by builders</div>
+            </div>
+
+            {/* Subscribe Section */}
+            <div className={styles.subscribeWrapper}>
+              <div className={styles.subscribeContent}>
+                <h3 className={styles.subscribeTitle}>
+                  Join Our Tech Insights
+                </h3>
+                <p className={styles.subscribeDesc}>
+                  Subscribe to receive exclusive articles, tutorials, and
+                  updates from Unelma Platforms directly in your inbox.
+                </p>
+                <form
+                  className={styles.subscribeForm}
+                  onSubmit={handleSubscribe}
+                >
+                  <input
+                    className={styles.subscribeInput}
+                    placeholder="Enter your email..."
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                  <button className={styles.subscribeBtn} type="submit">
+                    Subscribe Now
+                  </button>
+                </form>
+                <p className={styles.subscribeNote}>
+                  No spam. Just pure insights from our experts.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.heroPanel}>
+            <div className={styles.statCard}>
+              <span className={styles.statValue}>50+</span>
+              <span className={styles.statLabel}>In-depth articles</span>
+            </div>
+            <div className={styles.statCard}>
+              <span className={styles.statValue}>Weekly</span>
+              <span className={styles.statLabel}>Fresh drops</span>
+            </div>
+            <div className={styles.statCard}>
+              <span className={styles.statValue}>Global</span>
+              <span className={styles.statLabel}>Engineering voices</span>
             </div>
           </div>
         </div>
@@ -148,30 +180,68 @@ export default function BlogPage() {
       <section className={styles.container}>
         {/* Simplified Header/Filter Area */}
         <div className={styles.filterHeader}>
-          <h2 className={styles.sectionTitle}>Latest Insights</h2>
-          <div className={styles.categoryTabs}>
-            {CATEGORIES.map((category) => (
-              <button
-                key={category}
-                className={`${styles.categoryTab} ${
-                  selectedCategory === category ? styles.activeTab : ""
-                }`}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </button>
-            ))}
+          <div className={styles.sectionCopy}>
+            <p className={styles.kicker}>Latest from the lab</p>
+            <h2 className={styles.sectionTitle}>Latest Insights</h2>
+            <p className={styles.sectionSubtitle}>
+              Curated stories, engineering notes, and thoughtful takes on
+              product craft.
+            </p>
+          </div>
+
+          <div className={styles.toolbar}>
+            <div className={styles.categoryTabs}>
+              {CATEGORIES.map((category) => (
+                <button
+                  key={category}
+                  className={`${styles.categoryTab} ${
+                    selectedCategory === category ? styles.activeTab : ""
+                  }`}
+                  onClick={() => setSelectedCategory(category)}
+                  type="button"
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+
+            <div className={styles.filterBar}>
+              <div className={styles.searchWrap}>
+                <input
+                  className={styles.searchInput}
+                  type="search"
+                  placeholder="Search articles (UI only)"
+                  aria-label="Search articles"
+                />
+              </div>
+              <div className={styles.sortWrap}>
+                <label className={styles.sortLabel} htmlFor="sort-select">
+                  Sort
+                </label>
+                <select
+                  id="sort-select"
+                  className={styles.sortSelect}
+                  value={selectedSort}
+                  onChange={(e) => setSelectedSort(e.target.value)}
+                >
+                  {SORT_OPTIONS.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className={styles.badges}>
+              <span className={styles.badgeSoft}>Premium reads</span>
+              <span className={styles.badgeSoft}>UI/UX + AI + Dev</span>
+            </div>
           </div>
         </div>
 
         {loading ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "4rem",
-            }}
-          >
+          <div className={styles.loaderWrap}>
             <LoadingAnimation />
           </div>
         ) : error ? (
@@ -180,14 +250,15 @@ export default function BlogPage() {
           <p className={styles.message}>No posts yet.</p>
         ) : (
           <div className={styles.grid}>
-            {posts.map((post) => (
+            {posts.map((post, index) => (
               <article
                 key={post.id}
-                className={styles.card}
+                className={`${styles.card} ${styles.revealCard}`}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 style={{
                   transform: `perspective(1000px) rotateX(calc(var(--y-pos, 0) * -8deg)) rotateY(calc(var(--x-pos, 0) * 8deg))`,
+                  animationDelay: `${index * 80}ms`,
                 }}
               >
                 <Link href={`/blogs/${post.slug}`} className={styles.cardLink}>
@@ -205,47 +276,35 @@ export default function BlogPage() {
                     ) : (
                       <div className={styles.coverPlaceholder} />
                     )}
+                    <div className={styles.mediaOverlay} />
+                    <div className={styles.cardBadgeRow}>
+                      <span className={styles.cardBadge}>Featured</span>
+                      <span className={styles.cardBadgeGhost}>
+                        {post.publishedDate}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Card Body - Content */}
                   <div className={styles.cardBody}>
+                    <div className={styles.metaTop}>
+                      <span className={styles.badge}>Editorial</span>
+                      <div className={styles.metaTiny}>
+                        <span className={styles.time}>
+                          {post.publishedDate}
+                        </span>
+                        <span className={styles.dot} />
+                        <span className={styles.likes}>{post.likes} likes</span>
+                      </div>
+                    </div>
                     <h3 className={styles.cardTitle}>{post.title}</h3>
                     <p className={styles.cardExcerpt}>{post.excerpt}</p>
 
                     {/* Meta Row (Date & Likes) - At the bottom for professional finish */}
                     <div className={styles.metaRow}>
-                      <div className={styles.metaItem}>
-                        <svg
-                          className={styles.metaIcon}
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                            clipRule="evenodd"
-                          ></path>
-                        </svg>
-                        <span className={styles.time}>
-                          {post.publishedDate}
-                        </span>
-                      </div>
-                      <div className={styles.metaItem}>
-                        <svg
-                          className={styles.metaIcon}
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                            clipRule="evenodd"
-                          ></path>
-                        </svg>
-                        <span className={styles.likes}>{post.likes}</span>
-                      </div>
+                      <span className={styles.readMore}>
+                        Read article <span aria-hidden>→</span>
+                      </span>
                     </div>
                   </div>
                 </Link>
