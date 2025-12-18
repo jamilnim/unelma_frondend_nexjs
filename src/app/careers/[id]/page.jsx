@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { notFound } from "next/navigation";
+
 import styles from "../jobDetail.module.css";
 import { BASE_URL } from "../../../lib/api";
 import ApplicationForm from "../../../component/ApplicationForm/ApplicationForm";
@@ -91,28 +93,51 @@ export default async function JobDetailPage({ params }) {
   return (
     <main className={styles.page}>
       <header className={styles.hero}>
+        <div className={styles.heroGlow} aria-hidden="true" />
         <div className={styles.heroInner}>
-          <Link href="/careers" className={styles.backLink}>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            Back to Careers
-          </Link>
+          <div className={styles.heroTop}>
+            <Link href="/careers" className={styles.backLink}>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              Back to Careers
+            </Link>
+            <a className={styles.applyLink} href="#apply-now">
+              Jump to Apply
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </a>
+          </div>
 
           <p className={styles.pretitle}>Open role</p>
           <h1 className={styles.title}>{data.title}</h1>
+          <p className={styles.subtitle}>
+            Shape the next wave of digital experiences with a team that prizes
+            craft, collaboration, and meaningful impact.
+          </p>
 
-          <div className={styles.meta}>
+          <div className={`${styles.meta} ${styles.revealBlock}`}>
             <span>{data.location || "Remote"}</span>
             <span>{data.category || "General"}</span>
             <span>
@@ -127,43 +152,114 @@ export default async function JobDetailPage({ params }) {
             </span>
           </div>
 
-          <div className={styles.deadline}>
-            Application deadline: {formatDate(data.deadline)}
+          <div className={`${styles.heroBadges} ${styles.revealBlock}`}>
+            <div className={styles.badgeCard}>
+              <span className={styles.badgeLabel}>Deadline</span>
+              <span className={styles.badgeValue}>
+                {formatDate(data.deadline)}
+              </span>
+            </div>
+            <div className={styles.badgeCard}>
+              <span className={styles.badgeLabel}>Workstyle</span>
+              <span className={styles.badgeValue}>
+                {(data.type || "full-time")
+                  .replace(/-/g, " ")
+                  .replace(/\b\w/g, (l) => l.toUpperCase())}
+              </span>
+            </div>
+            <div className={styles.badgeCard}>
+              <span className={styles.badgeLabel}>Experience</span>
+              <span className={styles.badgeValue}>
+                {(data.experienceLevel || "junior").replace(/\b\w/g, (l) =>
+                  l.toUpperCase()
+                )}
+              </span>
+            </div>
           </div>
-
-          <a className={styles.applyLink} href="#apply-now">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
-            </svg>
-            Jump to Apply
-          </a>
         </div>
       </header>
 
       <section className={styles.body}>
-        <article className={styles.description}>
-          <h2>Role Overview</h2>
-
-          <div className={styles.richText}>
-            {data.description ? (
-              renderBlocks(data.description)
-            ) : (
-              <p>No description provided for this role.</p>
-            )}
+        <div className={`${styles.infoBand} ${styles.revealBlock}`}>
+          <div>
+            <p className={styles.bandLabel}>Location</p>
+            <p className={styles.bandValue}>{data.location || "Remote"}</p>
           </div>
-        </article>
+          <div>
+            <p className={styles.bandLabel}>Team</p>
+            <p className={styles.bandValue}>{data.category || "General"}</p>
+          </div>
+          <div>
+            <p className={styles.bandLabel}>Role type</p>
+            <p className={styles.bandValue}>
+              {(data.type || "full-time")
+                .replace(/-/g, " ")
+                .replace(/\b\w/g, (l) => l.toUpperCase())}
+            </p>
+          </div>
+          <div>
+            <p className={styles.bandLabel}>Experience</p>
+            <p className={styles.bandValue}>
+              {(data.experienceLevel || "junior").replace(/\b\w/g, (l) =>
+                l.toUpperCase()
+              )}
+            </p>
+          </div>
+        </div>
 
-        <ApplicationForm jobId={job.documentId || job.id} />
+        <div className={`${styles.bodyGrid} ${styles.revealBlock}`}>
+          <article className={`${styles.description} ${styles.revealBlock}`}>
+            <div className={styles.sectionHeader}>
+              <div>
+                <p className={styles.sectionEyebrow}>Role overview</p>
+                <h2>What you will do</h2>
+              </div>
+              <span className={styles.sectionTag}>Impact-first</span>
+            </div>
+
+            <div className={styles.richText}>
+              {data.description ? (
+                renderBlocks(data.description)
+              ) : (
+                <p>No description provided for this role.</p>
+              )}
+            </div>
+          </article>
+
+          <aside className={`${styles.sidebar} ${styles.revealSlow}`}>
+            <div className={`${styles.infoCard} ${styles.revealBlock}`}>
+              <h3>Role snapshot</h3>
+              <ul>
+                <li>
+                  <strong>Location:</strong> {data.location || "Remote"}
+                </li>
+                <li>
+                  <strong>Team:</strong> {data.category || "General"}
+                </li>
+                <li>
+                  <strong>Workstyle:</strong>{" "}
+                  {(data.type || "full-time")
+                    .replace(/-/g, " ")
+                    .replace(/\b\w/g, (l) => l.toUpperCase())}
+                </li>
+                <li>
+                  <strong>Experience:</strong>{" "}
+                  {(data.experienceLevel || "junior").replace(/\b\w/g, (l) =>
+                    l.toUpperCase()
+                  )}
+                </li>
+                <li>
+                  <strong>Deadline:</strong> {formatDate(data.deadline)}
+                </li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+
+        <div className={`${styles.applyBlock} ${styles.revealBlock}`}>
+          {/* Prefer the Strapi entity id; fall back to documentId if present */}
+          <ApplicationForm jobId={job.id || job.documentId} />
+        </div>
       </section>
     </main>
   );

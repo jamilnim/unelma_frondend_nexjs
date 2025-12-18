@@ -1,13 +1,28 @@
+:root {
+  --primary-color: var(--brandcolor);
+  --secondary-color: var(--brandcolorhuver);
+  --accent-color: var(--brandcolorhuver);
+  --bg-contrast: var(--contentBackground2);
+  --bg-light: var(--contentBackground1);
+  --text-main: var(--text);
+  --text-muted: var(--text);
+  --border-soft: var(--linecolor);
+  --shadow-soft: var(--bordershadow);
+}
+
 .card {
   background: var(--bg-contrast, #fff);
   border: 1px solid var(--border-soft, #e5e7eb);
   border-radius: var(--radius-lg, 20px);
   padding: var(--spacing-lg, 24px);
   box-shadow: var(--shadow-soft, 0 10px 30px rgba(0, 0, 0, 0.08));
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md, 16px);
+  position: relative;
+  min-height: 260px;
 }
 
 .card:hover {
@@ -90,6 +105,8 @@
   align-items: center;
   gap: var(--spacing-md, 16px);
   flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: var(--spacing-sm, 8px);
 }
 
 .deadline {
@@ -120,6 +137,8 @@
   align-items: center;
   gap: 0.4rem;
   white-space: nowrap;
+  align-self: flex-end;
+  box-shadow: 0 12px 28px rgba(56, 129, 180, 0.24);
 }
 
 .cta svg {
@@ -147,6 +166,10 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .cta {
+    align-self: flex-start;
+    width: 100%;
+    justify-content: center;
+  }
 }
-
-

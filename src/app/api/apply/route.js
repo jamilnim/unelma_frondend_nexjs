@@ -7,100 +7,86 @@ export async function POST(request) {
   try {
     const formData = await request.formData();
 
-    // Extract JSON data
     const raw = formData.get("data");
+    const resume = formData.get("files.resume");
+
     if (!raw || typeof raw !== "string") {
       return NextResponse.json(
-        { success: false, error: "Missing or invalid data payload" },
+        { success: false, error: "Invalid data payload" },
         { status: 400 }
       );
     }
 
-    let parsed;
-    try {
-      parsed = JSON.parse(raw);
-    } catch (e) {
-      return NextResponse.json(
-        { success: false, error: "Invalid JSON format" },
-        { status: 400 }
-      );
-    }
+    const parsed = JSON.parse(raw);
 
     const {
       applicantName,
       applicantEmail,
       coverLetter = "",
-      job_postings,
+      aboutYourself = "",
+      jobId,
     } = parsed;
 
-    const resume = formData.get("files.resume");
-
-    // Required field validation
-    if (!applicantName || !applicantEmail) {
+    if (!applicantName || !applicantEmail || !jobId) {
       return NextResponse.json(
-        { success: false, error: "Name and Email are required." },
+        { success: false, error: "Missing required fields" },
         { status: 400 }
       );
     }
 
-    // File validation without relying on File instanceof (Node runtime)
-    if (
-      !resume ||
-      typeof resume !== "object" ||
-      typeof resume.name !== "string" ||
-      typeof resume.arrayBuffer !== "function"
-    ) {
+    if (!resume || typeof resume.arrayBuffer !== "function") {
       return NextResponse.json(
-        { success: false, error: "Resume file is required." },
+        { success: false, error: "Resume file required" },
         { status: 400 }
       );
     }
 
-    const jobConnections = Array.isArray(job_postings)
-      ? job_postings.filter(Boolean)
-      : job_postings
-      ? [job_postings]
-      : [];
+    // Normalize jobId for Strapi (prefer number when possible)
+    const jobRef =
+      typeof jobId === "string" && !Number.isNaN(Number(jobId))
+        ? Number(jobId)
+        : jobId;
 
-    if (jobConnections.length === 0) {
-      return NextResponse.json(
-        { success: false, error: "job_postings must include at least 1 id." },
-        { status: 400 }
-      );
-    }
-
-    // Prepare Strapi payload
-    const sendData = new FormData();
-    sendData.append(
+    // Reuse the original multipart payload to preserve the boundary Strapi expects
+    formData.set(
       "data",
       JSON.stringify({
         applicantName,
         applicantEmail,
         coverLetter,
-        job_postings: { connect: jobConnections },
+        aboutYourself,
+        // Strapi REST expects an array of relation ids for many-to-many
+        job_postings: [jobRef],
       })
     );
-    sendData.append("files.resume", resume, resume.name);
 
-    // POST to Strapi (collection type: applications)
+    // Ensure the file part is present and named correctly
+    if (!formData.has("files.resume")) {
+      formData.append("files.resume", resume, resume.name || "resume");
+    }
+
+    // Helpful debug if Strapi still complains
+    console.log("Outgoing form keys:", [...formData.keys()]);
+    console.log("Outgoing payload preview:", {
+      applicantName,
+      applicantEmail,
+      jobId: jobRef,
+      hasResume: !!resume,
+    });
+
     const strapiRes = await fetch(`${STRAPI_URL}/api/applications`, {
       method: "POST",
-      body: sendData,
-      // headers: { Authorization: `Bearer ${process.env.STRAPI_TOKEN}` }, // If needed
+      body: formData,
     });
 
     const result = await strapiRes.json();
 
     if (!strapiRes.ok) {
-      console.error("STRAPI ERROR:", result);
+      console.error("Strapi error:", result);
       return NextResponse.json(
         {
           success: false,
-          error:
-            result?.error?.message ||
-            result?.message ||
-            result?.error ||
-            "Strapi request failed",
+          error: result?.error?.message || "Strapi request failed",
         },
         { status: strapiRes.status }
       );
@@ -108,9 +94,9 @@ export async function POST(request) {
 
     return NextResponse.json({ success: true, data: result.data });
   } catch (err) {
-    console.error("Apply API ERROR:", err);
+    console.error("Apply API error:", err);
     return NextResponse.json(
-      { success: false, error: err.message || "Internal server error" },
+      { success: false, error: "Internal server error" },
       { status: 500 }
     );
   }

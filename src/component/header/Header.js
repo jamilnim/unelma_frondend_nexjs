@@ -109,7 +109,7 @@ export default function Header() {
               <button className={styles.btn}>About ▾</button>
               <div className={styles.dropdownMenu}>
                 <Link href="/about/about">About</Link>
-                <Link href="/about/blogs">Blog</Link>
+                <Link href="/blogs">Blog</Link>
               </div>
             </div>
             <div className={styles.navItem}>
@@ -139,7 +139,6 @@ export default function Header() {
               <button className={styles.btn}>Career ▾</button>
               <div className={styles.dropdownMenu}>
                 <Link href="/careers">Jobs</Link>
-                <Link href="/career/internship">Internship</Link>
               </div>
             </div>
             <div className={styles.navItem}>
@@ -193,7 +192,7 @@ export default function Header() {
               <Link href="/about/about" onClick={() => setMobileOpen(false)}>
                 About
               </Link>
-              <Link href="/about/blogs" onClick={() => setMobileOpen(false)}>
+              <Link href="/blogs" onClick={() => setMobileOpen(false)}>
                 Blog
               </Link>
             </div>
