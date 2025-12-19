@@ -2,105 +2,103 @@
    MOBILE-FIRST BASE STYLES
 --------------------------------*/
 
-/* WRAPPER */
+/* HEADERS */
 .header {
   font-size: 1.4rem;
-  color: var( --brandcolor);
+  color: var(--brandcolor);
   text-align: left;
   margin-left: 1rem;
 }
 
 .subheader {
-  font-size: 2.25rem; /* 25% smaller than 3rem */
+  font-size: 2.25rem;
   color: var(--text);
   text-align: left;
   margin-left: 1rem;
   margin-bottom: 1.5rem;
 }
 
+/* SECTION WRAPPER */
 .wrapper {
   width: 100%;
   padding: 30px 1.5rem;
   box-sizing: border-box;
+
+  /* ✅ MOBILE ONLY SPACE for floating logo */
+  margin-bottom: 250px;
 }
 
-/* MAIN TITLE CENTERED */
+/* MAIN TITLE */
 .mainTitle {
   text-align: center;
   font-size: 32px;
   font-weight: 800;
   margin-bottom: 30px;
-  
 }
 
-/* CONTENT COLUMN (STACKED MOBILE) */
+/* SUMMARY CONTAINER */
 .summaryWrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
   width: 100%;
- border-radius: 50px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
   height: 70vh;
-  
+
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
 }
 
-/* LEFT IMAGE */
+/* LEFT COLUMN */
 .left {
   width: 100%;
-
 }
 
-/* IMAGE WRAPPER */
+/* IMAGE WRAPPER (POSITION CONTEXT) */
 .imageWrapper {
   position: relative;
   width: 100%;
+  overflow: visible;
 }
 
 /* MAIN IMAGE */
 .image {
   width: 100%;
   height: 70vh;
+  object-fit: cover;
+
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
-  object-fit: cover;
-  box-shadow: 0px 3px 18px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 3px 18px rgba(0, 0, 0, 0.12);
 }
 
-/* ------------------------------
-   MOBILE-FIRST BASE STYLES
---------------------------------*/
-
+/* FLOATING LOGO — MOBILE */
 .logo {
   position: absolute;
-  top: 95%; /* ✔ bottom-right for mobile */
-  left: 95%;
-  transform: translate(-50%, -50%);
-  width: 112px; /* 150px - 25% */
+  top: 82%;
+  left: 1%;
+
+  width: 112px;
   height: 112px;
-  animation: spin 60s linear infinite;
+
   z-index: 10;
   background-color: transparent;
 }
-
-
-
 
 /* BODY TEXT */
 .snippet {
   font-size: 16px;
   line-height: 1.8;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  color:var(--text);
-  text-align: justify; /* ⭐ TEXT JUSTIFIED */
+  margin: 0 0 20px 10px;
+  color: var(--text);
+  text-align: justify;
 }
 
-/* POINT LIST GRID — STACK MOBILE */
+/* POINT LIST */
 .pointList {
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
+
   list-style: none;
   padding: 0;
   margin: 0 0 20px;
@@ -111,22 +109,24 @@
   align-items: center;
   gap: 12px;
   font-size: 16px;
-  color:var(--text);
+  color: var(--text);
 }
 
 .tickIcon {
   width: 30px;
   height: 30px;
+
   display: flex;
-  justify-content: center;
   align-items: center;
-  color: var(--text);
+  justify-content: center;
+
   border-radius: 50%;
   font-size: 14px;
   font-weight: bold;
+  color: var(--text);
 }
 
-/* SPIN KEYFRAMES */
+/* SPIN ANIMATION */
 @keyframes spin {
   from {
     transform: translate(-50%, -50%) rotate(0deg);
@@ -137,9 +137,15 @@
 }
 
 /* ---------------------------------------
-   DESKTOP VERSION (Larger Screens)
+   DESKTOP / TABLET
 ------------------------------------------*/
 @media (min-width: 900px) {
+
+  /* REMOVE MOBILE SPACING */
+  .wrapper {
+    margin-bottom: 0;
+  }
+
   .summaryWrapper {
     flex-direction: row;
     gap: 40px;
@@ -158,18 +164,17 @@
     gap: 12px 30px;
   }
 
-  /* Desktop logo size slightly larger */
+  /* FLOATING LOGO — DESKTOP */
   .logo {
-    position: absolute;
-    top: 50%; /* ✔ original restored */
-    left: 100%; /* ✔ original restored */
+    top: 50%;
+    left: 105%;
     transform: translate(-50%, -50%);
-    width: 150px; /* original size */
+    width: 150px;
     height: 150px;
   }
 
   .subheader {
-    font-size: 3rem; /* Full size on desktop */
+    font-size: 3rem;
   }
 
   .snippet {

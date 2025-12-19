@@ -1,0 +1,215 @@
+.header{
+    font-size: 3rem;
+    text-align: center;
+    width: 100%;
+    height: 20rem;
+background-image: url(../../../public/backimage/person-working-html-computer\ \(2\).jpg);
+border-radius: 0 0 3% 3%;
+background-repeat: no-repeat;
+background-size: cover;
+color: white;
+position: relative;
+padding: 4rem;
+margin-bottom: 0;
+}
+/* ----------------------- */
+/* Page wrapper and layout */
+/* ----------------------- */
+.pageWrapper {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: Arial, sans-serif;
+   margin-top: 0;
+  }
+  
+  /* ----------------------- */
+  /* Progress bar */
+  /* ----------------------- */
+  .progressBarContainer {
+    width: 100%;
+  }
+  
+  .progressBar {
+    height: 12px;
+    width: 100%;
+    background-color: #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .progressBarFill {
+    height: 100%;
+    background-color: var( --brandcolor);
+    transition: width 0.3s ease;
+  }
+  
+
+/* option card */
+
+.cardwrapper{
+    width: 15rem;
+    height: auto;
+    background-color: var(--contentBackground2);
+    padding: 1rem;
+    color: var(--text);
+    box-shadow: var( --bordershadow);
+}
+.optioncard{
+    color: black;
+}
+
+
+  /* ----------------------- */
+  /* Row of all group cards */
+  /* ----------------------- */
+  .groupRow {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto; /* horizontal scroll if needed */
+    padding-bottom: 10px;
+    justify-content: center;
+    align-items: baseline;
+  }
+  
+  /* Each group box (Industry, User, etc.) */
+  .groupBox {
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+    background-color:var(--contentBackground1) ;
+  }
+  
+  /* ----------------------- */
+  /* Small draggable card */
+  /* ----------------------- */
+  .card {
+    width: 13rem;
+    padding: 10px;
+    margin: 4px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: var(--contentBackground1);
+    cursor: grab;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    color: var( --text);
+  }
+  
+  /* ----------------------- */
+  /* MotherBoard (drop target) */
+  /* ----------------------- */
+  .motherBoard {
+    min-height: 300px;
+    padding: 20px;
+    border: 2px dashed #aaa;
+    border-radius: 8px;
+    background-color: var(    --brandcolorhuver);
+    position: relative;
+    z-index: 1;
+    color: black;
+  }
+  
+  .motherTitle {
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .motherRow {
+    margin-bottom: 6px;
+    padding: 4px 0;
+    background-color: var(  --contentBackground1) ;
+    color: var( --text) ;
+  }
+  
+  /* ----------------------- */
+  /* User Info Form */
+  /* ----------------------- */
+  .userInfoForm {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var( --text);
+  }
+  
+  .userInfoForm input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    color: var(--text);
+  }
+  
+  /* ----------------------- */
+  /* Report Form / Textarea */
+  /* ----------------------- */
+  .reportForm {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--brandcolor);
+  }
+  
+  .reportForm input,
+  .reportForm textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  .reportForm textarea {
+    resize: vertical;
+  }
+  
+  /* ----------------------- */
+  /* Submit Button */
+  /* ----------------------- */
+  .submitWrap {
+    margin-top: 10px;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    background-color: ;
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.2s;
+    background-color: #3881b4;;
+  }
+  
+  .button:hover {
+    background-color: var(--brandcolor);
+  }
+  
+  .button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  
+  /* ----------------------- */
+  /* Success / Error messages */
+  /* ----------------------- */
+  .successMsg {
+    color: var( --brandcolor);
+    margin-top: 10px;
+  }
+  
+  .errorMsg {
+    color: #dc2626;
+    margin-top: 10px;
+  }
+  

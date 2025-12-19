@@ -22,6 +22,7 @@ import jobsReducer from "./features/jobs/jobsSlice";
 import appointmentHeroReducer from "./features/appointmentHerospot/appointmentHeroSlice";
 import userReducer from "./features/order/userSlice";
 import themeReducer from "./features/theme/themeSlice";
+import builderReducer from "./features/startupIdea/builderSlice";
 
 export const store = configureStore({
   reducer: {
@@ -48,5 +49,6 @@ export const store = configureStore({
     jobs: jobsReducer,
     user: userReducer,
     theme: themeReducer,
+    builder: builderReducer
   },
 });

@@ -8,6 +8,7 @@ import FadeInSection from "../../component/animation/FadeInSection";
 
 import ServiceHeroSpot from "../../component/serviceHeroSpot/ServiceHeroSpot";
 
+
 export default function ServicesPage() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -35,6 +36,7 @@ export default function ServicesPage() {
        <PageTransition>
         <FadeInSection>
     <div>
+
       <ServiceHeroSpot />
 
       <div className={styles.container}>

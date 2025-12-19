@@ -10,16 +10,18 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  width: 13.5rem;
+  width: 16rem;
   height: 3rem;
   box-shadow: 0 4px 8px rgba(128, 128, 128, 0.5);
   transition: all 0.3s ease;
 }
 
+/* Hover background */
 .ctaKnowMore:hover {
   background: var(--brandcolorhuver);
 }
 
+/* Button text */
 .ctaKnowMore span {
   position: relative;
   font-family: "Montserrat", sans-serif;
@@ -31,7 +33,9 @@
   padding-bottom: 4px;
 }
 
-/* Hover underline effect */
+/* ---------------------- */
+/* UNDERLINE HOVER EFFECT */
+/* ---------------------- */
 .hoverUnderline::after {
   content: "";
   position: absolute;
@@ -39,7 +43,7 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #fff;
+  background-color: white;
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
@@ -50,7 +54,9 @@
   transform-origin: bottom left;
 }
 
-/* Arrow styling */
+/* ---------------------- */
+/* ARROW STYLING          */
+/* ---------------------- */
 .arrow {
   margin-left: 10px;
   fill: none;
@@ -66,11 +72,36 @@
   transform: translateX(0);
 }
 
+/* Click effect */
 .ctaKnowMore:active {
   transform: scale(0.95);
 }
 
-/* Desktop & tablet adjustments */
+/* ---------------------- */
+/* MOBILE VIEW (98% SCREEN WIDTH) */
+/* ---------------------- */
+@media (max-width: 767px) {
+  .ctaKnowMore {
+    width: 98vw;
+    max-width: 90vw;
+    height: 3.3rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+  }
+
+  .ctaKnowMore span {
+    font-size: 14px;
+  }
+
+  .arrow {
+    margin-left: 12px;
+  }
+}
+
+/* ---------------------- */
+/* TABLET & DESKTOP       */
+/* ---------------------- */
 @media (min-width: 768px) {
   .ctaKnowMore {
     width: 16rem;

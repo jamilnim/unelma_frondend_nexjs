@@ -1,94 +1,90 @@
-/* ================================
-   MOBILE-FIRST BASE STYLES
-================================ */
+/* ================= VARIABLES ================= */
+:root {
+  --brandcolor: #3881b4;
+  --text: #222;
+  --background: #ffffff;
+  --contentBackground1: #f5f7fa;
+}
 
-/* HEADER AREA */
+/* ================= HEADER ================= */
 .headerwrpper {
-  background-color: var( --contentBackground1);
+  background-color: var(--contentBackground1);
+  padding: 3rem 0 1rem;
 }
 
 .header {
-  font-size: 1.35rem; /* 25% smaller for mobile */
-  color: var( --brandcolor);
-  text-align: left;
+  font-size: 1.6rem;
+  color: var(--brandcolor);
   margin-left: 2rem;
 }
 
 .subheader {
-  font-size: 2.25rem; /* 25% smaller for mobile */
+  font-size: 2.8rem;
   color: var(--text);
   margin-left: 2rem;
 }
 
-/* MAIN WRAPPER */
+/* ================= WRAPPER ================= */
 .wrapper {
-  position: relative;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color:var( --contentBackground1);
-  overflow: hidden;
-  height: auto;
+  background-color: var(--contentBackground1);
+  padding: 3rem 1rem;
 }
 
-/* FEEDBACK SECTION */
+/* ================= LAYOUT ================= */
 .feedbackContainer {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  gap: 1rem;
 }
 
-.cardContainer {
+/* ================= VIEWPORT ================= */
+.viewport {
+  width: 100%;
+  overflow: hidden;
+  padding-top: 5rem; /* space for avatar */
+}
+
+/* ================= TRACK ================= */
+.track {
   display: flex;
-  flex-direction: column; /* mobile-first */
-  width: 100%;
-  align-items: center;
-  gap: 1.5rem;
+  transition: transform 0.6s ease-in-out;
 }
 
-/* ================================
-   CARD
-================================ */
+/* ================= PAGE ================= */
+/* Mobile: 1 card per page */
+.page {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 2px; /* ✅ 2px space between cards on mobile */
+}
+
+/* ================= CARD ================= */
 .card {
   position: relative;
-  width: 95vw; /* 95% of screen width */
-  height: 25rem; /* mobile height */
-  padding: 4.5rem 1.5rem 1.5rem; /* space for circle on top */
+  width: 97vw;
+  max-width: 420px;
+  padding: 4.5rem 1.5rem 1.5rem;
   background: var(--background);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px var(--bordershadow);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  color: var( --text);
+  border-radius: 40px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  text-align: center;
+  color: var(--text);
 }
 
-.card:hover {
-  transform: translateY(-6px);
-}
-
-/* ================================
-   CIRCLE IMAGE — stays same position
-================================ */
+/* ================= IMAGE ================= */
 .cardImg {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 6px solid #3881b4;
+  border: 6px solid var(--brandcolor);
   position: absolute;
   top: -60px;
   left: 50%;
   transform: translateX(-50%);
-  background: white;
-  padding: 5px;
+  background: #fff;
   overflow: hidden;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  z-index: 10;
 }
 
 .cardImg img {
@@ -97,181 +93,61 @@
   object-fit: cover;
 }
 
-/* ================================
-   CARD CONTENT
-================================ */
-.cardInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  text-align: center;
-  width: 100%;
+/* ================= CONTENT ================= */
+.quoteIcon {
+  width: 32px;
+  margin-bottom: 1rem;
 }
 
 .textBody {
-  font-size: 1rem;
-  color:var(--text);
   font-style: italic;
-  line-height: 1.4;
+  line-height: 1.5;
+  font-size: 0.95rem;
 }
 
 .textTitle {
-  font-size: 1.1rem;
-  color: #3881b4;
+  margin-top: 0.8rem;
   font-weight: bold;
+  color: var(--brandcolor);
 }
 
 .stockholder {
   font-size: 0.9rem;
-  color: #3881b4;
+  color: var(--brandcolor);
 }
 
-/* Hide old inline image */
-.cardInfo .image {
-  display: none !important;
-}
-
-/* ================================
-   NAVIGATION BUTTONS
-================================ */
+/* ================= BUTTONS ================= */
 .navButton {
   background: var(--background);
   border: none;
   font-size: 2rem;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.9rem;
   cursor: pointer;
   border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 2rem;
-  color: var(  --text);
-  font-weight: 800;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  color: var(--text);
 }
 
-.navButton:hover {
-  background:var(--contentBackground1)
-}
-
-/* BUTTON CONTAINER BELOW CARD */
-.btnContainer {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 1rem; /* below card */
-  gap: 1.5rem; /* space between < > buttons */
-}
-
-/* ================================
-   MOBILE-ONLY OVERRIDES
-================================ */
-@media (max-width: 900px) {
-  /* Card container: single column */
-  .cardContainer {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  /* Card width and height */
-  .card {
-    width: 95vw;
-    height: 25rem;
-    padding: 4.5rem 1rem 1rem;
-    margin-bottom: 1rem;
-  }
-
-  /* Circle avatar stays same on top */
-  .cardImg {
-    width: 120px;
-    height: 120px;
-    top: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  /* Card text adjustments */
-  .cardInfo {
-    gap: 0.5rem;
-  }
-
-  .textBody {
-    font-size: 0.95rem;
-  }
-
-  .textTitle {
-    font-size: 1rem;
-  }
-
-  .stockholder {
-    font-size: 0.85rem;
-  }
-
-  /* Show buttons below card */
-  .btnContainer {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-  }
-
-  /* Headers adjustments */
-  .header {
-    font-size: 1.35rem;
-    margin-left: 2rem;
-  }
-
-  .subheader {
-    font-size: 2.25rem;
-    margin-left: 2rem;
-  }
-
-  .wrapper {
-    padding: 2rem;
-    height: auto;
+/* Hide arrows on mobile */
+@media (max-width: 767px) {
+  .navButton {
+    display: none;
   }
 }
 
-/* ================================
-   DESKTOP OVERRIDES (≥901px)
-================================ */
-@media (min-width: 600px) {
-  .feedbackContainer {
-    flex-direction: row;
+/* ================= DESKTOP ================= */
+@media (min-width: 768px) {
+  .viewport {
+    max-width: 900px;
+    padding-top: 4rem;
   }
 
-  .cardContainer {
-    flex-direction: row;
-    flex-wrap: nowrap;
+  /* Desktop: 2 cards per page */
+  .page {
+    gap: 2rem;
   }
 
   .card {
-    width: 400px;
-    height: auto;
-  }
-}
-
-@media (min-width: 900px) {
-  .header {
-    font-size: 1.8rem;
-    margin-left: 4rem;
-  }
-
-  .subheader {
-    font-size: 3rem;
-    margin-left: 4rem;
-  }
-
-  .wrapper {
-    height: 70vh;
-    padding: 6rem;
-  }
-
-  .card {
-    width: 500px;
-    height: 300px;
-  }
-
-  .btnContainer {
-    margin-top: 0;
-    justify-content: flex-start; /* buttons move to side */
+    width: 420px;
   }
 }

@@ -22,7 +22,7 @@ html.dark {
   --contentBackground2: rgb(39, 37, 37);
   --brandcolor: #49acf1;
   --brandcolorhuver: #3881b4;
-  --bordershadow:0 1px 4px rgba(255,255,255,0.2),0-1px 4px rgba(255,255,255,0.2),
+  --bordershadow:0 1px 4px rgba(255,255,255,0.2),0 -1px 4px rgba(255,255,255,0.2),
     1px 0 4px rgba(255,255,255,0.2),
     -1px 0 4px rgba(255,255,255,0.2);
 

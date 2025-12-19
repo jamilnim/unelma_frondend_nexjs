@@ -7,6 +7,7 @@ import { getStrapiImage } from "../../lib/api";
 import Link from "next/link";
 import styles from "./AboutSummary.module.css";
 import KnowMoreButton from "../tools/KnowMoreButton";
+import AnyQueriesButton from "../tools/AnyQueriesButton";
 
 export default function AboutSummary() {
   const dispatch = useDispatch();
@@ -55,14 +56,10 @@ export default function AboutSummary() {
                 className={styles.image}
               />
 
-              {/* LOGO OVERLAY */}
-              {logoImageUrl && (
-                <img
-                  src={logoImageUrl}
-                  alt="Logo"
-                  className={styles.logo}
-                />
-              )}
+            <div className={styles.logo}>
+                <AnyQueriesButton/>
+                </div>
+             
             </div>
           )}
         </div>

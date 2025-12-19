@@ -11,6 +11,7 @@ import styles from "./AboutDetail.module.css";
 
 import PageTransition from "../animation/PageTransition";
 import FadeInSection from "../animation/FadeInSection";
+import Loader from "../Loader/Loader";
 
 export default function AboutDetail() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export default function AboutDetail() {
     dispatch(fetchAbout());
   }, [dispatch]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader/>;
   if (!about) return null;
 
   const storyBlocks = about.detailStory || [];

@@ -11,8 +11,8 @@
 }
 .AskQuoteButtonr{
 display: flex;
-justify-content: right;
-width: 130%;
+justify-content: center;
+width: 100%;
 }
 
 /* LEFT PANEL */

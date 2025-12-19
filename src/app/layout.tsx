@@ -4,6 +4,7 @@ import Header from "../component/header/Header";
 import Footer from "../component/footer/Footer";
 import Providers from "./Providers";
 import ThemeProvider from "../component/Theme/ThemeProvider";
+import ScrollToTop from "../component/ScrollToTop/ScrollToTop";
 
 export const metadata = {
   title: "Case Study App",
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
           <Header />
           <Providers>{children}</Providers>
           <Footer />
+          <ScrollToTop />
           </ThemeProvider>
         </StoreProvider>
       </body>

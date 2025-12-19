@@ -1,28 +1,38 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../lib/features/auth/authSlice";
 import { fetchHero } from "../../lib/features/hero/heroSlice";
+import { fetchProducts } from "../../lib/features/product/productSlice";
 import styles from "./Header.module.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import ThemeToggle from "../../component/Theme/ThemeToggle";
 
 export default function Header() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { data: hero } = useSelector((state) => state.hero);
   const cartItems = useSelector((state) => state.cart.items || []);
+  const { items: products } = useSelector((state) => state.product);
 
   const [mounted, setMounted] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState({});
 
+  const handleClick = () => {
+    sessionStorage.setItem("loginFromInquiry", "true");
+    router.push("/inquiry"); // simple and safe
+  };
+
   useEffect(() => {
     setMounted(true);
     if (!hero) dispatch(fetchHero());
-  }, [dispatch, hero]);
+    if (!products) dispatch(fetchProducts());
+  }, [dispatch, hero, products]);
 
   const handleLogout = () => dispatch(logoutUser());
   const toggleSubmenu = (menu) =>
@@ -45,19 +55,13 @@ export default function Header() {
             <i className="bi bi-linkedin" />
           </div>
 
-          <div className={styles.themeToggleWrapper}>
-            <ThemeToggle />
-          </div>
-
           <div className={styles.topRight}>
             {mounted && user ? (
               <>
                 <span>Hi, {user.name || user.username}</span>
-
                 <Link href="/dashboard" className={styles.profileIcon}>
                   <i className="bi bi-person-circle"></i>
                 </Link>
-
                 <button onClick={handleLogout} className={styles.logoutBtn}>
                   Logout
                 </button>
@@ -76,9 +80,9 @@ export default function Header() {
               <option>Eesti</option>
             </select>
 
-            <Link href="/request-quote" className={styles.quoteBtn}>
+            <button onClick={handleClick} className={styles.quoteBtn}>
               Get A Quote
-            </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -91,13 +95,6 @@ export default function Header() {
             <span className={styles.logoTitle}>{heroTitle}</span>
           </Link>
 
-          <button
-            className={styles.hamburger}
-            onClick={() => setMobileOpen(true)}
-          >
-            <i className="bi bi-list"></i>
-          </button>
-
           {/* Desktop Nav */}
           <nav className={styles.navContainer}>
             <div className={styles.navItem}>
@@ -105,13 +102,15 @@ export default function Header() {
                 Home
               </Link>
             </div>
+
             <div className={styles.navItem}>
               <button className={styles.btn}>About ▾</button>
               <div className={styles.dropdownMenu}>
                 <Link href="/about/about">About</Link>
-                <Link href="/about/blogs">Blog</Link>
+                <Link href="/blogs">Blog</Link>
               </div>
             </div>
+
             <div className={styles.navItem}>
               <button className={styles.btn}>Appointment ▾</button>
               <div className={styles.dropdownMenu}>
@@ -121,27 +120,46 @@ export default function Header() {
                 <Link href="/appointment/job-interview">Job Interview</Link>
               </div>
             </div>
+
             <div className={styles.navItem}>
               <button className={styles.btn}>Service ▾</button>
               <div className={styles.dropdownMenu}>
                 <Link href="/services">All Services</Link>
-                <Link href="/services/startup-development">
-                  Startup Development
-                </Link>
+                <Link href="/idea-builder">Startup Dev</Link>
               </div>
             </div>
+
+            <div className={styles.navItem}>
+              {mounted && products?.length > 0 && (
+                <>
+                  <button className={styles.btn}>Products ▾</button>
+                  <div className={styles.dropdownMenu}>
+                    {products.map((product) => (
+                      <Link
+                        key={product.id}
+                        href={`/productPage/${product.slug}`}
+                      >
+                        {product.name}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+
             <div className={styles.navItem}>
               <Link href="/casestudy" className={styles.btn}>
                 Case Study
               </Link>
             </div>
+
             <div className={styles.navItem}>
               <button className={styles.btn}>Career ▾</button>
               <div className={styles.dropdownMenu}>
                 <Link href="/careers">Jobs</Link>
-                <Link href="/career/internship">Internship</Link>
               </div>
             </div>
+
             <div className={styles.navItem}>
               <Link href="/contact" className={styles.btn}>
                 Contact
@@ -149,7 +167,7 @@ export default function Header() {
             </div>
           </nav>
 
-          {/* Desktop Cart Icon */}
+          {/* Desktop Cart */}
           <div className={styles.cartWrapper}>
             <Link href="/cart" className={styles.cartIcon}>
               <i className="bi bi-cart3"></i>
@@ -158,116 +176,149 @@ export default function Header() {
               )}
             </Link>
           </div>
+
+          {/* Theme Toggle */}
+          <div className={styles.themeToggleWrapper}>
+            <ThemeToggle />
+          </div>
+
+          {/* Hamburger */}
+          <button
+            className={styles.hamburger}
+            onClick={() => setMobileOpen(true)}
+          >
+            <i className="bi bi-list"></i>
+          </button>
         </div>
       </header>
 
       {/* Mobile Menu */}
-      <div className={`${styles.mobileMenu} ${mobileOpen ? styles.open : ""}`}>
-        <button
-          className={styles.closeBtn}
-          onClick={() => setMobileOpen(false)}
+      {mounted && (
+        <div
+          className={`${styles.mobileMenu} ${mobileOpen ? styles.open : ""}`}
         >
-          ✕
-        </button>
-
-        <Link href="/" onClick={() => setMobileOpen(false)}>
-          Home
-        </Link>
-
-        <Link
-          href="/cart"
-          onClick={() => setMobileOpen(false)}
-          className={styles.mobileCart}
-        >
-          <i className="bi bi-cart3"></i>
-          {mounted && `Cart (${cartItems.length})`}
-        </Link>
-
-        {/* Mobile submenus */}
-        <div className={styles.mobileItem}>
-          <button onClick={() => toggleSubmenu("about")}>
-            About {mobileSubmenu["about"] ? "−" : "+"}
+          <button
+            className={styles.closeBtn}
+            onClick={() => setMobileOpen(false)}
+          >
+            ✕
           </button>
-          {mobileSubmenu["about"] && (
-            <div className={styles.mobileSubmenu}>
-              <Link href="/about/about" onClick={() => setMobileOpen(false)}>
-                About
-              </Link>
-              <Link href="/about/blogs" onClick={() => setMobileOpen(false)}>
-                Blog
-              </Link>
-            </div>
+
+          <Link href="/" onClick={() => setMobileOpen(false)}>
+            Home
+          </Link>
+          {cartItems.length > 0 && (
+            <Link
+              href="/cart"
+              onClick={() => setMobileOpen(false)}
+              className={styles.mobileCart}
+            >
+              <i className="bi bi-cart3"></i> Cart ({cartItems.length})
+            </Link>
           )}
+
+          {/* Mobile submenus */}
+          <div className={styles.mobileItem}>
+            <button onClick={() => toggleSubmenu("about")}>
+              About {mobileSubmenu["about"] ? "−" : "+"}
+            </button>
+            {mobileSubmenu["about"] && (
+              <div className={styles.mobileSubmenu}>
+                <Link href="/about/about" onClick={() => setMobileOpen(false)}>
+                  About
+                </Link>
+                <Link href="/about/blogs" onClick={() => setMobileOpen(false)}>
+                  Blog
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <div className={styles.mobileItem}>
+            <button onClick={() => toggleSubmenu("appointment")}>
+              Appointment {mobileSubmenu["appointment"] ? "−" : "+"}
+            </button>
+            {mobileSubmenu["appointment"] && (
+              <div className={styles.mobileSubmenu}>
+                <Link
+                  href="/appointment/introduction-meeting"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Intro Meeting
+                </Link>
+                <Link
+                  href="/appointment/job-interview"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Job Interview
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <div className={styles.mobileItem}>
+            <button onClick={() => toggleSubmenu("service")}>
+              Service {mobileSubmenu["service"] ? "−" : "+"}
+            </button>
+            {mobileSubmenu["service"] && (
+              <div className={styles.mobileSubmenu}>
+                <Link href="/services" onClick={() => setMobileOpen(false)}>
+                  All Services
+                </Link>
+                <Link
+                  href="/services/startup-development"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Startup Dev
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <div className={styles.mobileItem}>
+            <button onClick={() => toggleSubmenu("products")}>
+              Products {mobileSubmenu["products"] ? "−" : "+"}
+            </button>
+            {mobileSubmenu["products"] &&
+              products?.map((product) => (
+                <Link
+                  key={product.id}
+                  href={`/productPage/${product.slug}`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {product.name}
+                </Link>
+              ))}
+          </div>
+
+          <Link href="/casestudy" onClick={() => setMobileOpen(false)}>
+            Case Study
+          </Link>
+
+          <div className={styles.mobileItem}>
+            <button onClick={() => toggleSubmenu("career")}>
+              Career {mobileSubmenu["career"] ? "−" : "+"}
+            </button>
+            {mobileSubmenu["career"] && (
+              <div className={styles.mobileSubmenu}>
+                <Link href="/careers" onClick={() => setMobileOpen(false)}>
+                  Jobs
+                </Link>
+                <Link
+                  href="/career/internship"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Internship
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <Link href="/contact" onClick={() => setMobileOpen(false)}>
+            Contact
+          </Link>
         </div>
-
-        <div className={styles.mobileItem}>
-          <button onClick={() => toggleSubmenu("appointment")}>
-            Appointment {mobileSubmenu["appointment"] ? "−" : "+"}
-          </button>
-          {mobileSubmenu["appointment"] && (
-            <div className={styles.mobileSubmenu}>
-              <Link
-                href="/appointment/introduction-meeting"
-                onClick={() => setMobileOpen(false)}
-              >
-                Intro Meeting
-              </Link>
-              <Link
-                href="/appointment/job-interview"
-                onClick={() => setMobileOpen(false)}
-              >
-                Job Interview
-              </Link>
-            </div>
-          )}
-        </div>
-
-        <div className={styles.mobileItem}>
-          <button onClick={() => toggleSubmenu("service")}>
-            Service {mobileSubmenu["service"] ? "−" : "+"}
-          </button>
-          {mobileSubmenu["service"] && (
-            <div className={styles.mobileSubmenu}>
-              <Link href="/services" onClick={() => setMobileOpen(false)}>
-                All Services
-              </Link>
-              <Link
-                href="/services/startup-development"
-                onClick={() => setMobileOpen(false)}
-              >
-                Startup Dev
-              </Link>
-            </div>
-          )}
-        </div>
-
-        <Link href="/casestudy" onClick={() => setMobileOpen(false)}>
-          Case Study
-        </Link>
-
-        <div className={styles.mobileItem}>
-          <button onClick={() => toggleSubmenu("career")}>
-            Career {mobileSubmenu["career"] ? "−" : "+"}
-          </button>
-          {mobileSubmenu["career"] && (
-            <div className={styles.mobileSubmenu}>
-              <Link href="/careers" onClick={() => setMobileOpen(false)}>
-                Jobs
-              </Link>
-              <Link
-                href="/career/internship"
-                onClick={() => setMobileOpen(false)}
-              >
-                Internship
-              </Link>
-            </div>
-          )}
-        </div>
-
-        <Link href="/contact" onClick={() => setMobileOpen(false)}>
-          Contact
-        </Link>
-      </div>
+      )}
     </>
   );
 }

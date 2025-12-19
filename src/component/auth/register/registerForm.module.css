@@ -3,7 +3,8 @@
    ========================= */
 
    .card {
-    max-width: 420px;
+    max-width: 600px;
+    width: 25rem;
     margin: 40px auto;
     padding: 30px;
     background: var(   --background);
@@ -11,6 +12,7 @@
     box-shadow: var(--bordershadow);
     color: var(--text);
     font-family: var(--font-family);
+ 
     
   }
   
@@ -19,7 +21,8 @@
      ========================= */
   
   .registerCard {
-    max-width: 420px;
+  
+    max-width: 600px;
     margin: 40px auto;
     padding: 30px;
     background: var(--background);
@@ -57,7 +60,7 @@
     flex-direction: column;
     gap: 15px;
     color: var(--text);
-    width: 300px;
+    width: 21rem;
   }
   
   .form input,

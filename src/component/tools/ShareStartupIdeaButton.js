@@ -1,13 +1,15 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import styles from "./knowMoreButton.module.css";
 
-export default function KnowMoreButton({ detailPage, text = "Know More" }) {
+export default function ShareStartupIdeaButton({
+  text = "Share your startup idea",
+}) {
   const router = useRouter();
 
   const handleClick = () => {
-    const url = detailPage ? `/details/${detailPage}` : "/details";
-    router.push(url);
+    router.push("/idea-builder");
   };
 
   return (

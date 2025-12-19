@@ -54,7 +54,7 @@ export default function BlogSection() {
               Insights, stories, and platform updates from the team.
             </p>
           </div>
-          <Link href="/about/blogs" className={styles.ctaLink}>
+          <Link href="/blogs" className={styles.ctaLink}>
             <SeeallBlogs />
           </Link>
         </div>
@@ -72,10 +72,7 @@ export default function BlogSection() {
 
             return (
               <article key={post.id} className={styles.card}>
-                <Link
-                  href={`/about/blogs/${item.slug}`}
-                  className={styles.cardLink}
-                >
+                <Link href={`/blogs/${item.slug}`} className={styles.cardLink}>
                   {/* Blog Card Image */}
                   <div className={styles.mediaWrap}>
                     {coverUrl ? (

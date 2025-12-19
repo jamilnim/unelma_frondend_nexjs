@@ -1,18 +1,23 @@
-/* -------------------------
-   MOBILE-FIRST STYLES
--------------------------- */
+/* ===================== VARIABLES ===================== */
 
-/* Title – 25% smaller */
+:root {
+  --brandcolor: #3881B4;
+  --text: #222;
+}
+
+/* ===================== MOBILE FIRST ===================== */
+
+/* Title */
 .header {
-  font-size: 1.35rem;   /* 1.8rem × 0.75 */
-  color:var( --brandcolor);
+  font-size: 1.35rem;
+  color: var(--brandcolor);
   text-align: left;
   margin-left: 1rem;
 }
 
-/* Subtitle – 25% smaller */
+/* Subtitle */
 .subheader {
-  font-size: 2.25rem;   /* 3rem × 0.75 */
+  font-size: 2.25rem;
   color: var(--text);
   text-align: left;
   margin-left: 1rem;
@@ -24,31 +29,30 @@
   padding: 1.5rem;
 }
 
-/* Layout → mobile column */
+/* Layout */
 .contentWrapper {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
-  margin-left: 0;
 }
 
-/* HERO TEXT BOX */
+/* ===================== HERO ===================== */
+
 .heroText {
   width: 100%;
-  font-size: 1.1rem; 
+  font-size: 1.1rem;
   line-height: 1.6;
   font-weight: 500;
   color: #fff;
   background: url("../../../public/s2.webp") no-repeat center center;
   background-size: cover;
   padding: 1.2rem;
-  border-radius: 0; 
   min-height: 180px;
-  position: relative;
 }
 
-/* SLIDER */
+/* ===================== SLIDER ===================== */
+
 .slider {
   width: 100%;
   height: 45vh;
@@ -63,13 +67,11 @@
   animation: slide 12s linear infinite;
 }
 
-/* Each card: 80% screen on mobile */
 .item {
   flex: 0 0 80vw;
   height: 45vh;
 }
 
-/* Base card */
 .card {
   width: 100%;
   height: 100%;
@@ -80,8 +82,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  position: relative;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
 }
 
 .image {
@@ -92,16 +93,13 @@
 
 .cardInfo {
   height: 35%;
-  background: rgba(0, 0, 0, 0.55);
-  padding: 0.5rem 0.7rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  background: rgba(0,0,0,0.55);
+  padding: 0.6rem;
 }
 
 .cardInfo h3 {
-  margin: 0.1rem 0;
   font-size: 0.9rem;
+  margin: 0;
 }
 
 .price {
@@ -113,259 +111,43 @@
   font-size: 0.75rem;
 }
 
-.detailBtn {
-  padding: 4px 10px;
-  background: #3881B4;
+/* ===================== MOBILE CENTER BUTTON ===================== */
+
+.mobileCenterBtn {
+  padding: 14px 24px;
+  background: var(--brandcolor);
   color: white;
+  font-size: 1rem;
+  font-weight: 600;
   border: none;
-  border-radius: 4px;
-  font-size: 0.75rem;
+  border-radius: 10px;
   cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
 }
 
-.detailBtn:hover {
+/* Center on mobile */
+@media (max-width: 899px) {
+  .mobileCenterBtn {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+}
+
+.mobileCenterBtn:hover {
   background: #49ACF1;
 }
 
-/* Decorative right box hidden on mobile */
-.rightBox {
-  display: none;/* ===================== MOBILE FIRST ===================== */
+/* ===================== RIGHT BOX ===================== */
 
-  .wrapper {
-    width: 95vw;
-    margin: 6rem auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  }
-  
-  .topSection {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 20px;
-  }
-  
-  .imageWrapper {
-    width: 100%;
-    max-width: 100%;
-  }
-  
-  .image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    border: 1px solid #eee;
-    object-fit: cover;
-  }
-  
-  .info {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .title {
-    font-size: 1.4rem;
-    font-weight: 600;
-  }
-  
-  .meta {
-    font-size: 0.9rem;
-    color: #666;
-  }
-  
-  .price {
-    font-size: 1.2rem;
-    color: #3881B4;
-    font-weight: 600;
-  }
-  
-  .desc {
-    margin-top: 10px;
-    color: #444;
-    line-height: 1.5;
-  }
-  
-  .buyRow {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    margin-top: 12px;
-  }
-  
-  .addBtn {
-    padding: 8px 14px;
-    background: #3881B4;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .addBtn:hover {
-    background: #49ACF1;
-  }
-  
-  .cartIcon {
-    font-size: 1.6rem;
-  }
-  
-  /* ===================== DROPDOWN FIXED ===================== */
-  
-  .dropdown {
-    margin-top: 20px;
-    border-top: 8px solid #3881B4;
-    background-color: rgb(230, 240, 246);
-    padding-top: 10px;
-    padding-bottom: 12px;
-    border-radius: 6px;
-  }
-  
-  /* Mobile full width */
-  .dropdownInline {
-    width: 100%;
-  }
-  
-  /* Desktop – 60% of full screen width */
-  @media (min-width: 768px) {
-    .dropdownInline {
-      width: 60vw;
-    }
-  }
-  
-  .dropdownHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    padding: 8px 12px;
-  }
-  
-  .dropdownHeader h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0;
-  }
-  
-  /* Chevron icon */
-  .dropdownHeader i {
-    font-size: 1.25rem;
-    color: #234b67;
-    transition: transform 0.25s ease;
-  }
-  
-  /* Rotate when opened */
-  .rotate {
-    transform: rotate(180deg);
-  }
-  
-  .dropdownContent {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: all 0.3s ease;
-    padding: 0 12px;
-    background: white; /* FIXED */
-    border-radius: 0 0 6px 6px;
-  }
-  
-  .dropdownContent.open {
-    opacity: 1;
-    max-height: 600px;
-    margin-top: 8px;
-    padding: 12px;
-  }
-  
-  .dropdownContent p {
-    margin: 8px 0;
-    color: #23303a;
-    line-height: 1.6;
-  }
-  
-  /* ===================== REVIEWS ===================== */
-  
-  .reviewHeading {
-    font-size: 1.6rem;
-    color: #3881B4;
-  }
-  
-  .reviewSection {
-    margin-top: 40px;
-    padding-top: 30px;
-  }
-  
-  .center {
-    text-align: center;
-    padding: 40px;
-  }
-  
-  /* ===================== OTHER PRODUCTS ===================== */
-  
-  .otherProductsWrapper {
-    width: 95vw;
-    max-width: 1200px;
-    margin: 4rem auto;
-    padding: 30px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  }
-  
-  .otherProductsTitle {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #3881B4;
-    margin-bottom: 20px;
-  }
-  
-  /* ===================== DESKTOP LAYOUT ===================== */
-  
-  @media (min-width: 768px) {
-    .wrapper {
-      width: 80%;
-      max-width: 1200px;
-      margin: 4rem auto;
-      padding: 40px;
-    }
-  
-    .topSection {
-      flex-direction: row;
-      gap: 40px;
-      padding-bottom: 40px;
-    }
-  
-    .imageWrapper {
-      flex: 1 1 25%;
-      max-width: 25%;
-    }
-  
-    .info {
-      flex: 1 1 50%;
-      max-width: 50%;
-    }
-  
-    .title {
-      font-size: 1.8rem;
-    }
-  
-    .price {
-      font-size: 1.4rem;
-    }
-  }
-  
+.rightBox {
+  display: none;
 }
 
-/* Slide Animation */
+/* ===================== ANIMATIONS ===================== */
+
 @keyframes slide {
   from { transform: translateX(0); }
   to { transform: translateX(calc(-50% - 1rem)); }
@@ -375,18 +157,8 @@
   animation-play-state: paused;
 }
 
-/* Center Text */
-.center {
-  text-align: center;
-  padding: 40px;
-  font-size: 1rem;
-  color: #666;
-}
+/* ===================== DESKTOP / TABLET ===================== */
 
-
-/* -------------------------
-   DESKTOP / TABLET (≥ 900px)
--------------------------- */
 @media (min-width: 900px) {
 
   .header {
@@ -401,14 +173,13 @@
 
   .contentWrapper {
     flex-direction: row;
-    justify-content: center;
-    gap: 1rem;
     width: 90%;
     margin-left: 4rem;
   }
 
   .heroText {
-    flex: 1 1 20%;
+    flex: 1;
+    font-size: 3rem;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
   }
@@ -423,24 +194,26 @@
     height: 60vh;
   }
 
-  /* FIXED — ArrowButton now visible */
   .rightBox {
-    display: flex;                    /* <-- lets us center the arrow */
+    display: flex;
     justify-content: center;
     align-items: center;
-
     width: 3rem;
     height: 60vh;
-    background: #3881b4;
+    background: var(--brandcolor);
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
+  }
 
-    position: relative;               /* safe container */
-    overflow: visible;
+  /* Button returns to layout */
+  .mobileCenterBtn {
+    position: static;
+    transform: none;
+    box-shadow: none;
   }
 }
 
-/* ===================== ADD TO CART PULSE ANIMATION ===================== */
+/* ===================== ADD TO CART PULSE ===================== */
 
 @keyframes addToCartPulse {
   0% { transform: scale(1); }

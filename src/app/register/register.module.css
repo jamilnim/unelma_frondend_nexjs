@@ -4,10 +4,11 @@
     align-items: center;
     min-height: 100vh;
     background-color: var(  --background);
+    
   }
   
   .card {
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 1rem;
  
     text-align: center;

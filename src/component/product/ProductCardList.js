@@ -7,6 +7,7 @@ import { fetchHero } from "../../lib/features/hero/heroSlice";
 import styles from "./ProductCardList.module.css";
 import AskQuoteButton from "../inquiry/AskQuoteButton";
 import ArrowButton from "../tools/ArrowButton";
+import ShareStartupIdeaButton from "../tools/ShareStartupIdeaButton";
 
 export default function ProductCardList() {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ export default function ProductCardList() {
             <p>No hero text available</p>
           )}
 
-          <AskQuoteButton subject="Hot Store Inquiry" />
+          <ShareStartupIdeaButton />
         </div>
 
         {/* MIDDLE - SLIDER */}
